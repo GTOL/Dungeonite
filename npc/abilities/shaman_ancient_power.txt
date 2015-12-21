@@ -1,0 +1,42 @@
+﻿//萨满 先祖之力
+//Author: GTOL ddwe
+//Date:12/12/2015
+//记得改狼魂
+//治疗波大幅增强，图腾象征增加伤害，闪电盾实现：cd减少，能连续放，能续两个
+
+"shaman_ancient_power"
+{
+    "BaseClass"             "Ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"    "用上古巨神的收回灵魂Return Astral Spirit"
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"                          "FIELD_INTEGER"
+            "healing_wave_extra_count"          "1 3 5"
+        }
+        "02"
+        {
+            "var_type"                          "FIELD_INTEGER"
+            "totem_damage"                      "100 200 300"
+        }
+        "03"
+        {
+            "var_type"                          "FIELD_INTEGER"
+            "lightening_shield_cooldown_adjust" "-5 -10 -15"
+        }
+    }
+
+
+
+    "OnUpgrade"
+    {
+        "RunScript"
+        {
+            "ScriptFile"    "abilities/shaman_ancient_power_lua.lua"
+            "Function"      "AncientPower"
+        }
+    }
+
+}

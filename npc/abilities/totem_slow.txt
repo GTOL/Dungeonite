@@ -1,7 +1,7 @@
-﻿//图腾 减速光环
-//Author: GTOL ddwe
-//Date: 21/12/2015
-//基本完成
+﻿	//图腾 减速光环
+	//Author: GTOL ddwe
+	//Date: 21/12/2015
+	//伤害多三波
 	"totem_slow"
 	{
 		"precache"
@@ -144,8 +144,8 @@
 						"Type"		"DAMAGE_TYPE_MAGICAL"
 						"Damage"	"%damage"
 					}
+				}	
 			}
-
 			"modifier_totem_slow"
 			{
 				"IsDebuff" "1"
