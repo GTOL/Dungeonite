@@ -32,7 +32,6 @@ function Skill1:OnSpellStart()
 		do	
 			adder = adder + 1;
 			if(adder == 2) then
-	
  
 				local nTargetFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
 				ParticleManager:SetParticleControlEnt( nTargetFX, 1, hCaster, PATTACH_ABSORIGIN_FOLLOW, nil, hCaster:GetOrigin(), false )
