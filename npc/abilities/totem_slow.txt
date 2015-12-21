@@ -1,7 +1,7 @@
-//ͼ�� ���ٹ⻷
+﻿//图腾 减速光环
 //Author: GTOL ddwe
 //Date: 21/12/2015
-//�������
+//基本完成
 	"totem_slow"
 	{
 		"precache"

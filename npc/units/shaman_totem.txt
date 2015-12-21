@@ -1,4 +1,4 @@
-//ÈøÂú Í¼ÌÚ
+ï»¿//è¨æ»¡ å›¾è…¾
 //Author: GTOL
 //Date: 21/12/2015
 
@@ -34,8 +34,8 @@
 		"StatusMana"        "0"         
 		"StatusManaRegen"  	"0"         
 		
-		"VisionDaytimeRange"        "200"        // °×ÌìÊÓÒ°
-		"VisionNighttimeRange"      "200"        // Ò¹¼äÊÓÒ°
+		"VisionDaytimeRange"        "200"        // ç™½å¤©è§†é‡
+		"VisionNighttimeRange"      "200"        // å¤œé—´è§†é‡
 		
 		"UnitRelationshipClass"       "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		
