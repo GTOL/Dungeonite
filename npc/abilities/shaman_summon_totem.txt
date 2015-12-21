@@ -37,3 +37,104 @@
     }
 }
 
+"shaman_summon_totem1"
+{
+    "precache"
+    {
+    
+    }
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityTextureName"    "juggernaut_healing_ward"
+    "AbilityCastPoint"      "0.3"
+    "AbilityCooldown"       "60"
+    "AbilityManaCost"       "60"
+	"AbilityCastRange"		"500"
+	"MaxLevel"				"1"
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "duration"      "15"
+        }
+    }
+    "OnSpellStart"
+    {
+        "SpawnUnit"
+        {
+            "UnitName"      "shaman_totem1"
+            "UnitCount"     "1"
+            "Duration"      "%duration"
+            "Target"        "POINT"
+        }
+    }
+}
+
+"shaman_summon_totem2"
+{
+    "precache"
+    {
+    
+    }
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityTextureName"    "juggernaut_healing_ward"
+    "AbilityCastPoint"      "0.3"
+    "AbilityCooldown"       "60"
+    "AbilityManaCost"       "60"
+	"AbilityCastRange"		"500"
+	"MaxLevel"				"1"
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "duration"      "15"
+        }
+    }
+    "OnSpellStart"
+    {
+        "SpawnUnit"
+        {
+            "UnitName"      "shaman_totem2"
+            "UnitCount"     "1"
+            "Duration"      "%duration"
+            "Target"        "POINT"
+        }
+    }
+}
+
+"shaman_summon_totem3"
+{
+    "precache"
+    {
+    
+    }
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityTextureName"    "juggernaut_healing_ward"
+    "AbilityCastPoint"      "0.3"
+    "AbilityCooldown"       "60"
+    "AbilityManaCost"       "60"
+	"AbilityCastRange"		"500"
+	"MaxLevel"				"1"
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "duration"      "15"
+        }
+    }
+    "OnSpellStart"
+    {
+        "SpawnUnit"
+        {
+            "UnitName"      "shaman_totem3"
+            "UnitCount"     "1"
+            "Duration"      "%duration"
+            "Target"        "POINT"
+        }
+    }
+}

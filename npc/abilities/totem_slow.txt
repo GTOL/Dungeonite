@@ -71,3 +71,265 @@
 			}
 		}        
 	}
+
+	"totem_slow1"
+	{
+		"precache"
+		{
+			"particle"                          "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+		}
+                
+		"BaseClass"                             "ability_datadriven"
+		"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"    "1"
+		"AbilityTextureName"    "sandking_epicenter"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"slow"				"-20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_slow"		"-30"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"100"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_totem_effect"
+			{
+				"Passive" "1"
+				"IsHidden" "1"
+				"Aura" "modifier_totem_slow"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"ThinkInterval" "2"
+				"OnIntervalThink"
+				{
+					"FireEffect"
+					{
+						"EffectName" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+						"Target" "CASTER"
+						"EffectAttachType" "follow_origin"
+						"EffectRadius"		"%radius"
+						"ControlPoint"
+						{
+							"01"	"%radius 0 %radius"
+						}
+					}			
+					"Damage"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_TYPE_HERO | DOTA_UNIT_TARGET_TYPE_BASIC"
+						}
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+			}
+
+			"modifier_totem_slow"
+			{
+				"IsDebuff" "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
+				}
+			}
+		}        
+	}
+
+	"totem_slow2"
+	{
+		"precache"
+		{
+			"particle"                          "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+		}
+                
+		"BaseClass"                             "ability_datadriven"
+		"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"    "1"
+		"AbilityTextureName"    "sandking_epicenter"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"slow"				"-20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_slow"		"-30"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"200"
+			}
+
+		}
+		
+		"Modifiers"
+		{
+			"modifier_totem_effect"
+			{
+				"Passive" "1"
+				"IsHidden" "1"
+				"Aura" "modifier_totem_slow"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"ThinkInterval" "2"
+				"OnIntervalThink"
+				{
+					"FireEffect"
+					{
+						"EffectName" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+						"Target" "CASTER"
+						"EffectAttachType" "follow_origin"
+						"EffectRadius"		"%radius"
+						"ControlPoint"
+						{
+							"01"	"%radius 0 %radius"
+						}
+					}			
+					"Damage"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_TYPE_HERO | DOTA_UNIT_TARGET_TYPE_BASIC"
+						}
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+			}
+
+			"modifier_totem_slow"
+			{
+				"IsDebuff" "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
+				}
+			}
+		}        
+	}
+
+	"totem_slow3"
+	{
+		"precache"
+		{
+			"particle"                          "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+		}
+                
+		"BaseClass"                             "ability_datadriven"
+		"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"    "1"
+		"AbilityTextureName"    "sandking_epicenter"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"slow"				"-20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_slow"		"-30"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"300"
+			}
+
+		}
+		
+		"Modifiers"
+		{
+			"modifier_totem_effect"
+			{
+				"Passive" "1"
+				"IsHidden" "1"
+				"Aura" "modifier_totem_slow"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"ThinkInterval" "2"
+				"OnIntervalThink"
+				{
+					"FireEffect"
+					{
+						"EffectName" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+						"Target" "CASTER"
+						"EffectAttachType" "follow_origin"
+						"EffectRadius"		"%radius"
+						"ControlPoint"
+						{
+							"01"	"%radius 0 %radius"
+						}
+					}
+					"Damage"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_TYPE_HERO | DOTA_UNIT_TARGET_TYPE_BASIC"
+						}
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
+				}
+			}
+
+			"modifier_totem_slow"
+			{
+				"IsDebuff" "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
+				}
+			}
+		}        
+	}
