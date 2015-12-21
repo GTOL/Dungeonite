@@ -1,0 +1,73 @@
+//图腾 减速光环
+//Author: GTOL ddwe
+//Date: 21/12/2015
+//基本完成
+	"totem_slow"
+	{
+		"precache"
+		{
+			"particle"                          "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+		}
+                
+		"BaseClass"                             "ability_datadriven"
+		"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"    "1"
+		"AbilityTextureName"    "sandking_epicenter"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"slow"				"-20"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_slow"		"-30"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_totem_effect"
+			{
+				"Passive" "1"
+				"IsHidden" "1"
+				"Aura" "modifier_totem_slow"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"ThinkInterval" "2"
+				"OnIntervalThink"
+				{
+					"FireEffect"
+					{
+						"EffectName" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+						"Target" "CASTER"
+						"EffectAttachType" "follow_origin"
+						"EffectRadius"		"%radius"
+						"ControlPoint"
+						{
+							"01"	"%radius 0 %radius"
+						}
+					}			
+				}
+			}
+
+			"modifier_totem_slow"
+			{
+				"IsDebuff" "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
+				}
+			}
+		}        
+	}
