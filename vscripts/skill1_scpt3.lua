@@ -24,7 +24,7 @@ function Skill1:OnSpellStart()
 	
 	
 	--countinuing finding heroes and imply healing
-	for i=1,2
+	for i=1,5
 	do
 		org = hTarget:GetOrigin();
 		local units = FindUnitsInRadius(hTarget:GetTeamNumber(),org,nil,400.0,DOTA_UNIT_TARGET_TEAM_FRIENDLY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false);
