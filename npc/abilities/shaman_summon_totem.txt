@@ -1,0 +1,39 @@
+//ÈøÂú Í¼ÌÚÕÙ»½
+//Author: GTOL ddwe
+//Date: 21/12/2015
+//
+
+"shaman_summon_totem"
+{
+    "precache"
+    {
+    
+    }
+    "BaseClass"             "ability_datadriven"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityTextureName"    "juggernaut_healing_ward"
+    "AbilityCastPoint"      "0.3"
+    "AbilityCooldown"       "60"
+    "AbilityManaCost"       "60"
+	"AbilityCastRange"		"500"
+	"MaxLevel"				"1"
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "duration"      "15"
+        }
+    }
+    "OnSpellStart"
+    {
+        "SpawnUnit"
+        {
+            "UnitName"      "shaman_totem"
+            "UnitCount"     "1"
+            "Duration"      "%duration"
+            "Target"        "POINT"
+        }
+    }
+}
+

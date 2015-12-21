@@ -1,0 +1,42 @@
+﻿//萨满 图腾
+//Author: GTOL
+//Date: 21/12/2015
+
+	"shaman_totem"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"Level"				"1"
+		"Model"				"models\heroes\juggernaut\jugg_healing_ward.vmdl"
+		"ModelSize"			"1"
+		"UnitLabel"			"totem"
+		"HasInventory"		"0"
+		
+		"ConsideredHero"	"0"
+		"IsAncient"			"0"
+		"IsNeutralUnitType"	"0"
+		"WakesNeutrals"		"1"
+		
+		"AbilityLayout"		"2"
+		"Ability1"			"totem_slow"
+		"Ability2"			"neutral_spell_immunity"
+		
+		"ArmorPhysical"		"0"	
+		"MagicalResistance"	"0"
+		
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		
+		"StatusHealth"		"5"
+		"StatusHealthRegen" "0"       
+		"StatusMana"        "0"         
+		"StatusManaRegen"  	"0"         
+		
+		"VisionDaytimeRange"        "200"        // 白天视野
+		"VisionNighttimeRange"      "200"        // 夜间视野
+		
+		"UnitRelationshipClass"       "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		
+	}
