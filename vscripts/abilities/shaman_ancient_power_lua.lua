@@ -3,8 +3,8 @@ function AncientPower(keys)
     local ability = keys.ability;
     local ability_level = ability:GetLevel();
     local ability1_name = "shaman_summon_totem";
-    local ability2_name = "healing_wave";
-    local ability3_name = "ligntening_shield";
+    local ability2_name = "shaman_healing_wave";
+    local ability3_name = "shaman_ligntening_shield";
     
     local ability1 = caster:GetAbilityByIndex(0);
     local ability2 = caster:GetAbilityByIndex(1);
