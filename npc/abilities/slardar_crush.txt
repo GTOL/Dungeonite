@@ -1,0 +1,125 @@
+//大鱼人 鱼人碎击
+//Author: GTOL
+//Date: 22/12/2015
+//无
+
+"slardar_crush"
+{
+    "precache"
+    {
+        "soundfile"   "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+        "particle"    "particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+        "particle"    "particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf"
+    }
+    
+    "BaseClass"                 "ability_datadriven"
+    "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
+    "AbilityTextureName"        "slardar_slithereen_crush"
+    "SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_NO"
+
+    "AbilityCastPoint"          "0.35"
+    "AbilityManaCost"           "80 95 105 115"
+    "AbilityCooldown"           "8.0 8.0 8.0 8.0"
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"                      "FIELD_INTEGER"
+            "radius"                        "350"
+        }
+        "02"
+        {
+            "var_type"                      "FIELD_INTEGER"
+            "slow"                          "-20"
+        }
+        "03"
+        {
+            "var_type"                      "FIELD_INTEGER"
+            "attack_slow"                   "-20"
+        }
+        "04"
+        {
+            "var_type"                      "FIELD_FLOAT"
+            "slow_duration"                 "3.6 3.9 4.2 4.5"
+        }
+        "05"
+        {
+            "var_type"                      "FIELD_FLOAT"
+            "stun_duration"                 "1.6 1.9 2.2 2.5"
+        }
+        "06"
+        {
+            "var_type"                      "FIELD_FLOAT"
+            "slow_duration_tooltip"         "2.0"
+        }
+        "07"
+        {
+            "var_type"                      "FIELD_INTEGER"
+            "damage"                        "50 100 150 200"
+        }
+    }
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "EffectName"        "Hero_Slardar.Slithereen_Crush"
+            "Target"            "CASTER"
+        }
+       "FireEffect"
+        {
+            "EffectName"        "particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+            "EffectAttachType"  "attach_origin"
+            "Target"            "CASTER"
+        }
+        "FireEffect"
+        {
+            "EffectName"        "particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf"
+            "EffectAttachType"  "attach_origin"
+            "Target"            "CASTER" 
+        }
+        "ActOnTarget"
+        {
+            "Target"
+            {
+                "Center"    "CASTER"
+                "Radius"    "%radius"
+                "Teams"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+                "Types"     "DOTA_UNIT_TARGET_TYPE_HERO | DOTA_UNIT_TARGET_TYPE_BASIC"
+                "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+            }
+            "Action"
+            {
+                "Damage"
+                {
+                    "Target"    "TARGET"
+                    "Damage"    "%damage"
+                    "Type"      "DAMAGE_TYPE_PHYSICAL"
+                }
+                "ApplyModifier"
+                {
+                    "Target"        "TARGET"
+                    "ModifierName"  "modifier_slardar_crush_slow"
+                }
+                "Stun"
+                {
+                    "Target"        "TARGET"
+                    "Duration"      "%stun_duration"
+                }
+            }
+        }
+    }
+    "Modifiers"
+    {
+        "modifier_slardar_crush_slow"
+        {
+            "IsDebuff"  "1"
+            "Duration"  "%slow_duration"
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow"
+                "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%attack_slow"
+            }
+        }
+    }
+}
