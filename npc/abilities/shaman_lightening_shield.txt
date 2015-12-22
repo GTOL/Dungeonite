@@ -1,7 +1,6 @@
 ﻿//萨满 闪电盾
 //Author: GTOL ddwe
 //Date: 21/12/2015
-//基本无问题
 
 "shaman_lightening_shield"
 {

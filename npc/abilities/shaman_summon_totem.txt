@@ -1,7 +1,7 @@
 ﻿//萨满 图腾召唤
 //Author: GTOL ddwe
 //Date: 21/12/2015
-//会卡住目标点的单位
+//
 
 "shaman_summon_totem"
 {

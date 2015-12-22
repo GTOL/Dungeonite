@@ -1,7 +1,7 @@
 ﻿	//图腾 减速光环
 	//Author: GTOL ddwe
 	//Date: 21/12/2015
-	//完成
+	//伤害多三波
 	"totem_slow"
 	{
 		"precache"
@@ -31,11 +31,6 @@
 				"var_type"			"FIELD_INTEGER"
 				"attack_slow"		"-30"
 			}
-			"04"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"0"
-			}
 		}
 		
 		"Modifiers"
@@ -44,20 +39,13 @@
 			{
 				"Passive" "1"
 				"IsHidden" "1"
+				"Aura" "modifier_totem_slow"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"ThinkInterval" "2"
 				"OnIntervalThink"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_totem_slow"
-						"Target"
-						{
-							"Center"	"CASTER"
-							"Radius"	"%radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-					}
 					"FireEffect"
 					{
 						"EffectName" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
@@ -75,23 +63,13 @@
 			"modifier_totem_slow"
 			{
 				"IsDebuff" "1"
-				"Duration"	"1.9"
-				"OnCreated"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"		"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage"
-					}
-				}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
 				}
 			}
-		}
+		}        
 	}
 
 	"totem_slow1"
@@ -136,20 +114,13 @@
 			{
 				"Passive" "1"
 				"IsHidden" "1"
+				"Aura" "modifier_totem_slow"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"ThinkInterval" "2"
 				"OnIntervalThink"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_totem_slow"
-						"Target"
-						{
-							"Center"	"CASTER"
-							"Radius"	"%radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-					}
 					"FireEffect"
 					{
 						"EffectName" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
@@ -161,29 +132,30 @@
 							"01"	"%radius 0 %radius"
 						}
 					}			
-				}
-			}
-
-			"modifier_totem_slow"
-			{
-				"IsDebuff" "1"
-				"Duration"	"1.9"
-				"OnCreated"
-				{
 					"Damage"
 					{
-						"Target"	"TARGET"
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_TYPE_HERO | DOTA_UNIT_TARGET_TYPE_BASIC"
+						}
 						"Type"		"DAMAGE_TYPE_MAGICAL"
 						"Damage"	"%damage"
 					}
-				}
+				}	
+			}
+			"modifier_totem_slow"
+			{
+				"IsDebuff" "1"
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
 				}
 			}
-		}
+		}        
 	}
 
 	"totem_slow2"
@@ -229,20 +201,13 @@
 			{
 				"Passive" "1"
 				"IsHidden" "1"
+				"Aura" "modifier_totem_slow"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"ThinkInterval" "2"
 				"OnIntervalThink"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_totem_slow"
-						"Target"
-						{
-							"Center"	"CASTER"
-							"Radius"	"%radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-					}
 					"FireEffect"
 					{
 						"EffectName" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
@@ -254,29 +219,31 @@
 							"01"	"%radius 0 %radius"
 						}
 					}			
+					"Damage"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_TYPE_HERO | DOTA_UNIT_TARGET_TYPE_BASIC"
+						}
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
 				}
 			}
 
 			"modifier_totem_slow"
 			{
 				"IsDebuff" "1"
-				"Duration"	"1.9"
-				"OnCreated"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"		"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage"
-					}
-				}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
 				}
 			}
-		}
+		}        
 	}
 
 	"totem_slow3"
@@ -322,20 +289,13 @@
 			{
 				"Passive" "1"
 				"IsHidden" "1"
+				"Aura" "modifier_totem_slow"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"ThinkInterval" "2"
 				"OnIntervalThink"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_totem_slow"
-						"Target"
-						{
-							"Center"	"CASTER"
-							"Radius"	"%radius"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-					}
 					"FireEffect"
 					{
 						"EffectName" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
@@ -346,28 +306,30 @@
 						{
 							"01"	"%radius 0 %radius"
 						}
-					}			
+					}
+					"Damage"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_TYPE_HERO | DOTA_UNIT_TARGET_TYPE_BASIC"
+						}
+						"Type"		"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"%damage"
+					}
 				}
 			}
 
 			"modifier_totem_slow"
 			{
 				"IsDebuff" "1"
-				"Duration"	"1.9"
-				"OnCreated"
-				{
-					"Damage"
-					{
-						"Target"	"TARGET"
-						"Type"		"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"%damage"
-					}
-				}
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%slow"
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"		"%attack_slow"
 				}
 			}
-		}
+		}        
 	}
