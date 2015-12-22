@@ -1,0 +1,90 @@
+//萨满 治疗波
+//Author: ddwe
+//Date: I don't know ----GTOL
+
+	"shaman_healing_wave"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "skill1_scpt"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+
+		"AbilityCastPoint"		"0.2 0.15 0.1 0.1"
+		"AbilityCooldown"		"15.0 13.0 11.0 9.0"
+		"AbilityManaCost"		"50 65 80 105"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Healing_Power"		"100 100 100 100"
+			}
+		}
+	}
+
+	//===========================
+	"shaman_healing_wave1"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "skill1_scpt1"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+
+		"AbilityCastPoint"		"0.2 0.15 0.1 0.1"
+		"AbilityCooldown"		"15.0 13.0 11.0 9.0"
+		"AbilityManaCost"		"50 65 80 105"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Healing_Power"		"20 30 40 50"
+			}
+		}
+	}
+
+	//===========================
+	"shaman_healing_wave2"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "skill1_scpt2"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+
+		"AbilityCastPoint"		"0.2 0.15 0.1 0.1"
+		"AbilityCooldown"		"15.0 13.0 11.0 9.0"
+		"AbilityManaCost"		"50 65 80 105"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Healing_Power"		"20 30 40 50"
+			}
+		}
+	}
+
+	//===========================
+	"shaman_healing_wave3"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "skill1_scpt3"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+
+		"AbilityCastPoint"		"0.2 0.15 0.1 0.1"
+		"AbilityCooldown"		"15.0 13.0 11.0 9.0"
+		"AbilityManaCost"		"50 65 80 105"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Healing_Power"		"20 30 40 50"
+			}
+		}
+	}
