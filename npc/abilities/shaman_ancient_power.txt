@@ -7,6 +7,7 @@
 "shaman_ancient_power"
 {
     "BaseClass"             "Ability_datadriven"
+    "AbilityType"           "DOTA_ABILITY_TYPE_ULTIMATE"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "AbilityTextureName"    "用上古巨神的收回灵魂Return Astral Spirit"
     "AbilitySpecial"

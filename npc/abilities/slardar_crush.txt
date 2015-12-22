@@ -80,7 +80,7 @@
             {
                 "Center"    "CASTER"
                 "Radius"    "%radius"
-                "Teams"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+                "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
                 "Types"     "DOTA_UNIT_TARGET_TYPE_HERO | DOTA_UNIT_TARGET_TYPE_BASIC"
                 "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
             }
