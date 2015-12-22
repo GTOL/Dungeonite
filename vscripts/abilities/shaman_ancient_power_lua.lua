@@ -23,12 +23,14 @@ function AncientPower(keys)
     caster:SwapAbilities(ability1_oldname, ability1_newname, false, true);
     local handle_new_ability = caster:FindAbilityByName(ability1_newname);
     handle_new_ability:SetLevel(level1);
+	handle_new_ability:StartCooldown(ability1:GetCooldownTimeRemaining());
     caster:RemoveAbility(ability1_oldname);
     
     caster:AddAbility(ability3_newname);
     caster:SwapAbilities(ability3_oldname, ability3_newname, false, true);
     local handle_new_ability2 = caster:FindAbilityByName(ability3_newname);
     handle_new_ability2:SetLevel(level3);
+	handle_new_ability2:StartCooldown(ability3:GetCooldownTimeRemaining());
     caster:RemoveAbility(ability3_oldname);
     
 end

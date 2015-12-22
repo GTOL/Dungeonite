@@ -1,22 +1,22 @@
 function lightening_shield_dmg(keys)
     local caster = keys.caster;
     local target = keys.target;
-    local ability = keys.ability;
+    local ability = caster:GetAbilityByIndex(2);
     local location = target:GetAbsOrigin();
-    local ability_level = ability:GetLevel();
-    local radius = ability:GetLevelSpecialValueFor("radius",ability_level);
+    local radius = 200;
+	local ability_level = ability:GetLevel();
     local shield_particle = keys.shield_particle;
     local damage = ability:GetLevelSpecialValueFor("damage",ability_level);
 
     local target_teams = DOTA_UNIT_TARGET_TEAM_BOTH;
-    local target_types = ability:GetAbilityTargetType();
+    local target_types = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC;
     local target_flags = DOTA_UNIT_TARGET_FLAG_NONE;
 
     local damage_table={};
     damage_table.attacker = target;
     damage_table.damage = damage;
-    damage_table.damage_type = ability:GetAbilityDamageType();
-    damage_table.ability = ability;
+    damage_table.damage_type = DAMAGE_TYPE_MAGICAL;
+    damage_table.ability = caster:GetAbilityByIndex(2);
 
     local units = FindUnitsInRadius(caster:GetTeamNumber(), location, nil, radius, target_teams, target_types, target_flags, FIND_CLOSEST, false );
     for _,unit in pairs(units) do
