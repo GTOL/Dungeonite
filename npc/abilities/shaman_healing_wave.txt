@@ -1,6 +1,7 @@
 //萨满 治疗波
 //Author: ddwe
 //Date: I don't know ----GTOL
+//脚本文件路径名称需要改
 
 	"shaman_healing_wave"
 	{
