@@ -1,0 +1,141 @@
+//大鱼人 洪流
+//Author: GTOL
+//Date: 22/12/2015
+//将目标区域敌人牵引到一点后造成伤害
+//音效有问题 击飞还没做
+
+"slardar_torrent"
+{
+	"precache"
+	{
+		"particle"              "particles/slardar_torrent.vpcf"
+		"particle"				"particles/units/heroes/hero_kunkka/kunkka_spell_torrent_splash.vpcf"
+		"sound"					"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+	}
+	"BaseClass"                 "ability_datadriven"
+	"AbilityType"               "DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+	"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityTextureName"        "morphling_adaptive_strike"
+	"AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+	"SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_NO"
+	
+	"AbilityCastPoint"          "1.0"
+	"AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_4"
+	
+	"AbilityDamage"             "500 1000 1500"
+	"AbilityManaCost"           "150 250 350"
+	"AbilityCooldown"           "130"
+	"AbilityCastRange"          "600"
+	"AoERadius"                 "450"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"radius"		"450"
+		}
+		"02"
+		{
+			"var_type"		"FIELD_FLOAT"
+			"duration"		"3.0"
+		}
+		"03"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"damage"		"500 1000 1500"
+		}
+	}
+	
+	"OnSpellStart"
+	{
+		"CreateThinker"
+		{
+			"ModifierName"  "modifier_slardar_torrent_thinker"
+			"Target"        "POINT"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"modifier_slardar_torrent_thinker"
+		{
+			"Duration"			"%duration"
+			"OnCreated"
+			{
+				"FireSound"
+				{
+					"EffectName"		"Ability.pre.Torrent"
+					"Target"			"CASTER"
+				}
+
+				"RunScript"
+				{
+					"ScriptFile"		"abilities/slardar_torrent_lua.lua"
+					"Function"			"torrent_particle"
+				}
+				"RunScript"
+				{
+					"ScriptFile"		"abilities/slardar_torrent_lua.lua"
+					"Function"			"torrent_prepare_start"
+				}
+			}
+			"ThinkInterval"		"0.03"
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"		"abilities/slardar_torrent_lua.lua"
+					"Function"			"torrent_prepare"
+					"torrent_modifier"	"modifier_slardar_torrent"
+				}
+			}
+			"OnDestroy"
+			{
+				"FireSound"
+				{
+					"EffectName"		"Ability.Ghostship.crash"
+					"Target"			"CASTER"
+				}
+				"RunScript"
+				{
+					"ScriptFile"		"abilities/slardar_torrent_lua.lua"
+					"Function"			"torrent_particle_damage"
+				}
+				"ActOnTargets"
+				{
+					"Target"
+					{
+						"Center"		"TARGET"
+						"Radius"		"150"
+						"Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+						"Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					}
+					"Action"
+					{
+						"Damage"
+						{
+							"Target"	"TARGET"
+							"Type"		"DAMAGE_TYPE_MAGICAL"
+							"Damage"	"%damage"
+						}
+					}
+				}
+			}
+			
+		}
+		"modifier_slardar_torrent"
+		{
+			"IsDebuff"  	"1"
+			"IsPurgable"	"0"
+
+			"OverrideAnimation"     "ACT_DOTA_FLAIL"
+			"States"
+			{
+				"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
+				"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+		}
+	}
+}
