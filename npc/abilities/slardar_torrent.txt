@@ -2,7 +2,7 @@
 //Author: GTOL
 //Date: 22/12/2015
 //将目标区域敌人牵引到一点后造成伤害
-//音效有问题 击飞和旋转还没做 
+//音效有问题 速度需改成离中心越近越快
 
 "slardar_torrent"
 {
@@ -119,6 +119,16 @@
 							"Target"	"TARGET"
 							"Type"		"DAMAGE_TYPE_MAGICAL"
 							"Damage"	"%damage"
+						}
+						"Knockback"
+						{
+							"Target"	"TARGET"
+							"Center"	"CASTER"
+							"Duration"	"1.50"
+							"Distance"	"0"
+							"Height"	"400"
+							"IsFixedDistance"	"1"
+							"ShouldStun"		"1"
 						}
 					}
 				}
