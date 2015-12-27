@@ -1,0 +1,475 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	//MaxLevel 设定等级上限
+	
+	"phantom_ranger_majia"
+	{
+		//General
+		//-----------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE|DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"				"1"
+		
+		"Modifiers"
+		{
+			"modifier_majia"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED" //不可选择
+				}
+			}
+		}
+	}
+	
+	"phantom_ranger_majia_die"
+	{
+		//General
+		//------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"skeleton_king_reincarnation"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"				"1"
+		
+		"Modifiers"
+		{
+			"modifier_majia_die"
+			{
+				"Passive"	"1"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/abilities/heroes/hero_phantom_ranger/majia_die.lua"
+						"Function"		"Die"
+					}
+				}
+			}
+		}
+	}
+	
+	"phantom_bomb"
+	{
+		//General
+		//-----------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AllowIllusionDuplicate"		"1"
+		"FightRecapLevel"				"1"
+		
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"		
+			"particle"		"particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius"		"200 225 250 250"
+			}
+			
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"250 500 750 1000"
+			}
+		}
+		
+		"Modifiers"
+		{
+			//没有特效？ 特效不会出现
+			//死亡了就没有特效了
+			//考虑用lua实现特效
+			"modifier_death_bomb"
+			{
+				"Passive"	"1"
+				"IsPurgable"	"0"
+				
+				"OnDestroy"
+				{
+					"CreateThinker"
+					{
+						"ModifierName"		"modifier_bomb_death"
+						"Target"			"CASTER"
+					}
+				}
+			}
+			
+			"modifier_bomb_death"
+			{
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Techies.Suicide"
+						"Target" 		"CASTER"
+					}
+					
+					"FireEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+					}
+					
+					"DestroyTrees"
+					{
+						"Target"	"CASTER"
+						"Radius"	"%radius"
+					}
+					
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+							"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"
+								{
+									"Center"	"TARGET"
+									"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+								}
+								
+								"Type"			"DAMAGE_TYPE_MAGICAL"
+								"Damage"		"%damage"
+							}
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+	"phantom_ranger_ability1"{
+		//General
+		//-----------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"	"antimage_blink"
+		"MaxLevel"				"1"
+		
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_phantom_ranger_phantom_arrow"
+			}
+		}
+		
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/abilities/heroes/hero_phantom_ranger/phantom.lua"
+				"Function"			"ToggleOff"
+			}
+		}
+			
+		"Modifiers"{
+			
+			"modifier_phantom_ranger_phantom_arrow"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"-100"
+				}
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heroes/hero_phantom_ranger/phantom.lua"
+						"Function"		"Phantasm"
+						"Target"		"TARGET"
+					}
+				}
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"images_count"				"1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"20"
+			}	
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage"			"0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage_tooltip"			"100"
+			}	
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage"			"100"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage_tooltip"			"200"
+			}					
+		}
+	}
+	
+	"phantom_ranger_ability2"
+	{
+		//General
+		//-----------------------------------------------
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName"			"riki_smoke_screen"
+		
+		//Casting
+		"AbilityCastPoint"			"0.4 0.3 0.2 0.1"
+		
+		"AbilityManaCost"			"50 50 50 50"
+		
+		"AbilityCooldown"			"20 16 12 8"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"blink_range"	"600 700 800 1000"
+			}
+			
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"outgoing_damage_tooltip"	"100"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heroes/hero_phantom_ranger/phantom.lua"
+				"Function"		"Blink"
+				"Target"		"POINT"
+			}
+		}
+	}
+	
+	//怎么处理3技能和5技能同时开启的情况？
+	//在lua里面使用global value
+	"phantom_ranger_ability3"
+	{
+		//General
+		//---------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"	"techies_suicide"
+		
+		//Casting
+		"AbilityCastPoint"			"0.1"
+		
+		"AbilityManaCost"			"110 120 130 140"
+		
+		"AbilityCooldown"			"30"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"duration"		"6 7 8 10"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heroes/hero_phantom_ranger/phantom.lua"
+				"Function"			"BombOn"
+			}
+			
+			"DelayedAction"
+			{
+				"Delay"				"%duration"
+				"Action"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heroes/hero_phantom_ranger/phantom.lua"
+						"Function"		"BombOff"
+					}
+				}
+			}
+			
+			"ApplyModifier"
+			{
+				"ModifierName" 		"modifier_phantom_ranger_phantom_bomb"
+				"Target"			"CASTER"
+				"Duration"			"%duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_phantom_ranger_phantom_bomb"
+			{
+			
+			}
+		}
+	}
+	
+	"phantom_ranger_ability4"
+	{
+		//General
+		//-----------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"juggernaut_omni_slash"
+		
+		"Modifiers"{
+			"modifier_phantom_ranger_ability4"
+			{
+				"Passive"		"1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%attackConstant"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"		"%damage"
+				}
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attackConstant"	"1.4 1.3 1.2 1.0"
+			}
+			
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"9 15 21 27"
+			}
+		}
+	}
+	
+	"phantom_ranger_ability5"
+	{
+		//General
+		//---------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"	"riki_permanent_invisibility"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		//Casting
+		"AbilityCastPoint"			"0.1"
+		
+		"AbilityManaCost"			"100 150 200"
+		
+		"AbilityCooldown"			"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"duration"		"10"
+			}
+			
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"outgoing_damage"			"-75 -65 -50"
+			}
+			
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"outgoing_damage_tooltip"	"25 35 50"
+			}
+			
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"incoming_damage"			"200 150 100"
+			}
+			
+			"05"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"incoming_damage_tooltip"	"300 250 200"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heroes/hero_phantom_ranger/phantom.lua"
+				"Function"			"RealPhantomOn"
+			}
+			
+			"DelayedAction"
+			{
+				"Delay"				"%duration"
+				"Action"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heroes/hero_phantom_ranger/phantom.lua"
+						"Function"		"RealPhantomOff"
+					}
+				}
+			}
+			
+			"ApplyModifier"
+			{
+				"ModifierName" 		"modifier_phantom_ranger_phantom_pain"
+				"Target"			"CASTER"
+				"Duration"			"%duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_phantom_ranger_phantom_pain"
+			{
+			
+			}
+		}
+	}
+}

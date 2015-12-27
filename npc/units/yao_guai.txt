@@ -1,0 +1,73 @@
+﻿// Units File
+"DOTAUnits"
+{
+	"Version"	"1"
+	
+	"yao_guai"{
+		//basic
+		//-----------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models\heroes\sven\sven.vmdl"
+		"SoundSet"			""
+		"ModelScale"		"1"
+		"Level"				"1"
+		
+		//armor
+		//----------------------------------------------------
+		"ArmorPhysical"		"100"
+		"MagicalResistance"	"20"
+		
+		//ability
+		//----------------------------------------------------
+		"Ability1"			""
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		
+		//attack
+		//----------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"20"
+		"AttackDamageMAx"		"25"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysica"
+		"AttackRate"			"1.7"
+		"AttackAnimationPoint"	"1"
+		"AttackRange"			"128"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"100"
+		"BountyGoldMin"	"10"
+		"BountyGoldMax"	"15"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"300"
+		"MovementTurnRate"		"0.5"
+		"HasAggressiveStance"       "0"                         
+		"FollowRange"               "100" 
+		
+		//bound
+		//--------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"			"80"
+		"HealthBarOffset"		"150"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"              "5000"       // 基础生命值
+		"StatusHealthRegen"         "1"         // 生命恢复速度
+		"StatusMana"                "100"         // 基础魔法值
+		"StatusManaRegen"           "1"         // 魔法恢复速度
+		"StatusStartingMana"        "-1"        // 创建出来就是满血
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		
+		//vision
+		//-------------------------------------------------
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"1000"
+	}
+	
+}

@@ -1,0 +1,93 @@
+"DOTAHeroes"{
+	"npc_dota_hero_drow_ranger"{
+		"override_hero"					"npc_dota_hero_drow_ranger"
+		
+		//abilities
+		"AbilityLayout"					"6"
+		"Ability1"						"phantom_ranger_ability1"
+		"Ability2"						"phantom_ranger_ability2"
+		"Ability3"						"phantom_ranger_ability3"
+		"Ability4"						"phantom_ranger_ability4"
+		"Ability5"						"phantom_ranger_ability5"
+		"Ability6"						"general_ability"
+		
+		//basic setting
+		"ArmorPhysical"					"0"
+		"MagicalResistance"				"33"
+		"AttackDamageMin"				"45"
+		"AttackDamageMax"				"54"
+		"AttackRate"					"1.5"
+		"AttackAnimationPoint"			"0.5"
+		"ProjectileSpeed"				"1200"
+		
+		"AttributeBaseStrength"			"15"
+		"AttributeBaseAgility"			"21"
+		"AttributeBaseIntelligence"		"12"
+		"AttributeStrengthGain"			"1.5"	
+		"AttributeAgilityGain"			"2.5"	
+		"AttributeIntelligenceGain"		"1.6"	
+		
+		"MovementSpeed"					"300"
+		"MovementTurnRate"				"0.4"
+		
+		"StatusHealth"					"300"
+		"StatusHealthRegen"				"1"
+		"StatusMana"					"100"
+		"StatusManaRegen"				"0.1"
+		
+		"CombatClassAttack"				"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"				"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		
+		"HPGain"						"50"
+		"DamageGain"					"1"
+		"ArmorGain"						"0.5"
+	}
+	
+	"npc_dota_hero_riki"
+	{
+		"override_hero"					"npc_dota_hero_riki"
+		
+		//basic setting
+		"ArmorPhysical"					"0"
+		"MagicalResistance"				"33"
+		"AttackDamageMin"				"45"
+		"AttackDamageMax"				"54"
+		"AttackRate"					"1.5"
+		"AttackAnimationPoint"			"0.5"
+		"ProjectileSpeed"				"600"
+		
+		//ability
+		//----------------------------------------------------
+		"AbilityLayout"					"4"
+		"Ability1"			"phantom_ranger_majia"
+		"Ability2"			"phantom_ranger_ability4"
+		"Ability3"			"phantom_ranger_majia_die"
+		"Ability4"			"phantom_bomb"
+		
+		//attribute
+		//----------------------------------------------------
+		"AttributeBaseStrength"			"15"
+		"AttributeBaseAgility"			"21"
+		"AttributeBaseIntelligence"		"12"
+		"AttributeStrengthGain"			"1.5"	
+		"AttributeAgilityGain"			"2.5"	
+		"AttributeIntelligenceGain"		"1.6"	
+		
+		"MovementSpeed"					"600"
+		"MovementTurnRate"				"0.4"
+		
+		"StatusHealth"					"300"
+		"StatusHealthRegen"				"1"
+		"StatusMana"					"100"
+		"StatusManaRegen"				"0.1"
+		
+		"CombatClassAttack"				"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"				"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		
+		"HPGain"						"50"
+		"DamageGain"					"1"
+		"ArmorGain"						"0.5"
+		
+		
+	}
+}
