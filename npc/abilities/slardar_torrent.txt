@@ -2,8 +2,7 @@
 //Author: GTOL
 //Date: 22/12/2015
 //将目标区域敌人牵引到一点后造成伤害
-//音效有问题 速度需改成离中心越近越快
-
+//音效有问题 
 "slardar_torrent"
 {
 	"precache"
