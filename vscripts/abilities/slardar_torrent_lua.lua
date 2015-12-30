@@ -38,19 +38,16 @@ function  torrent_prepare( keys )
 		local direction = (vector_distance):Normalized()	--向中心向量
 		local rotation = Vector(direction.y, - direction.x, direction.z)	--垂直向量
 
-		--if unit.pull_speed == nil then
-		--	unit.pull_speed = distance * 1/(remaining_duration) * 1/30
-		--end
+		--速度离中心越近越快 变化系数*每秒速度*帧数每秒*速度系数
+		local pull_speed = 4/(2 ^ (3 * distance/radius)) * (radius/duration) * 1/33 * 0.4
 
-		--速度离中心越近越快 开始时处于300范围内的人才会受到伤害
-		local pull_speed = radius/(3.75 * distance + 0.25 * radius) *5.77
+		local finaldirection = rotation + direction		--最终方向的
 
 		if not unit:HasModifier(torrent_modifier) then
 			ability:ApplyDataDrivenModifier(caster, unit, torrent_modifier, {duration = remaining_duration})
 		end
 		
-		unit:SetAbsOrigin(unit_location + direction * unit.pull_speed + 3 * rotation) 
-
+		unit:SetAbsOrigin(unit_location + (finaldirection):Normalized() * pull_speed) 
 	end
 end
 
