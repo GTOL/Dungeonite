@@ -3,7 +3,7 @@ function attack_amplification( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local level = ability:GetLevel()
-	local damage_by_level = ability:GetLevelSpecialValueFor("damage", level)
+	local damage_by_level = ability:GetLevelSpecialValueFor("damage", level - 1)
 
 	if target:HasModifier("modifier_focus_enemy") then
 		local damageTable = {
@@ -21,7 +21,7 @@ function damage_reduction( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local level = ability:GetLevel()
-	local reduction = ability:GetLevelSpecialValueFor("reduction", level) / 100
+	local reduction = ability:GetLevelSpecialValueFor("reduction", level - 1) / 100
 	local incoming = keys.damage
 	local health = caster:GetHealth()
 
