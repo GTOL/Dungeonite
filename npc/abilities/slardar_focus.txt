@@ -1,0 +1,87 @@
+//大鱼人 战斗专注
+//Author: GTOL
+//Date: 27/12/2015
+//没做特效
+
+"slardar_focus"
+{
+    "precache"
+    {
+        
+    }
+    "BaseClass"             "ability_datadriven"
+    "AbilityTextureName"    ""
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    
+    "AbilityCooldown"       "10"
+    "AbilityManaCost"       "25"
+    "AbilityCastRange"      "250"
+    "AbilityCastPoint"      "0.0"
+    
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "damage"        "20 30 40 50"
+        }
+        "02"
+        {
+            "var_type"      "FIELD_INTEGER"
+            "duration"      "6 7 8 9"
+        }
+        "03"
+        {
+            "var_type"          "FIELD_INTEGER"
+            "reduction"  "50 50 50 50"
+        }
+    }
+    "OnSpellStart"
+    {
+        "ApplyModifier"
+        {
+            "Target"        "TARGET"
+            "ModifierName"  "modifier_focus_enemy"
+        }
+        "ApplyModifier"
+        {
+            "Target"        "CASTER"
+            "ModifierName"  "modifier_focus_self"
+        }
+        
+    }
+    "Modifiers"
+    {
+        "modifier_focus_enemy"
+        {
+            "IsDebuff"  "1"
+            "Duration"  "%duration"
+        }
+        "modifier_focus_self"
+        {
+            "IsBuff"            "1"
+            "Duration"          "%duration"
+            "OnAttackLanded"
+            {
+                "RunScript"
+                {
+                    "Target"        "CASTER"
+                    "ScriptFile"    "abilities/slardar_focus_lua.lua"
+                    "Function"      "attack_amplification"
+                }
+            }
+            "OnTakeDamage"
+            {
+                "RunScript"
+                {
+                    "Target"        "CASTER"
+                    "ScriptFile"    "abilities/slardar_focus_lua.lua"
+                    "Function"      "damage_reduction"
+                    "damage"        "%attack_damage"
+                }
+            }
+        }
+    }
+}
