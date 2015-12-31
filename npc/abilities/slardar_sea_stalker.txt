@@ -1,15 +1,13 @@
-大鱼人 护甲加成 
-
 //大鱼人 海洋行者
 //Author: GTOL
 //Date： 22/12/2015
-//
+//完成
 
 "slardar_sea_stalker"
 {
     "BaseClass"             "ability_datadriven"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-    "AbilityTextureName"    ""
+    "AbilityTextureName"    "slardar_sprint"
     "AbilitySpecial"
     {
         "01"
@@ -28,6 +26,7 @@
     {
         "modifier_slardar_sea_stalker"
         {
+			"IsBuff"		"1"
             "Passive"       "1"
             "Properties"
             {

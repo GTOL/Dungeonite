@@ -1,19 +1,20 @@
-//¥Û”„»À ’Ω∂∑◊®◊¢
+//Â§ßÈ±º‰∫∫ ÊàòÊñó‰∏ìÊ≥®
 //Author: GTOL
 //Date: 27/12/2015
-//√ª◊ˆÃÿ–ß
+//ÂÆåÊàê
 
 "slardar_focus"
 {
     "precache"
     {
-        
+        "particle"			"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
     }
     "BaseClass"             "ability_datadriven"
-    "AbilityTextureName"    ""
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityTextureName"    "slardar_bash"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
     "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_YES"
     
     "AbilityCooldown"       "10"
     "AbilityManaCost"       "25"
@@ -34,8 +35,8 @@
         }
         "03"
         {
-            "var_type"          "FIELD_INTEGER"
-            "reduction"  "50 50 50 50"
+            "var_type"      "FIELD_INTEGER"
+            "reduction"  	"50 50 50 50"
         }
     }
     "OnSpellStart"
@@ -58,11 +59,21 @@
         {
             "IsDebuff"  "1"
             "Duration"  "%duration"
+			
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"Target"			"TARGET"
+					"EffectName"		"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+					"EffectAttachType"	"follow_overhead"
+				}
+			}
         }
         "modifier_focus_self"
         {
-            "IsBuff"            "1"
-            "Duration"          "%duration"
+            "IsBuff"            	"1"
+            "Duration"          	"%duration"
             "OnAttackLanded"
             {
                 "RunScript"

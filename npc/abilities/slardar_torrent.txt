@@ -2,14 +2,14 @@
 //Author: GTOL
 //Date: 22/12/2015
 //将目标区域敌人牵引到一点后造成伤害
-//音效有问题 
+//
 "slardar_torrent"
 {
 	"precache"
 	{
 		"particle"              "particles/slardar_torrent.vpcf"
 		"particle"				"particles/units/heroes/hero_kunkka/kunkka_spell_torrent_splash.vpcf"
-		"sound"					"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+		"soundfile"					"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
 	}
 	"BaseClass"                 "ability_datadriven"
 	"AbilityType"               "DOTA_ABILITY_TYPE_ULTIMATE"
@@ -66,7 +66,7 @@
 				"FireSound"
 				{
 					"EffectName"		"Ability.pre.Torrent"
-					"Target"			"CASTER"
+					"Target"			"TARGET"
 				}
 
 				"RunScript"
@@ -95,7 +95,7 @@
 				"FireSound"
 				{
 					"EffectName"		"Ability.Ghostship.crash"
-					"Target"			"CASTER"
+					"Target"			"TARGET"
 				}
 				"RunScript"
 				{

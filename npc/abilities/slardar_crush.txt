@@ -1,15 +1,16 @@
 //大鱼人 鱼人碎击
 //Author: GTOL
 //Date: 22/12/2015
-//无
+//完成
 
 "slardar_crush"
 {
     "precache"
     {
-        "soundfile"   "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
-        "particle"    "particles/units/heroes/hero_slardar/slardar_crush.vpcf"
-        "particle"    "particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf"
+        "soundfile"  	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+        "particle"  	"particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+        "particle"  	"particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf"
+		"particle"		"particles/status_fx/status_effect_slardar_crush.vpcf"
     }
     
     "BaseClass"                 "ability_datadriven"
@@ -18,6 +19,7 @@
     "AbilityTextureName"        "slardar_slithereen_crush"
     "SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_NO"
     
+	"AbilityCastRange"			"350"
     "AbilityCastPoint"          "0.35"
     "AbilityManaCost"           "80 95 105 115"
     "AbilityCooldown"           "8.0 8.0 8.0 8.0"
@@ -62,19 +64,17 @@
             "EffectName"        "Hero_Slardar.Slithereen_Crush"
             "Target"            "CASTER"
         }
-       "FireEffect"
+		"FireEffect"
         {
             "EffectName"        "particles/units/heroes/hero_slardar/slardar_crush.vpcf"
             "EffectAttachType"  "attach_origin"
             "Target"            "CASTER"
+			"ControlPoints"
+			{
+				"01"			"%radius 1 %radius"
+			}
         }
-        "FireEffect"
-        {
-            "EffectName"        "particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf"
-            "EffectAttachType"  "attach_origin"
-            "Target"            "CASTER" 
-        }
-        "ActOnTarget"
+        "ActOnTargets"
         {
             "Target"
             {
@@ -111,6 +111,17 @@
         {
             "IsDebuff"  "1"
             "Duration"  "%slow_duration"
+			"StatusEffectName"		"particles/status_fx/status_effect_slardar_crush.vpcf"
+			"StatusEffectPriority"	"10"
+			"OnCreated"
+			{
+				"FireEffect"
+				{
+					"EffectName"        "particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf"
+					"EffectAttachType"  "attach_overhead"
+					"Target"            "TARGET" 
+				}
+			}
             "Properties"
             {
                 "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow"

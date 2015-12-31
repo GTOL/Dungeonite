@@ -1,74 +1,89 @@
-﻿	//大鱼人治疗
-	//Author：GTOL
-	//Date: 20/12/2015
-	//粒子特效无法实现、未设置技能和buff图标
+﻿//大鱼人治疗
+//Author：GTOL
+//Date: 20/12/2015
+//完成
 
-	"slardar_heal"
+"slardar_heal"
+{
+	"precache"
 	{
-		"precache"
+		"soundfile"   			"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+		"particle"				"particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+		"particle"				"particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+	}
+	
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityTextureName"		"slardar_amplify_damage"
+	"AbilityCastPoint"			"0.3"
+	"AbilityCooldown"			"60"
+	"AbilityManaCost"			"60"
+	"MaxLevel"					"1"
+	"AbilitySpecial"
+	{
+		"01"
 		{
-			"soundfile"   			"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
-			"particle"				"particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
-			"particle"				"particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+			"var_type"				"FIELD_INTEGER"
+			"duration"				"10"
 		}
-		
-		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityCastPoint"			"0.3"
-		"AbilityCooldown"			"60"
-		"AbilityManaCost"			"60"
-		"MaxLevel"					"1"
-		"AbilitySpecial"
+		"02"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"10"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"5"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"		"100"
-			}
+			"var_type"				"FIELD_INTEGER"
+			"bonus_health_regen"	"5"
 		}
-		
-		"OnSpellStart" //事件：开始施放技能
+		"03"
 		{
-			"ApplyModifier"
-			{
-				"Target"			"CASTER"
-				"ModifierName"		"modifier_slardar_heal"
-			}
-			"FireSound"
-			{
-				"EffectName"		"Hero_Slardar.Amplify_Damage"
-				"Target"			"CASTER"
-			}
+			"var_type"				"FIELD_INTEGER"
+			"bonus_damage"		"100"
 		}
-		"Modifiers"
+	}
+	
+	"OnSpellStart" //事件：开始施放技能
+	{
+		"ApplyModifier"
 		{
-			"modifier_slardar_heal"
+			"Target"			"CASTER"
+			"ModifierName"		"modifier_slardar_heal"
+		}
+		"FireSound"
+		{
+			"EffectName"		"Hero_Slardar.Amplify_Damage"
+			"Target"			"CASTER"
+		}
+	}
+	"Modifiers"
+	{
+		"modifier_slardar_heal"
+		{
+			"IsBuff"				"1"
+			"Duration"				"%duration"						//持续时间
+			
+			"StatusEffectName"		"particles/status_fx/status_effect_slardar_amp_damage.vpcf"	//特效粒子
+			"StatusEffectPriority"	"20" 							//特效优先度
+			
+			"OnCreated"
 			{
-				"IsBuff"				"1"
-				"Duration"				"%duration"						//持续时间
-				
-				"StatusEffectName"		"particles/status_fx/status_effect_slardar_amp_damage.vpcf"	//特效粒子
-				"StatusEffectPriority"	"20" 							//特效优先度
-
-				"EffectName"			"particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
-				"EffectAttachType"		"follow_overhead"	
-				
-				"Properties"
+				"RunScript"
 				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%bonus_health_regen"
-					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%bonus_damage"
+					"ScriptFile"	"abilities/slardar_heal_lua.lua"
+					"Target"		"CASTER"
+					"Function"		"Particle"
 				}
 			}
-		}	
-	}
-
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%bonus_health_regen"
+				"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%bonus_damage"
+			}
+			"OnDestroy"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"abilities/slardar_heal_lua.lua"
+					"Target"		"CASTER"
+					"Function"		"EndParticle"
+				}
+			}
+		}
+	}	
+}
