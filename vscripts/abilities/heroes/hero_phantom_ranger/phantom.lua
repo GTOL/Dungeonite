@@ -7,7 +7,6 @@
 	
 	function BombOn()
 		bombOn	= true
-		print("Bomb is on")
 	end
 	
 	function BombOff()

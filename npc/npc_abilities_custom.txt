@@ -1,53 +1,569 @@
 // Dota Heroes File
 "DOTAAbilities"
 {
-	"Version"		"1"
-
-	//=================================================================================================================
-	// Templar Assassin: Refraction Holdout
-	//=================================================================================================================
-	"templar_assassin_refraction_holdout"
+	//MaxLevel 设定等级上限
+	
+	
+	//-----------------------------Phantom Ranger (Drow Ranger and Riki)----------------------------------
+	//----------------------------------------------------------------------------------------------------
+	"phantom_ranger_majia"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"17.0 17.0 17.0 17.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		//General
+		//-----------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE|DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"				"1"
 		
-		// Special
+		"Modifiers"
+		{
+			"modifier_majia"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				
+				"States"
+				{
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED" //不可选择
+				}
+			}
+		}
+	}
+	
+	"phantom_ranger_majia_die"
+	{
+		//General
+		//------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName"	"skeleton_king_reincarnation"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"				"1"
+		
+		"Modifiers"
+		{
+			"modifier_majia_die"
+			{
+				"Passive"	"1"
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heroes/hero_phantom_ranger/majia_die.lua"
+						"Function"		"Die"
+					}
+				}
+			}
+		}
+	}
+	
+	"phantom_bomb"
+	{
+		//General
+		//-----------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AllowIllusionDuplicate"		"1"
+		"FightRecapLevel"				"1"
+		
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"		
+			"particle"		"particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius"		"200 225 250 250"
+			}
+			
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"250 500 750 1000"
+			}
+		}
+		
+		"Modifiers"
+		{
+			//没有特效？ 特效不会出现
+			//死亡了就没有特效了
+			//考虑用lua实现特效
+			"modifier_death_bomb"
+			{
+				"Passive"	"1"
+				"IsPurgable"	"0"
+				
+				"OnDestroy"
+				{
+					"CreateThinker"
+					{
+						"ModifierName"		"modifier_bomb_death"
+						"Target"			"CASTER"
+					}
+				}
+			}
+			
+			"modifier_bomb_death"
+			{
+				"OnCreated"
+				{
+				
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/heroes/hero_phantom_ranger/majia_die.lua"
+						"Function"			"Effect"
+						"effect_name"		"particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+					}
+					
+					"FireSound"
+					{
+						"EffectName"	"Hero_Techies.Suicide"
+						"Target" 		"CASTER"
+					}
+					
+					"FireEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_techies/techies_suicide_base.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+					}
+					
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Radius"	"%radius"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+							"Flags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"
+								{
+									"Center"	"TARGET"
+									"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+								}
+								
+								"Type"			"DAMAGE_TYPE_MAGICAL"
+								"Damage"		"%damage"
+							}
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	
+	
+
+	"phantom_ranger_ability1"
+	{
+		//General
+		//-----------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName"	"antimage_blink"
+		"MaxLevel"				"1"
+
+		// Precache	
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+			"particle"		"particles/heroes/phantom_ranger/phantom_arrow_1.vpcf"
+		}
+
+		// Special	
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_absorb"				"200 300 400 500"
+				"images_count"				"1"
 			}
 			"02"
 			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"20"
+			}	
+			"03"
+			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"20 40 60 80"
+				"outgoing_damage"			"0"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"17.0 17.0 17.0 17.0"
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage_tooltip"			"100"
+			}	
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage"			"100"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage_tooltip"			"200"
+			}					
+		}
+		
+		"OnToggleOn"
+		{
+			"ApplyModifier"
+			{
+				"Target"		"CASTER"
+				"ModifierName"	"modifier_phantom_ranger_phantom_arrow"
+			}
+			
+
+		}
+
+		"OnToggleOff"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heroes/hero_phantom_ranger/phantom.lua"
+				"Function"			"ToggleOff"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_phantom_ranger_phantom_arrow"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"-100"
+				}
+				
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heroes/hero_phantom_ranger/phantom.lua"
+						"Function"		"Phantasm"
+						"Target"		"TARGET"
+					}
+				}
+				
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName"	"particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+				}
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/heroes/phantom_ranger/phantom_arrow_1.vpcf"
+						"Target"			"CASTER"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+				
+			}
+		}
+	}
+
+	
+	"phantom_ranger_ability2"
+	{
+		//General
+		//-----------------------------------------------
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName"			"riki_smoke_screen"
+		
+		"precache"
+		{
+			"particle"		"particles\units\heroes\hero_witchdoctor\witchdoctor_dust_hit.vpcf"
+		}
+		
+		//Casting
+		"AbilityCastPoint"			"0.4 0.3 0.2 0.1"
+		
+		"AbilityManaCost"			"50 50 50 50"
+		
+		"AbilityCooldown"			"20 16 12 8"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"blink_range"	"600 700 800 1000"
+			}
+			
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"outgoing_damage_tooltip"	"100"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/heroes/hero_phantom_ranger/phantom.lua"
+				"Function"		"Blink"
+				"Target"		"POINT"
+			}
+			
+			"FireEffect"
+			{
+				"EffectName"		"particles\units\heroes\hero_witchdoctor\witchdoctor_dust_hit.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"			"CASTER"
 			}
 		}
 	}
 	
-	//===========================
+	//怎么处理3技能和5技能同时开启的情况？
+	//在lua里面使用global value
+	"phantom_ranger_ability3"
+	{
+		//General
+		//---------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"	"techies_suicide"
+		
+		"precache"
+		{
+			"particle"		"particles\econ\items\shadow_fiend\sf_fire_arcana\sf_fire_arcana_loadout_ribbon.vpcf"
+			"particle"		"particles\econ\items\earthshaker\egteam_set\hero_earthshaker_egset\earthshaker_totem_buff_egset.vpcf"
+		}
+		
+		//Casting
+		"AbilityCastPoint"			"0.1"
+		
+		"AbilityManaCost"			"110 120 130 140"
+		
+		"AbilityCooldown"			"30"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"duration"		"6 7 8 10"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heroes/hero_phantom_ranger/phantom.lua"
+				"Function"			"BombOn"
+			}
+			
+			"DelayedAction"
+			{
+				"Delay"				"%duration"
+				"Action"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heroes/hero_phantom_ranger/phantom.lua"
+						"Function"		"BombOff"
+					}
+				}
+			}
+			
+			"ApplyModifier"
+			{
+				"ModifierName" 		"modifier_phantom_ranger_phantom_bomb"
+				"Target"			"CASTER"
+				"Duration"			"%duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_phantom_ranger_phantom_bomb"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles\econ\items\shadow_fiend\sf_fire_arcana\sf_fire_arcana_loadout_ribbon.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"			"CASTER"
+					}
+					
+					"AttachEffect"
+					{
+						"EffectName"		"particles\econ\items\earthshaker\egteam_set\hero_earthshaker_egset\earthshaker_totem_buff_egset.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"			"CASTER"
+					}
+				}
+			}
+		}
+	}
+	
+	"phantom_ranger_ability4"
+	{
+		//General
+		//-----------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"	"juggernaut_omni_slash"
+		
+		"Modifiers"{
+			"modifier_phantom_ranger_ability4"
+			{
+				"Passive"		"1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"	"%attackConstant"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"		"%damage"
+				}
+			}
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attackConstant"	"1.4 1.3 1.2 1.0"
+			}
+			
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"9 15 21 27"
+			}
+		}
+	}
+	
+	"phantom_ranger_ability5"
+	{
+		//General
+		//---------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"	"riki_permanent_invisibility"
+		"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		"precache"
+		{
+			"particle"			"particles/heroes/phantom_ranger/phantom_pain_ring.vpcf"
+		}
+		//Casting
+		"AbilityCastPoint"			"0.1"
+		
+		"AbilityManaCost"			"100 150 200"
+		
+		"AbilityCooldown"			"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"duration"		"10"
+			}
+			
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"outgoing_damage"			"-75 -65 -50"
+			}
+			
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"outgoing_damage_tooltip"	"25 35 50"
+			}
+			
+			"04"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"incoming_damage"			"200 150 100"
+			}
+			
+			"05"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"incoming_damage_tooltip"	"300 250 200"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/heroes/hero_phantom_ranger/phantom.lua"
+				"Function"			"RealPhantomOn"
+			}
+			
+			"DelayedAction"
+			{
+				"Delay"				"%duration"
+				"Action"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/heroes/hero_phantom_ranger/phantom.lua"
+						"Function"		"RealPhantomOff"
+					}
+				}
+			}
+			
+			"ApplyModifier"
+			{
+				"ModifierName" 		"modifier_phantom_ranger_phantom_pain"
+				"Target"			"CASTER"
+				"Duration"			"%duration"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_phantom_ranger_phantom_pain"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/heroes/phantom_ranger/phantom_pain_ring.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"CASTER"
+					}
+				}
+			}
+		}
+	}
+	//---------------------------------------------OVER-------------------------------------------------
+	//--------------------------------------------------------------------------------------------------
+	
+	
+	
+	//--------------------------------------Shaman (Shadow Shaman)--------------------------------------
+	//--------------------------------------------------------------------------------------------------
+	
+		//===========================
 	"shaman_healing_wave"
 	{
 		"BaseClass" "ability_lua"
@@ -70,559 +586,555 @@
 	}
 
 	//===========================
-"shaman_ancient_power"
-{
-    "BaseClass"             "Ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-    //"AbilityTextureName"    "���Ϲž�����ջ����Return Astral Spirit"
-	"MaxLevel"				"3"
-	"AbilityType"				"DOTA_ABILITY_TYPE_ULTIMATE"
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"                          "FIELD_INTEGER"
-            "healing_wave_extra_count"          "1 3 5"
-        }
-        "02"
-        {
-            "var_type"                          "FIELD_INTEGER"
-            "totem_damage"                      "100 200 300"
-        }
-        "03"
-        {
-            "var_type"                          "FIELD_INTEGER"
-            "lightening_shield_cooldown_adjust" "-5 -10 -15"
-        }
-    }
-
-
-
-    "OnUpgrade"
-    {
-        "RunScript"
-        {
-            "ScriptFile"    "abilities/shaman_ancient_power_lua.lua"
-            "Function"      "AncientPower"
-        }
-    }
-
-}
-
-//=============================
-"shaman_lightening_shield"
-{
-    "BaseClass"     "ability_datadriven"
-    "AbilityTextureName"    "wisp_spirits"
-    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-    "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
-    
-    "AbilityCooldown"   "20 20 20 20"
-    "AbilityManaCost"   "100 120 150 180"
-    "AbilityCastRange"  "750"
-    "AbilityCastPoint"  "0.4"
-    
-    "precache"
-    {
-        "particle"      "particles/items2_fx/mjollnir_shield.vpcf"
-        "particle"      "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-    }
-    
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "damage"    "20 35 50 65"
-        }
-        "02"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "radius"    "200 200 200 200"
-        }
-        "03"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "duration"  "10 10 10 10"
-        }
-    }
-
-    "OnSpellStart"
-    {
-        "ApplyModifier"
-        {
-            "ModifierName"  "modifier_shaman_lightening_shield"
-            "Target"        "TARGET"
-        }
-        "FireSound"
-        {
-            "EffectName"    "DOTA_Item.Mjollnir.Activate"
-            "Target"    "TARGET" 
-        }
-     }
-    
-    "Modifiers"
-    {
-        "modifier_shaman_lightening_shield"
-        {
-            "Duration"  "%duration"
-            "OnCreated"
-            {
-                "AttachEffect"
-                {
-                    "EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
-                    "EffectAttachType" "attach_hitloc"
-                    "Target"    "TARGET"
-                }
-            }
-            "ThinkInterval"     "1"
-            "OnIntervalThink"
-            {
-                "RunScript"
-                {
-                    "ScriptFile"    "abilities/shaman_lightening_shield_lua.lua"
-                    "Function"  "lightening_shield_dmg"
-                    "shield_particle"   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-                }
-            }
-        }
-    }
-}
-	
-"shaman_lightening_shield1"
-{
-    "BaseClass"     "ability_datadriven"
-    "AbilityTextureName"    "wisp_spirits"
-    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-    "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
-    
-    "AbilityCooldown"   "15 15 15 15"
-    "AbilityManaCost"   "100 120 150 180"
-    "AbilityCastRange"  "750"
-    "AbilityCastPoint"  "0.4"
-    
-    "precache"
-    {
-        "particle"      "particles/items2_fx/mjollnir_shield.vpcf"
-        "particle"      "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-    }
-    
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "damage"    "20 35 50 65"
-        }
-        "02"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "radius"    "200 200 200 200"
-        }
-        "03"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "duration"  "10 10 10 10"
-        }
-    }
-
-    "OnSpellStart"
-    {
-        "ApplyModifier"
-        {
-            "ModifierName"  "modifier_shaman_lightening_shield"
-            "Target"        "TARGET"
-        }
-        "FireSound"
-        {
-            "EffectName"    "DOTA_Item.Mjollnir.Activate"
-            "Target"    "TARGET" 
-        }
-    }
-    "Modifiers"
-    {
-        "modifier_shaman_lightening_shield"
-        {
-            "Duration"  "%duration"
-            "OnCreated"
-            {
-                "AttachEffect"
-                {
-                    "EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
-                    "EffectAttachType" "attach_hitloc"
-                    "Target"    "TARGET"
-                }
-            }
-            "ThinkInterval"     "1"
-            "OnIntervalThink"
-            {
-                "RunScript"
-                {
-                    "ScriptFile"    "abilities/shaman_lightening_shield_lua.lua"
-                    "Function"  "lightening_shield_dmg"
-                    "shield_particle"   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-                }
-            }
-        }
-    } 
-}
-
-"shaman_lightening_shield2"
-{
-    "BaseClass"     "ability_datadriven"
-    "AbilityTextureName"    "wisp_spirits"
-    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-    "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
-    
-    "AbilityCooldown"   "10 10 10 10"
-    "AbilityManaCost"   "100 120 150 180"
-    "AbilityCastRange"  "750"
-    "AbilityCastPoint"  "0.4"
-    
-    "precache"
-    {
-        "particle"      "particles/items2_fx/mjollnir_shield.vpcf"
-        "particle"      "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-    }
-    
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "damage"    "20 35 50 65"
-        }
-        "02"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "radius"    "200 200 200 200"
-        }
-        "03"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "duration"  "10 10 10 10"
-        }
-    }
-
-    "OnSpellStart"
-    {
-        "ApplyModifier"
-        {
-            "ModifierName"  "modifier_shaman_lightening_shield"
-            "Target"        "TARGET"
-        }
-        "FireSound"
-        {
-            "EffectName"    "DOTA_Item.Mjollnir.Activate"
-            "Target"    "TARGET" 
-        }
-    }
-	
-    "Modifiers"
-    {
-        "modifier_shaman_lightening_shield"
-        {
-            "Duration"  "%duration"
-            "OnCreated"
-            {
-                "AttachEffect"
-                {
-                    "EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
-                    "EffectAttachType" "attach_hitloc"
-                    "Target"    "TARGET"
-                }
-            }
-            "ThinkInterval"     "1"
-            "OnIntervalThink"
-            {
-                "RunScript"
-                {
-                    "ScriptFile"    "abilities/shaman_lightening_shield_lua.lua"
-                    "Function"  "lightening_shield_dmg"
-                    "shield_particle"   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-                }
-            }
-        }
-    } 
-}
-
-"shaman_lightening_shield3"
-{
-    "BaseClass"     "ability_datadriven"
-    "AbilityTextureName"    "wisp_spirits"
-    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-    "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
-    
-    "AbilityCooldown"   "5 5 5 5"
-    "AbilityManaCost"   "100 120 150 180"
-    "AbilityCastRange"  "750"
-    "AbilityCastPoint"  "0.4"
-    
-    "precache"
-    {
-        "particle"      "particles/items2_fx/mjollnir_shield.vpcf"
-        "particle"      "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-    }
-    
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "damage"    "20 35 50 65"
-        }
-        "02"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "radius"    "200 200 200 200"
-        }
-        "03"
-        {
-            "var_type"  "FIELD_INTEGER"
-            "duration"  "10 10 10 10"
-        }
-    }
-
-    "OnSpellStart"
-    {
-        "ApplyModifier"
-        {
-            "ModifierName"  "modifier_shaman_lightening_shield"
-            "Target"        "TARGET"
-        }
-        "FireSound"
-        {
-            "EffectName"    "DOTA_Item.Mjollnir.Activate"
-            "Target"    "TARGET" 
-        }
-    }
-	
-    "Modifiers"
-    {
-        "modifier_shaman_lightening_shield"
-        {
-            "Duration"  "%duration"
-            "OnCreated"
-            {
-                "AttachEffect"
-                {
-                    "EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
-                    "EffectAttachType" "attach_hitloc"
-                    "Target"    "TARGET"
-                }
-            }
-            "ThinkInterval"     "1"
-            "OnIntervalThink"
-            {
-                "RunScript"
-                {
-                    "ScriptFile"    "abilities/shaman_lightening_shield_lua.lua"
-                    "Function"  "lightening_shield_dmg"
-                    "shield_particle"   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-                }
-            }
-        }
-    } 
-}
-
-//===================================
-"shaman_summon_totem"
-{
-    "precache"
-    {
-    
-    }
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
-    "AbilityTextureName"    "juggernaut_healing_ward"
-    "AbilityCastPoint"      "0.3"
-    "AbilityCooldown"       "60"
-    "AbilityManaCost"       "60"
-	"AbilityCastRange"		"500"
-	"MaxLevel"				"1"
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "duration"      "15"
-        }
-    }
-    "OnSpellStart"
-    {
-        "SpawnUnit"
-        {
-            "UnitName"      "shaman_totem"
-            "UnitCount"     "1"
-            "Duration"      "%duration"
-            "Target"        "POINT"
-        }
-    }
-}
-
-"shaman_summon_totem1"
-{
-    "precache"
-    {
-    
-    }
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
-    "AbilityTextureName"    "juggernaut_healing_ward"
-    "AbilityCastPoint"      "0.3"
-    "AbilityCooldown"       "60"
-    "AbilityManaCost"       "60"
-	"AbilityCastRange"		"500"
-	"MaxLevel"				"1"
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "duration"      "15"
-        }
-    }
-    "OnSpellStart"
-    {
-        "SpawnUnit"
-        {
-            "UnitName"      "shaman_totem1"
-            "UnitCount"     "1"
-            "Duration"      "%duration"
-            "Target"        "POINT"
-        }
-    }
-}
-
-"shaman_summon_totem2"
-{
-    "precache"
-    {
-    
-    }
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
-    "AbilityTextureName"    "juggernaut_healing_ward"
-    "AbilityCastPoint"      "0.3"
-    "AbilityCooldown"       "60"
-    "AbilityManaCost"       "60"
-	"AbilityCastRange"		"500"
-	"MaxLevel"				"1"
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "duration"      "15"
-        }
-    }
-    "OnSpellStart"
-    {
-        "SpawnUnit"
-        {
-            "UnitName"      "shaman_totem2"
-            "UnitCount"     "1"
-            "Duration"      "%duration"
-            "Target"        "POINT"
-        }
-    }
-}
-
-"shaman_summon_totem3"
-{
-    "precache"
-    {
-    
-    }
-    "BaseClass"             "ability_datadriven"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
-    "AbilityTextureName"    "juggernaut_healing_ward"
-    "AbilityCastPoint"      "0.3"
-    "AbilityCooldown"       "60"
-    "AbilityManaCost"       "60"
-	"AbilityCastRange"		"500"
-	"MaxLevel"				"1"
-    "AbilitySpecial"
-    {
-        "01"
-        {
-            "var_type"      "FIELD_INTEGER"
-            "duration"      "15"
-        }
-    }
-    "OnSpellStart"
-    {
-        "SpawnUnit"
-        {
-            "UnitName"      "shaman_totem3"
-            "UnitCount"     "1"
-            "Duration"      "%duration"
-            "Target"        "POINT"
-        }
-    }
-}
-
-//==================================
-"lycan_summon_wolves"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"ID"                    "5395"                                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-	"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastPoint"                "0.3 0.3 0.3 0.3"
-
-	// Time        
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"                "30.0 30.0 30.0 30.0"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"                "120"
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
-	{
-		"01"
+	"shaman_ancient_power"
 		{
-			"var_type"                    "FIELD_INTEGER"
-			"wolf_index"                "1 2 3 4"
+		"BaseClass"             "Ability_datadriven"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"AbilityTextureName"    "用上古巨神的收回灵魂Return Astral Spirit"
+		"MaxLevel"				"3"
+		"AbilityType"				"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                          "FIELD_INTEGER"
+				"healing_wave_extra_count"          "1 3 5"
+			}
+			"02"
+			{
+				"var_type"                          "FIELD_INTEGER"
+				"totem_damage"                      "100 200 300"
+			}
+			"03"
+			{
+				"var_type"                          "FIELD_INTEGER"
+				"lightening_shield_cooldown_adjust" "-5 -10 -15"
+			}
 		}
-		"02"
+
+
+
+		"OnUpgrade"
 		{
-			"var_type"                    "FIELD_FLOAT"
-			"wolf_duration"                "25.0 35.0 45.0 55.0"
+			"RunScript"
+			{
+				"ScriptFile"    "abilities/shaman_ancient_power_lua.lua"
+				"Function"      "AncientPower"
+			}
 		}
-		"03"
+
+	}
+
+	//=============================
+	"shaman_lightening_shield"
 		{
-			"var_type"                    "FIELD_FLOAT"
-			"wolf_bat"                    "1.25 1.2 1.15 1.1"
+		"BaseClass"     "ability_datadriven"
+		"AbilityTextureName"    "wisp_spirits"
+		"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		
+		"AbilityCooldown"   "20 20 20 20"
+		"AbilityManaCost"   "100 120 150 180"
+		"AbilityCastRange"  "750"
+		"AbilityCastPoint"  "0.4"
+		
+		"precache"
+		{
+			"particle"      "particles/items2_fx/mjollnir_shield.vpcf"
+			"particle"      "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
 		}
-		"04"
+		
+		"AbilitySpecial"
 		{
-			"var_type"                    "FIELD_INTEGER"
-			"wolf_damage"                "18 29 37 46"
+			"01"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"damage"    "20 35 50 65"
+			}
+			"02"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"radius"    "200 200 200 200"
+			}
+			"03"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"duration"  "10 10 10 10"
+			}
 		}
-		"05"
+
+		"OnSpellStart"
 		{
-			"var_type"                    "FIELD_INTEGER"
-			"wolf_hp"                    "200 240 280 320"
+			"ApplyModifier"
+			{
+				"ModifierName"  "modifier_shaman_lightening_shield"
+				"Target"        "TARGET"
+			}
+			"FireSound"
+			{
+				"EffectName"    "DOTA_Item.Mjollnir.Activate"
+				"Target"    "TARGET" 
+			}
+		 }
+		
+		"Modifiers"
+		{
+			"modifier_shaman_lightening_shield"
+			{
+				"Duration"  "%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
+						"EffectAttachType" "attach_hitloc"
+						"Target"    "TARGET"
+					}
+				}
+				"ThinkInterval"     "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "abilities/shaman_lightening_shield_lua.lua"
+						"Function"  "lightening_shield_dmg"
+						"shield_particle"   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+					}
+				}
+			}
 		}
 	}
-}
+	
+	"shaman_lightening_shield1"
+	{
+		"BaseClass"     "ability_datadriven"
+		"AbilityTextureName"    "wisp_spirits"
+		"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		
+		"AbilityCooldown"   "15 15 15 15"
+		"AbilityManaCost"   "100 120 150 180"
+		"AbilityCastRange"  "750"
+		"AbilityCastPoint"  "0.4"
+		
+		"precache"
+		{
+			"particle"      "particles/items2_fx/mjollnir_shield.vpcf"
+			"particle"      "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"damage"    "20 35 50 65"
+			}
+			"02"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"radius"    "200 200 200 200"
+			}
+			"03"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"duration"  "10 10 10 10"
+			}
+		}
 
-//======================================
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"  "modifier_shaman_lightening_shield"
+				"Target"        "TARGET"
+			}
+			"FireSound"
+			{
+				"EffectName"    "DOTA_Item.Mjollnir.Activate"
+				"Target"    "TARGET" 
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_shaman_lightening_shield"
+			{
+				"Duration"  "%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
+						"EffectAttachType" "attach_hitloc"
+						"Target"    "TARGET"
+					}
+				}
+				"ThinkInterval"     "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "abilities/shaman_lightening_shield_lua.lua"
+						"Function"  "lightening_shield_dmg"
+						"shield_particle"   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+					}
+				}
+			}
+		}
+	}
+
+	"shaman_lightening_shield2"
+	{
+		"BaseClass"     "ability_datadriven"
+		"AbilityTextureName"    "wisp_spirits"
+		"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		
+		"AbilityCooldown"   "10 10 10 10"
+		"AbilityManaCost"   "100 120 150 180"
+		"AbilityCastRange"  "750"
+		"AbilityCastPoint"  "0.4"
+		
+		"precache"
+		{
+			"particle"      "particles/items2_fx/mjollnir_shield.vpcf"
+			"particle"      "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"damage"    "20 35 50 65"
+			}
+			"02"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"radius"    "200 200 200 200"
+			}
+			"03"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"duration"  "10 10 10 10"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"  "modifier_shaman_lightening_shield"
+				"Target"        "TARGET"
+			}
+			"FireSound"
+			{
+				"EffectName"    "DOTA_Item.Mjollnir.Activate"
+				"Target"    "TARGET" 
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_shaman_lightening_shield"
+			{
+				"Duration"  "%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
+						"EffectAttachType" "attach_hitloc"
+						"Target"    "TARGET"
+					}
+				}
+				"ThinkInterval"     "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "abilities/shaman_lightening_shield_lua.lua"
+						"Function"  "lightening_shield_dmg"
+						"shield_particle"   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+					}
+				}
+			}
+		} 
+	}
+
+	"shaman_lightening_shield3"
+	{
+		"BaseClass"     "ability_datadriven"
+		"AbilityTextureName"    "wisp_spirits"
+		"AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		
+		"AbilityCooldown"   "5 5 5 5"
+		"AbilityManaCost"   "100 120 150 180"
+		"AbilityCastRange"  "750"
+		"AbilityCastPoint"  "0.4"
+		
+		"precache"
+		{
+			"particle"      "particles/items2_fx/mjollnir_shield.vpcf"
+			"particle"      "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+		}
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"damage"    "20 35 50 65"
+			}
+			"02"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"radius"    "200 200 200 200"
+			}
+			"03"
+			{
+				"var_type"  "FIELD_INTEGER"
+				"duration"  "10 10 10 10"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"  "modifier_shaman_lightening_shield"
+				"Target"        "TARGET"
+			}
+			"FireSound"
+			{
+				"EffectName"    "DOTA_Item.Mjollnir.Activate"
+				"Target"    "TARGET" 
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_shaman_lightening_shield"
+			{
+				"Duration"  "%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"    "particles/items2_fx/mjollnir_shield.vpcf"
+						"EffectAttachType" "attach_hitloc"
+						"Target"    "TARGET"
+					}
+				}
+				"ThinkInterval"     "1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"    "abilities/shaman_lightening_shield_lua.lua"
+						"Function"  "lightening_shield_dmg"
+						"shield_particle"   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+					}
+				}
+			}
+		} 
+	}
+
+	//===================================
+	"shaman_summon_totem"
+	{
+		"BaseClass"             "ability_datadriven"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"    "juggernaut_healing_ward"
+		"AbilityCastPoint"      "0.3"
+		"AbilityCooldown"       "60"
+		"AbilityManaCost"       "60"
+		"AbilityCastRange"		"500"
+		"MaxLevel"				"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "15"
+			}
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"UnitName"      "shaman_totem"
+				"UnitCount"     "1"
+				"Duration"      "%duration"
+				"Target"        "POINT"
+			}
+		}
+	}
+
+	"shaman_summon_totem1"
+	{
+		"precache"
+		{
+		
+		}
+		"BaseClass"             "ability_datadriven"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"    "juggernaut_healing_ward"
+		"AbilityCastPoint"      "0.3"
+		"AbilityCooldown"       "60"
+		"AbilityManaCost"       "60"
+		"AbilityCastRange"		"500"
+		"MaxLevel"				"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "15"
+			}
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"UnitName"      "shaman_totem1"
+				"UnitCount"     "1"
+				"Duration"      "%duration"
+				"Target"        "POINT"
+			}
+		}
+	}
+
+	"shaman_summon_totem2"
+	{
+		"precache"
+		{
+		
+		}
+		"BaseClass"             "ability_datadriven"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"    "juggernaut_healing_ward"
+		"AbilityCastPoint"      "0.3"
+		"AbilityCooldown"       "60"
+		"AbilityManaCost"       "60"
+		"AbilityCastRange"		"500"
+		"MaxLevel"				"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "15"
+			}
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"UnitName"      "shaman_totem2"
+				"UnitCount"     "1"
+				"Duration"      "%duration"
+				"Target"        "POINT"
+			}
+		}
+	}
+
+	"shaman_summon_totem3"
+	{
+		"precache"
+		{
+		
+		}
+		"BaseClass"             "ability_datadriven"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName"    "juggernaut_healing_ward"
+		"AbilityCastPoint"      "0.3"
+		"AbilityCooldown"       "60"
+		"AbilityManaCost"       "60"
+		"AbilityCastRange"		"500"
+		"MaxLevel"				"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "15"
+			}
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"UnitName"      "shaman_totem3"
+				"UnitCount"     "1"
+				"Duration"      "%duration"
+				"Target"        "POINT"
+			}
+		}
+	}
+
+	//==================================
+	"lycan_summon_wolves"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"                    "5395"                                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"                "0.3 0.3 0.3 0.3"
+
+		// Time        
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"                "30.0 30.0 30.0 30.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"                "120"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_INTEGER"
+				"wolf_index"                "1 2 3 4"
+			}
+			"02"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"wolf_duration"                "25.0 35.0 45.0 55.0"
+			}
+			"03"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"wolf_bat"                    "1.25 1.2 1.15 1.1"
+			}
+			"04"
+			{
+				"var_type"                    "FIELD_INTEGER"
+				"wolf_damage"                "18 29 37 46"
+			}
+			"05"
+			{
+				"var_type"                    "FIELD_INTEGER"
+				"wolf_hp"                    "200 240 280 320"
+			}
+		}
+	}
+
+	//======================================
 	"totem_slow"
 	{
 		"precache"
@@ -954,7 +1466,6 @@
 			}
 		}        
 	}
-
-//===============================
-
+	//------------------------------------------OVER-------------------------------------------------
+	//-----------------------------------------------------------------------------------------------
 }
