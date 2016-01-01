@@ -1,101 +1,275 @@
-// Units File
+﻿// Units File
 "DOTAUnits"
 {
 	"Version"	"1"
 	
-	//=================================================================================	
-	// Creature: Gnoll Assassin
-	//=================================================================================
-	"npc_dota_creature_gnoll_assassin"	
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_gnoll/n_creep_gnoll_frost.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creature"
-		"SoundSet"					"n_creep_Ranged"
-		"GameSoundsFile"			"soundevents/game_sounds_creeps.vsndevts"
-		"Level"						"1"
-		"ModelScale" 				".9"
-
-		// Abilities
-		//----------------------------------------------------------------
-		"Ability1"					""			// Ability 1
-		"Ability2"					""			// Ability 2
-		"Ability3"					""			// Ability 3
-		"Ability4"					""			// Ability 4
-
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"1"			// Physical protection.
-
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"30"		// Damage range min.
-		"AttackDamageMax"			"36"		// Damage range max.
-		"AttackRate"				"1.6"		// Speed of attack.
-		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
-		"AttackRange"				"500"		// Range within a target can be attacked.
-		"ProjectileModel"			"particles/neutral_fx/gnoll_base_attack.vpcf" // Particle system model for projectile.
-		"ProjectileSpeed"			"1500"		// Speed of projectile.		     
-
-		// Bounds
-		//----------------------------------------------------------------
-		"RingRadius"				"40"
-		"HealthBarOffset"			"170"
-
-		// Bounty
-		//----------------------------------------------------------------
-		"BountyXP"					"24"		// Experience earn.
-		"BountyGoldMin"				"21"		// Gold earned min.
-		"BountyGoldMax"				"29"		// Gold earned max.
-
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"270"		// Speed.			
-
+	
+	//----------------------------------Foe-----------------------------------------
+	//------------------------------------------------------------------------------
+	"yao_guai"{
+		//basic
+		//-----------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models\heroes\sven\sven.vmdl"
+		"SoundSet"			""
+		"ModelScale"		"1"
+		"Level"				"1"
+		
+		//armor
+		//----------------------------------------------------
+		"ArmorPhysical"		"100"
+		"MagicalResistance"	"20"
+		
+		//ability
+		//----------------------------------------------------
+		"Ability1"			""
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		
+		//attack
+		//----------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"20"
+		"AttackDamageMAx"		"25"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysica"
+		"AttackRate"			"1.7"
+		"AttackAnimationPoint"	"1"
+		"AttackRange"			"128"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"100"
+		"BountyGoldMin"	"10"
+		"BountyGoldMax"	"15"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"300"
+		"MovementTurnRate"		"0.5"
+		"HasAggressiveStance"       "0"                         
+		"FollowRange"               "100" 
+		
+		//bound
+		//--------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"RingRadius"			"80"
+		"HealthBarOffset"		"170"
+		
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"75"		// Base health.
-		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
-		"StatusMana"				"0"			// Base mana.
-		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		"StatusHealth"              "5000"       // 基础生命值
+		"StatusHealthRegen"         "1"         // 生命恢复速度
+		"StatusMana"                "100"         // 基础魔法值
+		"StatusManaRegen"           "1"         // 魔法恢复速度
+		"StatusStartingMana"        "-1"        // 创建出来就是满血
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"400"		// Range of vision at night time.
-
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_NEUTRALS"						// Team name.
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		//vision
+		//-------------------------------------------------
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"1000"
+	}
+	
+	"fallen_soldier"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"0"
+		"Level"				"10"
+		"Model"				"models\heroes\dragon_knight\dragon_knight.vmdl"
+		"ModelScale"			"0.6"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"fallen_knight_block"
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"5"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"29"
+		"AttackDamageMAx"		"29"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysica"
+		"AttackRate"			"1.5"
+		"AttackAnimationPoint"	"0.75"
+		"AttackRange"			"128"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-
-		// Creature Data
-		//----------------------------------------------------------------
+		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"100"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"320"
+		"MovementTurnRate"			"0.4"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"500"
+		"StatusHealthRegen"			"3"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"100"
+		"BountyGoldMin"	"18"
+		"BountyGoldMax"	"23"
+		
+		//Creature
+		//---------------------------------------------------
 		"Creature"
 		{
-			//Level Up
-			"HPGain"					"50"
-			"DamageGain"				"2"
-			"ArmorGain"					"0.25"
-			"MagicResistGain"			"0.1"
-			"MoveSpeedGain"				"1"
-			"BountyGain"				"3"
-			"XPGain"					"15"
+			"AttachWearables"
+			{
+				"Wearable5" { "ItemDef" "66" }
+				"Wearable6" { "ItemDef" "67" }
+			}
+			//选用 飞升套装 或者龙血之契	
 		}
 	}
-//=====================================
+	//-------------------------------------------OVER-------------------------------------------
+	//-------------------------------------------------------------------------------------------
+	
+	
+	
+	//-------------------------------------------BOSS--------------------------------------------
+	//-------------------------------------------------------------------------------------------
+	"fallen_knight"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"1"
+		"Level"				"10"
+		"Model"				"models\heroes\dragon_knight\dragon_knight.vmdl"
+		"ModelScale"			"1"
+		"HasInventory"		"1"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"fallen_knight_block"
+		"Ability2"			"fallen_knight_capture"
+		"Ability3"			"fallen_knight_fallen_sword"
+		"Ability4"			"fallen_knight_fallen_legion"
+		
+		//Armor&Attack
+		"ArmorPhysical"			"15"
+		"MagicalResistance"		"15"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"120"
+		"AttackDamageMAx"		"150"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysica"
+		"AttackRate"			"2.1"
+		"AttackAnimationPoint"	"0.7"
+		"AttackRange"			"128"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"RingRadius"			"80"
+		"HealthBarOffset"		"170"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"250"
+		"MovementTurnRate"			"0.8"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"2500"
+		"StatusHealthRegen"			"10"
+		"StatusMana"				"500"
+		"StatusManaRegen"			"2"
+		"StatusStartingMana"		"-1"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"800"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"3000"
+		"BountyGoldMin"	"500"
+		"BountyGoldMax"	"680"
+		
+		//Creature
+		//---------------------------------------------------
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "6922" } 	//leg
+				"Wearable2" { "ItemDef" "6923" }	//head
+				"Wearable3" { "ItemDef" "6925" }	//shoulder
+				"Wearable4" { "ItemDef" "6927" }	//arms
+				"Wearable5" { "ItemDef" "8978" }	//weapon
+				"Wearable6" { "ItemDef" "4484" }	//offhand
+			}
+			//选用 飞升套装 或者龙血之契
+			
+			
+			//AI
+			//--------------------------------------------------
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"		"fallen_knight_capture"
+				}
+				
+								
+				"Ability2"
+				{
+					"Name"				"fallen_knight_fallen_legion"
+					"AOE"				"1"
+					"Radius"			"500"
+					"MinimumTargets"	"1"
+				}
+				
+				"Ability3"
+				{
+					"Name"				"fallen_knight_fallen_sword"
+					"AOE"				"1"
+					"Radius"			"500"
+					"MinimumTargets"	"1"
+				}
+			}	
+		}
+	}
+	
+	//----------------------------------------Hero Ability---------------------------------------
+	//-------------------------------------------------------------------------------------------
 	"shaman_totem"
 	{
 		"BaseClass"			"npc_dota_creature"
 		"Level"				"1"
 		"Model"				"models\heroes\juggernaut\jugg_healing_ward.vmdl"
-		"ModelSize"			"1"
+		"ModelScale"			"1"
 		"UnitLabel"			"totem"
 		"HasInventory"		"0"
 		
@@ -122,8 +296,8 @@
 		"StatusMana"        "0"         
 		"StatusManaRegen"  	"0"         
 		
-		"VisionDaytimeRange"        "200"        // ������Ұ
-		"VisionNighttimeRange"      "200"        // ҹ����Ұ
+		"VisionDaytimeRange"        "200"        // 白天视野
+		"VisionNighttimeRange"      "200"        // 夜间视野
 		
 		"UnitRelationshipClass"       "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		
@@ -134,7 +308,7 @@
 		"BaseClass"			"npc_dota_creature"
 		"Level"				"1"
 		"Model"				"models\heroes\juggernaut\jugg_healing_ward.vmdl"
-		"ModelSize"			"1"
+		"ModelScale"			"1"
 		"UnitLabel"			"totem"
 		"HasInventory"		"0"
 		
@@ -161,8 +335,8 @@
 		"StatusMana"        "0"         
 		"StatusManaRegen"  	"0"         
 		
-		"VisionDaytimeRange"        "200"        // ������Ұ
-		"VisionNighttimeRange"      "200"        // ҹ����Ұ
+		"VisionDaytimeRange"        "200"        // 白天视野
+		"VisionNighttimeRange"      "200"        // 夜间视野
 		
 		"UnitRelationshipClass"       "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		
@@ -174,7 +348,7 @@
 		"BaseClass"			"npc_dota_creature"
 		"Level"				"1"
 		"Model"				"models\heroes\juggernaut\jugg_healing_ward.vmdl"
-		"ModelSize"			"1"
+		"ModelScale"			"1"
 		"UnitLabel"			"totem"
 		"HasInventory"		"0"
 		
@@ -201,8 +375,8 @@
 		"StatusMana"        "0"         
 		"StatusManaRegen"  	"0"         
 		
-		"VisionDaytimeRange"        "200"        // ������Ұ
-		"VisionNighttimeRange"      "200"        // ҹ����Ұ
+		"VisionDaytimeRange"        "200"        // 白天视野
+		"VisionNighttimeRange"      "200"        // 夜间视野
 		
 		"UnitRelationshipClass"       "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		
@@ -214,7 +388,7 @@
 		"BaseClass"			"npc_dota_creature"
 		"Level"				"1"
 		"Model"				"models\heroes\juggernaut\jugg_healing_ward.vmdl"
-		"ModelSize"			"1"
+		"ModelScale"			"1"
 		"UnitLabel"			"totem"
 		"HasInventory"		"0"
 		
@@ -241,12 +415,33 @@
 		"StatusMana"        "0"         
 		"StatusManaRegen"  	"0"         
 		
-		"VisionDaytimeRange"        "200"        // ������Ұ
-		"VisionNighttimeRange"      "200"        // ҹ����Ұ
+		"VisionDaytimeRange"        "200"        // 白天视野
+		"VisionNighttimeRange"      "200"        // 夜间视野
 		
 		"UnitRelationshipClass"       "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		
 	}
-
-//==============================
+	
+	"da_bao_jian"
+	{
+		"BaseClass"		"npc_dota_creature"
+		"Level"			"1"
+		"Model"			"models\heroes\dragon_knight\weapon.vmdl"
+		"ModelScale"		"4"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"ConsideredHero"	"0"
+		"IsAncient"			"0"
+		"IsNeutralUnitType"	"0"
+		"WakesNeutrals"		"1"
+		
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"VisionDaytimeRange"        "0"        // 白天视野
+		"VisionNighttimeRange"      "0"        // 夜间视野
+	}
+	//--------------------------------------------OVER-------------------------------------------
+	//-------------------------------------------------------------------------------------------
+	
 }

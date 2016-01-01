@@ -3,4 +3,5 @@
 	"npc_dota_hero_shadow_shaman"	"1"
 	"npc_dota_hero_drow_ranger"	"1"
 	"npc_dota_hero_slardar"		"1"
+	"npc_dota_hero_antimage"	"1"
 }

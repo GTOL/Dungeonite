@@ -1,0 +1,108 @@
+	"fallen_knight"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"1"
+		"Level"				"10"
+		"Model"				"models\heroes\dragon_knight\dragon_knight.vmdl"
+		"ModelScale"			"1"
+		"HasInventory"		"1"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"fallen_knight_block"
+		"Ability2"			"fallen_knight_capture"
+		"Ability3"			"fallen_knight_fallen_sword"
+		"Ability4"			"fallen_knight_fallen_legion"
+		
+		//Armor&Attack
+		"ArmorPhysical"			"15"
+		"MagicalResistance"		"15"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"120"
+		"AttackDamageMAx"		"150"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysica"
+		"AttackRate"			"2.1"
+		"AttackAnimationPoint"	"0.7"
+		"AttackRange"			"128"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
+		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"RingRadius"			"80"
+		"HealthBarOffset"		"170"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"250"
+		"MovementTurnRate"			"0.8"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"2500"
+		"StatusHealthRegen"			"10"
+		"StatusMana"				"500"
+		"StatusManaRegen"			"2"
+		"StatusStartingMana"		"-1"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1200"
+		"VisionNighttimeRange"		"800"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"3000"
+		"BountyGoldMin"	"500"
+		"BountyGoldMax"	"680"
+		
+		//Creature
+		//---------------------------------------------------
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "6922" } 	//leg
+				"Wearable2" { "ItemDef" "6923" }	//head
+				"Wearable3" { "ItemDef" "6925" }	//shoulder
+				"Wearable4" { "ItemDef" "6927" }	//arms
+				"Wearable5" { "ItemDef" "8978" }	//weapon
+				"Wearable6" { "ItemDef" "4484" }	//offhand
+			}
+			//选用 飞升套装 或者龙血之契
+			
+			
+			//AI
+			//--------------------------------------------------
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"		"fallen_knight_capture"
+				}
+				
+								
+				"Ability2"
+				{
+					"Name"				"fallen_knight_fallen_legion"
+					"AOE"				"1"
+					"Radius"			"500"
+					"MinimumTargets"	"1"
+				}
+				
+				"Ability3"
+				{
+					"Name"				"fallen_knight_fallen_sword"
+					"AOE"				"1"
+					"Radius"			"500"
+					"MinimumTargets"	"1"
+				}
+			}	
+		}
+	}

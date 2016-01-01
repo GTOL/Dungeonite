@@ -3,6 +3,8 @@
 {
 	//MaxLevel 设定等级上限
 	
+	//---------------------------------------------Heroes-------------------------------------------------
+	//----------------------------------------------------------------------------------------------------
 	
 	//-----------------------------Phantom Ranger (Drow Ranger and Riki)----------------------------------
 	//----------------------------------------------------------------------------------------------------
@@ -16,14 +18,15 @@
 		
 		"Modifiers"
 		{
-			"modifier_majia"
+			"modifier_phantom_ranger_majia"
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
 				
 				"States"
 				{
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED" //不可选择
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"	//不可选择
+					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"	//不在小地图出现
 				}
 			}
 		}
@@ -86,7 +89,7 @@
 			"02"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"damage"		"250 500 750 1000"
+				"damage"		"25 50 75 100"
 			}
 		}
 		
@@ -1468,4 +1471,926 @@
 	}
 	//------------------------------------------OVER-------------------------------------------------
 	//-----------------------------------------------------------------------------------------------
+	
+	
+	//----------------------------------------Slardar------------------------------------------------
+	//-----------------------------------------------------------------------------------------------
+	"slardar_crush"
+	{
+		"precache"
+		{
+			"soundfile"  	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"particle"  	"particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+			"particle"  	"particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf"
+			"particle"		"particles/status_fx/status_effect_slardar_crush.vpcf"
+		}
+		
+		"BaseClass"                 "ability_datadriven"
+		"AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"        "slardar_slithereen_crush"
+		"SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"AbilityCastRange"			"350"
+		"AbilityCastPoint"          "0.35"
+		"AbilityManaCost"           "80 95 105 115"
+		"AbilityCooldown"           "8.0 8.0 8.0 8.0"
+		"AbilityDamage"             "50 100 150 200"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"radius"                        "350"
+			}
+			"02"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"slow"                          "-20"
+			}
+			"03"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"attack_slow"                   "-20"
+			}
+			"04"
+			{
+				"var_type"                      "FIELD_FLOAT"
+				"slow_duration"                 "3.6 3.9 4.2 4.5"
+			}
+			"05"
+			{
+				"var_type"                      "FIELD_FLOAT"
+				"stun_duration"                 "1.6 1.9 2.2 2.5"
+			}
+			"06"
+			{
+				"var_type"                      "FIELD_FLOAT"
+				"slow_duration_tooltip"         "2.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"        "Hero_Slardar.Slithereen_Crush"
+				"Target"            "CASTER"
+			}
+			"FireEffect"
+			{
+				"EffectName"        "particles/units/heroes/hero_slardar/slardar_crush.vpcf"
+				"EffectAttachType"  "attach_origin"
+				"Target"            "CASTER"
+				"ControlPoints"
+				{
+					"01"			"%radius 1 %radius"
+				}
+			}
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"    "CASTER"
+					"Radius"    "%radius"
+					"Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+				"Action"
+				{
+					"Damage"
+					{
+						"Target"    "TARGET"
+						"Damage"    "%AbilityDamage"
+						"Type"      "DAMAGE_TYPE_PHYSICAL"
+					}
+					"ApplyModifier"
+					{
+						"Target"        "TARGET"
+						"ModifierName"  "modifier_slardar_crush_slow"
+					}
+					"Stun"
+					{
+						"Target"        "TARGET"
+						"Duration"      "%stun_duration"
+					}
+				}
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_slardar_crush_slow"
+			{
+				"IsDebuff"  "1"
+				"Duration"  "%slow_duration"
+				"StatusEffectName"		"particles/status_fx/status_effect_slardar_crush.vpcf"
+				"StatusEffectPriority"	"10"
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/units/heroes/hero_slardar/slardar_crush_entity.vpcf"
+						"EffectAttachType"  "attach_overhead"
+						"Target"            "TARGET" 
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "%attack_slow"
+				}
+			}
+		}
+	}
+	
+	"slardar_focus"
+	{
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+		}
+		"BaseClass"             "ability_datadriven"
+		"AbilityTextureName"    "slardar_bash"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_YES"
+		
+		"AbilityCooldown"       "10"
+		"AbilityManaCost"       "25"
+		"AbilityCastRange"      "250"
+		"AbilityCastPoint"      "0.0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"damage"        "20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"duration"      "6 7 8 9"
+			}
+			"03"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"reduction"  	"50 50 50 50"
+			}
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"        "TARGET"
+				"ModifierName"  "modifier_focus_enemy"
+			}
+			"ApplyModifier"
+			{
+				"Target"        "CASTER"
+				"ModifierName"  "modifier_focus_self"
+			}
+			
+		}
+		"Modifiers"
+		{
+			"modifier_focus_enemy"
+			{
+				"IsDebuff"  "1"
+				"Duration"  "%duration"
+				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"			"TARGET"
+						"EffectName"		"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+						"EffectAttachType"	"follow_overhead"
+					}
+				}
+			}
+			"modifier_focus_self"
+			{
+				"IsBuff"            	"1"
+				"Duration"          	"%duration"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"Target"        "CASTER"
+						"ScriptFile"    "abilities/slardar_focus_lua.lua"
+						"Function"      "attack_amplification"
+					}
+				}
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"Target"        "CASTER"
+						"ScriptFile"    "abilities/slardar_focus_lua.lua"
+						"Function"      "damage_reduction"
+						"damage"        "%attack_damage"
+					}
+				}
+			}
+		}
+	}
+
+	"slardar_heal"
+	{
+		"precache"
+		{
+			"soundfile"   			"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"particle"				"particles/units/heroes/hero_slardar/slardar_amp_damage.vpcf"
+			"particle"				"particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+		}
+		
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"		"slardar_amplify_damage"
+		"AbilityCastPoint"			"0.3"
+		"AbilityCooldown"			"60"
+		"AbilityManaCost"			"60"
+		"MaxLevel"					"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"10"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"		"100"
+			}
+		}
+		
+		"OnSpellStart" //事件：开始施放技能
+		{
+			"ApplyModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"		"modifier_slardar_heal"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Hero_Slardar.Amplify_Damage"
+				"Target"			"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_slardar_heal"
+			{
+				"IsBuff"				"1"
+				"Duration"				"%duration"						//持续时间
+				
+				"StatusEffectName"		"particles/status_fx/status_effect_slardar_amp_damage.vpcf"	//特效粒子
+				"StatusEffectPriority"	"20" 							//特效优先度
+				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/slardar_heal_lua.lua"
+						"Target"		"CASTER"
+						"Function"		"Particle"
+					}
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%bonus_health_regen"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%bonus_damage"
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/slardar_heal_lua.lua"
+						"Target"		"CASTER"
+						"Function"		"EndParticle"
+					}
+				}
+			}
+		}	
+	}
+	
+	"slardar_sea_stalker"
+	{
+		"BaseClass"             "ability_datadriven"
+		"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"    "slardar_sprint"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"armor"         "4 8 12 16"
+			}
+			"02"
+			{
+				"var_type"      "FIELD_INTEGER"
+				"vision"        "300 600 900 1200"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_slardar_sea_stalker"
+			{
+				"IsBuff"		"1"
+				"Passive"       "1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armor"
+					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION"      "%vision"
+				}
+			}
+		}
+	}
+	
+	"slardar_torrent"
+	{
+		"precache"
+		{
+			"particle"              "particles/slardar_torrent.vpcf"
+			"particle"				"particles/units/heroes/hero_kunkka/kunkka_spell_torrent_splash.vpcf"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+		}
+		"BaseClass"                 "ability_datadriven"
+		"AbilityType"               "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"        "morphling_adaptive_strike"
+		"AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"AbilityCastPoint"          "1.0"
+		"AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_4"
+		
+		"AbilityDamage"             "500 1000 1500"
+		"AbilityManaCost"           "150 250 350"
+		"AbilityCooldown"           "130"
+		"AbilityCastRange"          "600"
+		"AoERadius"                 "450"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"radius"		"450"
+			}
+			"02"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"duration"		"3.0"
+			}
+			"03"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"500 1000 1500"
+			}
+		}
+		
+		"OnSpellStart"
+		{
+			"CreateThinker"
+			{
+				"ModifierName"  "modifier_slardar_torrent_thinker"
+				"Target"        "POINT"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_slardar_torrent_thinker"
+			{
+				"Duration"			"%duration"
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"		"Ability.pre.Torrent"
+						"Target"			"TARGET"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/slardar_torrent_lua.lua"
+						"Function"			"torrent_particle"
+					}
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/slardar_torrent_lua.lua"
+						"Function"			"torrent_prepare_start"
+					}
+				}
+				"ThinkInterval"		"0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/slardar_torrent_lua.lua"
+						"Function"			"torrent_prepare"
+						"torrent_modifier"	"modifier_slardar_torrent"
+					}
+				}
+				"OnDestroy"
+				{
+					"FireSound"
+					{
+						"EffectName"		"Ability.Ghostship.crash"
+						"Target"			"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/slardar_torrent_lua.lua"
+						"Function"			"torrent_particle_damage"
+					}
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"		"TARGET"
+							"Radius"		"100"
+							"Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+						"Action"
+						{
+							"Damage"
+							{
+								"Target"	"TARGET"
+								"Type"		"DAMAGE_TYPE_MAGICAL"
+								"Damage"	"%damage"
+							}
+							"Knockback"
+							{
+								"Target"	"TARGET"
+								"Center"	"CASTER"
+								"Duration"	"1.50"
+								"Distance"	"0"
+								"Height"	"400"
+								"IsFixedDistance"	"1"
+								"ShouldStun"		"1"
+							}
+						}
+					}
+				}
+				
+			}
+			"modifier_slardar_torrent"
+			{
+				"IsDebuff"  	"1"
+				"IsPurgable"	"0"
+
+				"OverrideAnimation"     "ACT_DOTA_FLAIL"
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"			"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//------------------------------------------------------OVER------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------
+
+	
+	//---------------------------------------Foes&Bosses---------------------------------------------
+	//-----------------------------------------------------------------------------------------------
+	
+	//--------------------------------------Fallen Knight--------------------------------------------
+	//-----------------------------------------------------------------------------------------------
+	"fallen_knight_block"
+	{
+		"BaseClass"                             "ability_datadriven"
+		"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"   							 "4"
+		"AbilityTextureName"    				"dragon_knight_dragon_tail"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage_block"	"20 30 40 50"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_fallen_knight_block"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK"	"%damage_block"
+				}
+			}
+		}
+	}
+	
+	
+	"fallen_knight_capture"
+	{
+		"BaseClass"                             "ability_datadriven"
+		"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"   							"1"
+		"AbilityUnitDamageType"						"DAMAGE_TYPE_PURE"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName"    				"bane_fiends_grip"
+		"AbilityCastRange"		"600"
+		"AbilityCastPoint"		"0.5"
+		"AbilityCastAnimation"	"ACT_DOTA_TELEPORT"
+		"AbilityCooldown"		"25"
+		"AbilityManaCost"		"60"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"duration"		"3"
+			}
+			
+			"02"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damagePerSec"	"20"
+			}
+			
+			"03"
+			{
+				"var_type"		"FIELD_FLOAT"
+				"dot_interval"	"1.0"
+			}
+		}
+		
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+			"particle"		"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
+		}
+		
+		
+		"OnSpellStart"
+		{
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"		"DAMAGE_TYPE_PURE"
+				"Damage"	"20"
+			}
+			
+			"FireSound"
+			{
+				"EffectName"	"Hero_Bane.FiendsGrip.Cast"
+				"Target"
+				{
+					"Center"	"TARGET"
+					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}	
+			}
+			
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_fiends_grip_datadriven"
+				"Target"
+				{
+					"Center"	"TARGET"
+					"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+			}
+			
+			"DelayedAction"
+			{
+				"Delay"		"%duration"
+				"Action"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_fiends_grip_datadriven"
+						"Target"
+						{
+							"Center"	"TARGET"
+							"Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+					}
+					
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/foes/fallen_knight/fallen_capture.lua"
+						"Function"		"FiendsGripStopSound"
+						"sound"			"Hero_Bane.FiendsGrip"
+					}
+					
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/foes/fallen_knight/fallen_capture.lua"
+						"Function"		"FiendsGripStopSound"
+						"sound"			"Hero_Bane.FiendsGrip.Cast"
+					}	
+
+				}
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_fiends_grip_datadriven"
+			{
+				"IsDebuff"	"1"
+				"EffectName"    		"particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
+				"EffectAttachType"      "attach_origin"
+				"OverrideAnimation"     "ACT_DOTA_FLAIL"
+			
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_Bane.FiendsGrip"
+						"Target" 		"TARGET"
+					}
+				}
+				
+				"ThinkInterval"		"1.0"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"		"DAMAGE_TYPE_PURE"
+						"Damage"	"20"
+					}
+				}
+				
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED" 		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVISIBILITY"	"MODIFIER_STATE_VALUE_DISABLED"
+				}
+			}
+		}
+	}
+	
+	"fallen_knight_fallen_legion"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"				"1"
+		"AbilityTextureName"   	"dragon_knight_dragon_blood"
+		
+		"AbilityCastPoint"		"1"
+		"AbilityCooldown"		"30"
+		"AbilityManaCost"		"100"
+		"AbilityCastAnimation"	"ACT_DOTA_VICTORY"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"count"			"3"
+			}
+		}
+		
+		"OnSpellStart"
+		{					
+			"SpawnUnit"
+			{
+				"UnitName"		"fallen_soldier"
+				"UnitCount"		"3"
+				"SpawnRadius"	"100"
+				"Target"		"CASTER"
+				
+				"OnSpawn"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_phased"
+						"Target"		"TARGET"
+						"Duration"		"0.03"
+					}
+				}
+			}
+			
+		}
+		
+		"Modifiers"
+		{
+			"modifier_phase_shift"
+			{
+				"Duration"			"%duration"
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	
+	"fallen_knight_fallen_sword"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"				"1"
+		"AbilityTextureName"   	"undying_soul_rip"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		
+		"AbilityCastPoint"		"2"
+		"AbilityCooldown"		"35"
+		"AbilityManaCost"		"100"
+		"AbilityCastAnimation"	"ACT_DOTA_VICTORY"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"dot_interval"	"1.0"
+			}
+			
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_self"		"40"
+			}
+			
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage_ally"	"20"
+			}
+			
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+			
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"		"4"
+			}
+		}
+		
+		"precache"
+		{
+			"particle"			"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+			"particle"			"particles/heroes/foes/fallen_knight/fallen_sword.vpcf"
+		}
+		
+		
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"UnitName"		"da_bao_jian"
+				"UnitCount"		"1"
+				"duration"		"%duration"
+				
+				"OnSpawn"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"		"modifier_majia"
+						"Target"			"TARGET"
+					}
+					
+					"DelayedAction"
+					{
+						"Delay"		"%duration"
+						"Action"
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/foes/fallen_knight/fallen_sword.lua"
+								"Function"		"EndSword"
+							}
+						}
+					}
+				}
+			}
+			
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/foes/fallen_knight/fallen_sword.lua"
+				"Function"				"DamageAndHeal"
+				"effect_name"			"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+			}
+			
+			"ApplyModifier"
+			{
+				"ModifierName"		"modifier_fallen_sword"
+				"Target"			"CASTER"
+			}
+			
+			"DelayedAction"
+			{
+				"Delay"		"%duration"
+				"Action"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"		"modifier_fallen_sword"
+						"Target"			"CASTER"
+					}
+				}
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_majia"
+			{	
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_SELECT"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/foes/fallen_knight/fallen_sword.lua"
+						"Function"			"ChangeLocation"
+						"particleName"		"particles/heroes/foes/fallen_knight/fallen_sword.vpcf"
+					}
+				}
+			}
+			
+			"modifier_fallen_sword"
+			{
+				"ThinkInterval"				"1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/foes/fallen_knight/fallen_sword.lua"
+						"Function"				"DamageAndHeal"
+						"effect_name"			"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+					}
+				}
+			}
+		}
+	}
+	
+	"fallen_knight_fallen_sword_helper"
+	{
+		"BaseClass"								"ability_datadriven"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"								"2"
+		"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		"AbilityCastPoint"		"0 0"
+		"AbilityCooldown"		"0 0"
+		"AbilityManaCost"		"0 0"
+		"AbilityCastRange"		"0 0"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"damage"		"20 40"
+			}
+		}
+		
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/foes/fallen_knight/fallen_sword.lua"
+				"Function"		"Helper"
+				"effect_name"	"particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+			}
+		}
+	}
+	//------------------------------------------------------OVER------------------------------------------------------
+	//----------------------------------------------------------------------------------------------------------------
 }
