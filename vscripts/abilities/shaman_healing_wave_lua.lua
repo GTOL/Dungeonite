@@ -36,7 +36,7 @@ function shaman_healing_wave:OnSpellStart()
 	for i=1,(3+self:GetUltiLevel())
 	do
 		require "timers"
-		Timers:CreateTimer(i,function()
+		Timers:CreateTimer(i*0.5,function()
 			org = hTarget:GetOrigin();
 			local units = FindUnitsInRadius(hTarget:GetTeamNumber(),org,nil,400.0,DOTA_UNIT_TARGET_TEAM_FRIENDLY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false);
 			local nTarget = nil;
@@ -48,7 +48,7 @@ function shaman_healing_wave:OnSpellStart()
 					if (nTarget==nil) then
 						nTarget = unit;
 					else
-						if unit:GetHealth()/unit:GetMaxHealth() < unit:GetHealth()/unit:GetMaxHealth() then
+						if hTarget:GetHealth()/hTarget:GetMaxHealth() > unit:GetHealth()/unit:GetMaxHealth() then
 							nTarget = unit;
 						end
 					end
