@@ -204,7 +204,7 @@
 		
 		//bounty
 		//---------------------------------------------------
-		"BountyXP"		"50"
+		"BountyXP"		"75"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
@@ -340,7 +340,7 @@
 		
 		//bounty
 		//---------------------------------------------------
-		"BountyXP"		"400"
+		"BountyXP"		"300"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
