@@ -1,0 +1,67 @@
+"npc_bear"
+{
+	//General
+	//---------------------------------------------------
+	"BaseClass"			"npc_dota_creature"
+	"ConsideredHero"	"0"
+	"Level"				"1"
+	"Model"				"models\creeps\neutral_creeps\n_creep_beast\n_creep_beast.vmdl"
+	"ModelScale"			"1"
+	"HasInventory"		"0"
+	
+	//Ability
+	//---------------------------------------------------
+	"AbilityLayout"		"4"
+	"Ability1"			""
+	"Ability2"			""
+	"Ability3"			""
+	"Ability4"			""
+	
+	//Armor&Attack
+	"ArmorPhysical"			"4"
+	"MagicalResistance"		"0"
+	"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin"		"40"
+	"AttackDamageMAx"		"50"
+	"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+	"AttackRate"			"1"
+	"AttackAnimationPoint"	"0.3"
+	"AttackRange"			"128"
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+	
+	//Bound
+	//---------------------------------------------------
+	"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+	"RingRadius"			"50"
+	"HealthBarOffset"		"100"
+	
+	//Movement
+	//---------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"300"
+	"MovementTurnRate"			"0.4"
+	
+	//Status
+	//---------------------------------------------------
+	"StatusHealth"				"1200"
+	"StatusHealthRegen"			"3"
+	
+	//Vision
+	//---------------------------------------------------
+	"VisionDaytimeRange"		"1000"
+	"VisionNighttimeRange"		"600"
+	
+	//bounty
+	//---------------------------------------------------
+	"BountyXP"		"400"
+	"BountyGoldMin"	"0"
+	"BountyGoldMax"	"0"
+	
+	//Creature
+	//---------------------------------------------------
+	"Creature"
+	{	
+	}
+}

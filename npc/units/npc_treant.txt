@@ -1,0 +1,67 @@
+"npc_treant"
+{
+	//General
+	//---------------------------------------------------
+	"BaseClass"			"npc_dota_creature"
+	"ConsideredHero"	"0"
+	"Level"				"1"
+	"Model"				"models\heroes\furion\treant.vmdl"
+	"ModelScale"			"1"
+	"HasInventory"		"0"
+	
+	//Ability
+	//---------------------------------------------------
+	"AbilityLayout"		"4"
+	"Ability1"			""
+	"Ability2"			""
+	"Ability3"			""
+	"Ability4"			""
+	
+	//Armor&Attack
+	"ArmorPhysical"			"0"
+	"MagicalResistance"		"0"
+	"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin"		"15"
+	"AttackDamageMAx"		"21"
+	"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+	"AttackRate"			"1.5"
+	"AttackAnimationPoint"	"0.75"
+	"AttackRange"			"128"
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+	
+	//Bound
+	//---------------------------------------------------
+	"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+	"RingRadius"			"50"
+	"HealthBarOffset"		"100"
+	
+	//Movement
+	//---------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"300"
+	"MovementTurnRate"			"0.4"
+	
+	//Status
+	//---------------------------------------------------
+	"StatusHealth"				"400"
+	"StatusHealthRegen"			"1"
+	
+	//Vision
+	//---------------------------------------------------
+	"VisionDaytimeRange"		"1000"
+	"VisionNighttimeRange"		"600"
+	
+	//bounty
+	//---------------------------------------------------
+	"BountyXP"		"50"
+	"BountyGoldMin"	"0"
+	"BountyGoldMax"	"0"
+	
+	//Creature
+	//---------------------------------------------------
+	"Creature"
+	{	
+	}
+}

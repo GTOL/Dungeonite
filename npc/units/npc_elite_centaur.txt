@@ -1,0 +1,90 @@
+"npc_elite_centaur"
+{
+	//General
+	//---------------------------------------------------
+	"BaseClass"			"npc_dota_creature"
+	"ConsideredHero"	"1"
+	"Level"				"1"
+	"Model"				"models\heroes\centaur\centaur.vmdl"
+	"ModelScale"			"1"
+	"HasInventory"		"0"
+	
+	//Ability
+	//---------------------------------------------------
+	"AbilityLayout"		"4"
+	"Ability1"			"centaur_hoof_stomp"
+	"Ability2"			""
+	"Ability3"			""
+	"Ability4"			""
+	
+	//Armor&Attack
+	"ArmorPhysical"			"4"
+	"MagicalResistance"		"0"
+	"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin"		"35"
+	"AttackDamageMAx"		"75"
+	"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+	"AttackRate"			"1.35"
+	"AttackAnimationPoint"	"0.5"
+	"AttackRange"			"128"
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+	
+	//Bound
+	//---------------------------------------------------
+	"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+	"RingRadius"			"50"
+	"HealthBarOffset"		"100"
+	
+	//Movement
+	//---------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"300"
+	"MovementTurnRate"			"0.4"
+	
+	//Status
+	//---------------------------------------------------
+	"StatusHealth"				"1500"
+	"StatusHealthRegen"			"3"
+	"StatusMana"				"300"
+	"StatusManaRegen"			"1"
+	
+	//Vision
+	//---------------------------------------------------
+	"VisionDaytimeRange"		"1000"
+	"VisionNighttimeRange"		"600"
+	
+	//bounty
+	//---------------------------------------------------
+	"BountyXP"		"400"
+	"BountyGoldMin"	"0"
+	"BountyGoldMax"	"0"
+	
+	//Creature
+	//---------------------------------------------------
+	"Creature"
+	{	
+		"AttachWearables"
+		{
+			"Wearable1" { "ItemDef" "358" } 	//leg
+			"Wearable2" { "ItemDef" "359" }	//head
+			"Wearable3" { "ItemDef" "360" }	//shoulder
+			"Wearable4" { "ItemDef" "361" }	//arms
+			"Wearable5" { "ItemDef" "362" }	//weapon
+			"Wearable6" { "ItemDef" "363" }	//offhand
+			"Wearable7" { "ItemDef" "364" }	//offhand
+		}
+		
+		"OffensiveAbilities"
+		{			
+			"Ability1"
+			{
+				"Name"				"centaur_hoof_stomp"
+				"AOE"				"1"
+				"Radius"			"315"
+				"MinimumTargets"	"1"
+			}
+		}
+	}
+}
