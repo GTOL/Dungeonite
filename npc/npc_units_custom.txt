@@ -79,7 +79,7 @@
 		//---------------------------------------------------
 		"BaseClass"			"npc_dota_creature"
 		"ConsideredHero"	"0"
-		"Level"				"3"
+		"Level"				"2"
 		"Model"				"models\heroes\dragon_knight\dragon_knight.vmdl"
 		"ModelScale"			"0.6"
 		"HasInventory"		"0"
@@ -100,7 +100,7 @@
 		"AttackDamageMAx"		"29"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"1.5"
-		"AttackAnimationPoint"	"0.75"
+		"AttackAnimationPoint"	"0.4"
 		"AttackRange"			"128"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
@@ -120,8 +120,8 @@
 		
 		//Status
 		//---------------------------------------------------
-		"StatusHealth"				"500"
-		"StatusHealthRegen"			"3"
+		"StatusHealth"				"400"
+		"StatusHealthRegen"			"2"
 		
 		//Vision
 		//---------------------------------------------------
@@ -173,8 +173,8 @@
 		"AttackDamageMin"		"15"
 		"AttackDamageMAx"		"21"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"1.5"
-		"AttackAnimationPoint"	"0.75"
+		"AttackRate"			"1.3"
+		"AttackAnimationPoint"	"0.4"
 		"AttackRange"			"128"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
@@ -204,7 +204,7 @@
 		
 		//bounty
 		//---------------------------------------------------
-		"BountyXP"		"75"
+		"BountyXP"		"73"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
@@ -229,7 +229,7 @@
 		//Ability
 		//---------------------------------------------------
 		"AbilityLayout"		"4"
-		"Ability1"			""
+		"Ability1"			"kobold_poision_javelin"
 		"Ability2"			""
 		"Ability3"			""
 		"Ability4"			""
@@ -238,11 +238,11 @@
 		"ArmorPhysical"			"0"
 		"MagicalResistance"		"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"6"
-		"AttackDamageMAx"		"10"
+		"AttackDamageMin"		"9"
+		"AttackDamageMAx"		"11"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"0.3"
-		"AttackAnimationPoint"	"0.1"
+		"AttackRate"			"0.6"
+		"AttackAnimationPoint"	"0.3"
 		"AttackRange"			"128"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
@@ -262,8 +262,8 @@
 		
 		//Status
 		//---------------------------------------------------
-		"StatusHealth"				"500"
-		"StatusHealthRegen"			"1"
+		"StatusHealth"				"300"
+		"StatusHealthRegen"			"0"
 		
 		//Vision
 		//---------------------------------------------------
@@ -272,7 +272,7 @@
 		
 		//bounty
 		//---------------------------------------------------
-		"BountyXP"		"75"
+		"BountyXP"		"74"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
@@ -289,8 +289,88 @@
 		//---------------------------------------------------
 		"BaseClass"			"npc_dota_creature"
 		"ConsideredHero"	"0"
-		"Level"				"1"
+		"Level"				"6"
 		"Model"				"models\creeps\neutral_creeps\n_creep_beast\n_creep_beast.vmdl"
+		"ModelScale"			"1"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"polar_furbolg_ursa_warrior_thunder_clap"
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"4"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"40"
+		"AttackDamageMAx"		"58"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"1"
+		"AttackAnimationPoint"	"0.3"
+		"AttackRange"			"128"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"100"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.8"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"1300"
+		"StatusHealthRegen"			"5"
+		"StatusMana"				"300"
+		"StatusManaRegen"			"2"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"300"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		
+		//Creature
+		//---------------------------------------------------
+		"Creature"
+		{	
+			"OffensiveAbilities"
+			{			
+				"Ability1"
+				{
+					"Name"				"polar_furbolg_ursa_warrior_thunder_clap"
+					"AOE"				"1"
+					"Radius"			"315"
+					"MinimumTargets"	"1"
+				}
+			}
+		}
+	}
+	
+	"npc_small_centaur"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"0"
+		"Level"				"1"
+		"Model"				"models\creeps\neutral_creeps\n_creep_centaur_med\n_creep_centaur_med.vmdl"
 		"ModelScale"			"1"
 		"HasInventory"		"0"
 		
@@ -303,14 +383,82 @@
 		"Ability4"			""
 		
 		//Armor&Attack
-		"ArmorPhysical"			"4"
+		"ArmorPhysical"			"1"
 		"MagicalResistance"		"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"40"
-		"AttackDamageMAx"		"50"
+		"AttackDamageMin"		"29"
+		"AttackDamageMAx"		"33"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"1"
-		"AttackAnimationPoint"	"0.3"
+		"AttackRate"			"1.5"
+		"AttackAnimationPoint"	"0.4"
+		"AttackRange"			"128"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"100"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.4"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"900"
+		"StatusHealthRegen"			"2"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"199"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		
+		//Creature
+		//---------------------------------------------------
+		"Creature"
+		{	
+		}
+	}
+	
+	"npc_big_centaur"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"0"
+		"Level"				"1"
+		"Model"				"models\creeps\neutral_creeps\n_creep_centaur_lrg\n_creep_centaur_lrg.vmdl"
+		"ModelScale"			"1"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"centaur_lash"
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"3"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"41"
+		"AttackDamageMAx"		"51"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"1.5"
+		"AttackAnimationPoint"	"0.4"
 		"AttackRange"			"128"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
@@ -340,143 +488,7 @@
 		
 		//bounty
 		//---------------------------------------------------
-		"BountyXP"		"300"
-		"BountyGoldMin"	"0"
-		"BountyGoldMax"	"0"
-		
-		//Creature
-		//---------------------------------------------------
-		"Creature"
-		{	
-		}
-	}
-	
-	"npc_small_centaur"
-	{
-		//General
-		//---------------------------------------------------
-		"BaseClass"			"npc_dota_creature"
-		"ConsideredHero"	"0"
-		"Level"				"1"
-		"Model"				"models\creeps\neutral_creeps\n_creep_centaur_med\n_creep_centaur_med.vmdl"
-		"ModelScale"			"1"
-		"HasInventory"		"0"
-		
-		//Ability
-		//---------------------------------------------------
-		"AbilityLayout"		"4"
-		"Ability1"			""
-		"Ability2"			""
-		"Ability3"			""
-		"Ability4"			""
-		
-		//Armor&Attack
-		"ArmorPhysical"			"0"
-		"MagicalResistance"		"0"
-		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"19"
-		"AttackDamageMAx"		"23"
-		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"1.5"
-		"AttackAnimationPoint"	"0.75"
-		"AttackRange"			"128"
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
-		
-		//Bound
-		//---------------------------------------------------
-		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
-		"RingRadius"			"50"
-		"HealthBarOffset"		"100"
-		
-		//Movement
-		//---------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"300"
-		"MovementTurnRate"			"0.4"
-		
-		//Status
-		//---------------------------------------------------
-		"StatusHealth"				"600"
-		"StatusHealthRegen"			"1"
-		
-		//Vision
-		//---------------------------------------------------
-		"VisionDaytimeRange"		"1000"
-		"VisionNighttimeRange"		"600"
-		
-		//bounty
-		//---------------------------------------------------
-		"BountyXP"		"100"
-		"BountyGoldMin"	"0"
-		"BountyGoldMax"	"0"
-		
-		//Creature
-		//---------------------------------------------------
-		"Creature"
-		{	
-		}
-	}
-	
-	"npc_big_centaur"
-	{
-		//General
-		//---------------------------------------------------
-		"BaseClass"			"npc_dota_creature"
-		"ConsideredHero"	"0"
-		"Level"				"1"
-		"Model"				"models\creeps\neutral_creeps\n_creep_centaur_lrg\n_creep_centaur_lrg.vmdl"
-		"ModelScale"			"1"
-		"HasInventory"		"0"
-		
-		//Ability
-		//---------------------------------------------------
-		"AbilityLayout"		"4"
-		"Ability1"			""
-		"Ability2"			""
-		"Ability3"			""
-		"Ability4"			""
-		
-		//Armor&Attack
-		"ArmorPhysical"			"2"
-		"MagicalResistance"		"0"
-		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"25"
-		"AttackDamageMAx"		"37"
-		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"1.5"
-		"AttackAnimationPoint"	"0.4"
-		"AttackRange"			"128"
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
-		
-		//Bound
-		//---------------------------------------------------
-		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
-		"RingRadius"			"50"
-		"HealthBarOffset"		"100"
-		
-		//Movement
-		//---------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"300"
-		"MovementTurnRate"			"0.4"
-		
-		//Status
-		//---------------------------------------------------
-		"StatusHealth"				"900"
-		"StatusHealthRegen"			"1"
-		
-		//Vision
-		//---------------------------------------------------
-		"VisionDaytimeRange"		"1000"
-		"VisionNighttimeRange"		"600"
-		
-		//bounty
-		//---------------------------------------------------
-		"BountyXP"		"200"
+		"BountyXP"		"301"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
@@ -493,7 +505,7 @@
 		//---------------------------------------------------
 		"BaseClass"			"npc_dota_creature"
 		"ConsideredHero"	"1"
-		"Level"				"1"
+		"Level"				"6"
 		"Model"				"models\heroes\centaur\centaur.vmdl"
 		"ModelScale"			"1"
 		"HasInventory"		"0"
@@ -502,19 +514,19 @@
 		//---------------------------------------------------
 		"AbilityLayout"		"4"
 		"Ability1"			"centaur_hoof_stomp"
-		"Ability2"			""
+		"Ability2"			"centaur_emperor_aura"
 		"Ability3"			""
 		"Ability4"			""
 		
 		//Armor&Attack
-		"ArmorPhysical"			"4"
+		"ArmorPhysical"			"5"
 		"MagicalResistance"		"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"		"35"
 		"AttackDamageMAx"		"75"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"1.35"
-		"AttackAnimationPoint"	"0.5"
+		"AttackRate"			"1.5"
+		"AttackAnimationPoint"	"0.6"
 		"AttackRange"			"128"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
@@ -530,11 +542,11 @@
 		//---------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"300"
-		"MovementTurnRate"			"0.4"
+		"MovementTurnRate"			"0.8"
 		
 		//Status
 		//---------------------------------------------------
-		"StatusHealth"				"1500"
+		"StatusHealth"				"1780"
 		"StatusHealthRegen"			"3"
 		"StatusMana"				"300"
 		"StatusManaRegen"			"1"
@@ -546,7 +558,7 @@
 		
 		//bounty
 		//---------------------------------------------------
-		"BountyXP"		"400"
+		"BountyXP"		"416"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
@@ -583,7 +595,7 @@
 		//General
 		//---------------------------------------------------
 		"BaseClass"			"npc_dota_creature"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		"Level"				"1"
 		"Model"				"models\heroes\meepo\meepo.vmdl"
 		"ModelScale"			"1"
@@ -598,11 +610,11 @@
 		"Ability4"			""
 		
 		//Armor&Attack
-		"ArmorPhysical"			"0"
+		"ArmorPhysical"			"2"
 		"MagicalResistance"		"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"10"
-		"AttackDamageMAx"		"20"
+		"AttackDamageMin"		"15"
+		"AttackDamageMAx"		"25"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"1.5"
 		"AttackAnimationPoint"	"0.4"
@@ -625,8 +637,8 @@
 		
 		//Status
 		//---------------------------------------------------
-		"StatusHealth"				"300"
-		"StatusHealthRegen"			"2"
+		"StatusHealth"				"600"
+		"StatusHealthRegen"			"1"
 		"StatusMana"				"0"
 		"StatusManaRegen"			"0"
 		
@@ -637,7 +649,7 @@
 		
 		//bounty
 		//---------------------------------------------------
-		"BountyXP"		"50"
+		"BountyXP"		"101"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
@@ -668,14 +680,14 @@
 		"Ability4"			""
 		
 		//Armor&Attack
-		"ArmorPhysical"			"2"
+		"ArmorPhysical"			"5"
 		"MagicalResistance"		"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"23"
+		"AttackDamageMin"		"25"
 		"AttackDamageMAx"		"35"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"1.5"
-		"AttackAnimationPoint"	"0.75"
+		"AttackRate"			"0.7"
+		"AttackAnimationPoint"	"0.3"
 		"AttackRange"			"128"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
@@ -695,7 +707,7 @@
 		
 		//Status
 		//---------------------------------------------------
-		"StatusHealth"				"600"
+		"StatusHealth"				"750"
 		"StatusHealthRegen"			"3"
 		
 		//Vision
@@ -705,7 +717,7 @@
 		
 		//bounty
 		//---------------------------------------------------
-		"BountyXP"		"150"
+		"BountyXP"		"299"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
@@ -719,6 +731,209 @@
 				"Wearable6" { "ItemDef" "67" }
 			}
 			//选用 飞升套装 或者龙血之契	
+		}
+	}
+	
+	"npc_fallen_adventurer"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"0"
+		"Level"				"3"
+		"Model"				"models\heroes\meepo\meepo.vmdl"
+		"ModelScale"			"1"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"fallen_adventurer_survive"
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"3"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"21"
+		"AttackDamageMAx"		"41"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"1.5"
+		"AttackAnimationPoint"	"0.5"
+		"AttackRange"			"128"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"100"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.4"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"800"
+		"StatusHealthRegen"			"3"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"153"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		
+		//Creature
+		//---------------------------------------------------
+		"Creature"
+		{	
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "104" } 	//leg
+				"Wearable2" { "ItemDef" "296" }	//head
+				"Wearable3" { "ItemDef" "297" }	//shoulder
+				"Wearable4" { "ItemDef" "298" }	//arms
+				"Wearable5" { "ItemDef" "299" }	//weapon
+				"Wearable6" { "ItemDef" "300" }	//offhand
+			}
+			
+			"DefaultState"		"Invade"
+			
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggresion"	"60.0"
+					"Avoidance"	"0.0"
+					"Support"	"40"
+					"RoamDistance"  "1000.0"
+				}
+			}
+			
+			"DefensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"					"fallen_adventurer_survive"
+					"UseAtHealthPercent"	"30"
+				}
+			}
+		}
+	}
+	
+	"npc_fallen_adventurer_captain"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"0"
+		"Level"				"3"
+		"Model"				"models\heroes\meepo\meepo.vmdl"
+		"ModelScale"			"1"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"fallen_adventurer_survive"
+		"Ability2"			"fallen_adventurer_last_stand"
+		"Ability3"			""
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"5"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"53"
+		"AttackDamageMAx"		"93"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"1.1"
+		"AttackAnimationPoint"	"0.4"
+		"AttackRange"			"128"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"100"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.4"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"1350"
+		"StatusHealthRegen"			"5"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"50"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		
+		//Creature
+		//---------------------------------------------------
+		"Creature"
+		{	
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "6342" } 	//leg
+				"Wearable2" { "ItemDef" "6562" }	//head
+				"Wearable3" { "ItemDef" "6563" }	//shoulder
+				"Wearable4" { "ItemDef" "6564" }	//arms
+				"Wearable5" { "ItemDef" "6565" }	//weapon
+			}
+			
+			"DefaultState"		"Invade"
+			
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggresion"	"60"
+					"Avoidance"	"0.0"
+					"Support"	"40"
+					"RoamDistance"  "1000.0"
+				}
+			}
+			
+			"DefensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"					"fallen_adventurer_survive"
+					"UseAtHealthPercent"	"30"
+				}
+			}
 		}
 	}
 

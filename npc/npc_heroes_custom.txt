@@ -120,7 +120,7 @@
 		"AttributeAgilityGain"			"2.5"	
 		"AttributeIntelligenceGain"		"1.6"	
 		
-		"MovementSpeed"					"600"
+		"MovementSpeed"					"305"
 		"MovementTurnRate"				"0.4"
 		
 		"StatusHealth"					"300"
@@ -141,9 +141,9 @@
 		"override_hero"					"npc_dota_hero_slardar"
 		
 		"AbilityLayout"					"6"
-		"Ability1"						"slardar_crush"
+		"Ability1"						"slardar_heal"
 		"Ability2"						"slardar_focus"
-		"Ability3"						"slardar_heal"
+		"Ability3"						"slardar_crush"
 		"Ability4"						"slardar_sea_stalker"
 		"Ability5"						"slardar_torrent"
 		"Ability6"						""
@@ -154,7 +154,7 @@
 		"override_hero"					"npc_dota_hero_antimage"
 		
 		"AbilityLayout"					"6"
-		"Ability1"						"fallen_knight_block"
+		"Ability1"						"fallen_adventurer_last_stand"
 		"Ability2"						"fallen_knight_capture"
 		"Ability3"						"fallen_knight_fallen_legion"
 		"Ability4"						"fallen_knight_fallen_sword"
