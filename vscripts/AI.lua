@@ -1,112 +1,99 @@
 --[[
-  ¼òµ¥AI
+  ç®€å•AI
   A simple Lua AI to demonstrate implementation of a simple AI for dota 2.
   By: Perry
   Date: August, 2015
 ]]--AI parameter constants
-AI_THINK_INTERVAL = 0.5 --//AIË¼¿¼¼ä¸ôÊ±¼ä
+  --Modified by GTOL
+AI_THINK_INTERVAL = 0.5 --//AIæ€è€ƒé—´éš”æ—¶é—´
 
---AI ×´Ì¬ constants
-AI_STATE_IDLE = 0--´ı»ú½×¶Î
-AI_STATE_AGGRESSIVE = 1--¹¥»÷½×¶Î
-AI_STATE_RETURNING = 2--·µ»Ø½×¶Î
+--AI çŠ¶æ€ constants
+AI_STATE_AGGRESSIVE = 0--æ”»å‡»é˜¶æ®µ
+AI_STATE_RETURNING = 1--è¿”å›é˜¶æ®µ
 
---¶¨Òå SimpleAI Àà
+--å®šä¹‰ SimpleAI ç±»
 SimpleAI = {}
 SimpleAI.__index = SimpleAI
 
---[[Í¨¹ıÒ»Ğ©²ÎÊıºÍµ¥Î»´´½¨Ò»¸öSimpleAIÀàµÄÊµÀı  ]]
+--[[é€šè¿‡ä¸€äº›å‚æ•°å’Œå•ä½åˆ›å»ºä¸€ä¸ªSimpleAIç±»çš„å®ä¾‹  ]]
 function SimpleAI:MakeInstance( unit, params )
-  --¹¹ÔìÒ»¸öÊµÀı  of the SimpleAI class
+  --æ„é€ ä¸€ä¸ªå®ä¾‹  of the SimpleAI class
   local ai = {}
   setmetatable( ai, SimpleAI )
 
   --Set the core fields for this AI
-  ai.unit = unit --Õâ¸öAI¿ØÖÆµÄµ¥Î»
-  ai.state = AI_STATE_IDLE --³õÊ¼×´Ì¬
-  ai.stateThinks = { --¼ÓÈëÃ¿¸öË¼¿¼½×¶ÎµÄº¯Êı
-    [AI_STATE_IDLE] = 'IdleThink',
+  ai.unit = unit --è¿™ä¸ªAIæ§åˆ¶çš„å•ä½
+  ai.state = AI_STATE_AGGRESSIVE --åˆå§‹çŠ¶æ€
+  ai.stateThinks = { --åŠ å…¥æ¯ä¸ªæ€è€ƒé˜¶æ®µçš„å‡½æ•°
     [AI_STATE_AGGRESSIVE] = 'AggressiveThink',
     [AI_STATE_RETURNING] = 'ReturningThink'
   }
 
-  --ÉèÖÃºóÃæ½×¶Î¿ÉÄÜÒªÓÃµ½µÄ²ÎÊı
+  --è®¾ç½®åé¢é˜¶æ®µå¯èƒ½è¦ç”¨åˆ°çš„å‚æ•°
   ai.spawnPos = params.spawnPos
   ai.aggroRange = params.aggroRange
   ai.leashRange = params.leashRange
 
-  --¿ªÊ¼Ë¼¿¼
+  --å¼€å§‹æ€è€ƒ
   Timers:CreateTimer( ai.GlobalThink, ai )
 
   --Return the constructed instance
   return ai
 end
 
---[[ ¸ßÓÅÏÈ¼¶µÄ¼ÆÊ±Æ÷ÅĞ¶ÏÕâ¸öAIµ¥Î»Ã¿ÌøÒª×öµÄÊ±, Ñ¡ÔñÕıÈ·µÄ·½·¨×´Ì¬²¢Ö´ĞĞ. ]]
+--[[ é«˜ä¼˜å…ˆçº§çš„è®¡æ—¶å™¨åˆ¤æ–­è¿™ä¸ªAIå•ä½æ¯è·³è¦åšçš„æ—¶, é€‰æ‹©æ­£ç¡®çš„æ–¹æ³•çŠ¶æ€å¹¶æ‰§è¡Œ. ]]
 function SimpleAI:GlobalThink()
-  --µ¥Î»ËÀÁË¾ÍÍ£Ö¹AI
+  --å•ä½æ­»äº†å°±åœæ­¢AI
   if not self.unit:IsAlive() then
     return nil
   end
 
-  --Ö´ĞĞÕıÈ·½×¶ÎµÄË¼¿¼·½·¨
+  --æ‰§è¡Œæ­£ç¡®é˜¶æ®µçš„æ€è€ƒæ–¹æ³•
   Dynamic_Wrap(SimpleAI, self.stateThinks[ self.state ])( self )
 
-  --µÈ´ıÊ±¼äºó¼ÌĞøµ÷ÓÃÕâ¸ö·½·¨
+  --ç­‰å¾…æ—¶é—´åç»§ç»­è°ƒç”¨è¿™ä¸ªæ–¹æ³•
   return AI_THINK_INTERVAL
 end
 
---[[ Idle×´Ì¬µÄ·½·¨]]
-function SimpleAI:IdleThink()
-  if ( self.spawnPos - self.unit:GetAbsOrigin() ):Length() > self.leashRange then
-    self.unit:MoveToPosition( self.spawnPos )
-    --Ìø×ªµ½´ı»ú×´Ì¬
-  end
-  --ÕÒµ½·¶Î§ÄÚ¿É¹¥»÷µÄ¶ÔÏó
+--[[ ç§¯æçŠ¶æ€çš„æ–¹æ³• ]]
+function SimpleAI:AggressiveThink()
+  --æ‰¾åˆ°èŒƒå›´å†…å¯æ”»å‡»çš„å¯¹è±¡
   local units = FindUnitsInRadius( self.unit:GetTeam(), self.unit:GetAbsOrigin(), nil,
     self.aggroRange, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE, 
-    FIND_ANY_ORDER, false )
+    FIND_CLOSEST, false )
 
-  --Èç¹ûÕÒµ½ºÜ¶àunits ÄÇÃ´¹¥»÷µÚÒ»¸ö
+  --å¦‚æœæ‰¾åˆ°å¾ˆå¤šunits é‚£ä¹ˆæ”»å‡»æœ€è¿‘çš„ä¸€ä¸ª
   if #units > 0 then
-    self.unit:MoveToTargetToAttack( units[1] ) --¿ªÊ¼¹¥»÷
-    self.aggroTarget = units[1]
-    self.state = AI_STATE_AGGRESSIVE --½øÈë»ı¼«½×¶Î
-    return true
+    self.unit:MoveToTargetToAttack( units[1] ) --å¼€å§‹æ”»å‡»
+	self.target = units[1]
+  end
+  
+  if self.unit:CanEntityBeSeenByMyTeam( self.target ) == 0 then
+    self.unit:MoveToPosition( self.spawnPos )
   end
 
-  --State behavior
-  --Whistle a tune
-end
-
---[[ »ı¼«×´Ì¬µÄ·½·¨ ]]
-function SimpleAI:AggressiveThink()
-  --¼ì²é×Ô¼ºÊÇ·ñ³¬³öÁË×·»÷µÄ×îÔ¶¾àÀë
+  --æ£€æŸ¥è‡ªå·±æ˜¯å¦è¶…å‡ºäº†è¿½å‡»çš„æœ€è¿œè·ç¦»
   if ( self.spawnPos - self.unit:GetAbsOrigin() ):Length() > self.leashRange then
-    self.unit:MoveToPosition( self.spawnPos ) --»Øµ½³öÉíµã
-    self.state = AI_STATE_RETURNING --×ª»»µ½¡°·µ»Ø¡±×´Ì¬
-    return true --Í¨¹ı·µ»ØÀ´È·±£²»ÔÙÖ´ĞĞÕâ¸ö½×¶ÎµÄÆäËû´úÂë
+    self.unit:MoveToPosition( self.spawnPos ) --å›åˆ°å‡ºèº«ç‚¹
+    self.state = AI_STATE_RETURNING --è½¬æ¢åˆ°â€œè¿”å›â€çŠ¶æ€
+    return true --é€šè¿‡è¿”å›æ¥ç¡®ä¿ä¸å†æ‰§è¡Œè¿™ä¸ªé˜¶æ®µçš„å…¶ä»–ä»£ç 
   end
 
-  --¼ì²é¹¥»÷µÄµ¥Î»ÊÇ·ñ»¹»î×Å (self.¹¥»÷µ¥Î» »á±»Éè¶¨ÔÚ×ªµ½¹¥»÷½×¶ÎµÄÊ±ºò)
-  if not self.aggroTarget:IsAlive() then
-    self.unit:MoveToPosition( self.spawnPos ) --·µ»Ø³öÉúµã
-    self.state = AI_STATE_RETURNING --×ª»»µ½·µ»Ø½×¶Î
-    return true --Í¨¹ı·µ»ØÀ´È·±£²»ÔÙÖ´ĞĞÕâ¸ö½×¶ÎµÄÆäËû´úÂë
-  end
-
-  --×´Ì¬ĞĞÎª
-  --ÕâÀïÎÒÃÇ¿ÉÒÔ×öÈÎºÎÄãÏëÒªÔÚÕâ¸ö½×¶ÎÖØ¸´×öµÄĞĞÎª
+  --çŠ¶æ€è¡Œä¸º
+  --è¿™é‡Œæˆ‘ä»¬å¯ä»¥åšä»»ä½•ä½ æƒ³è¦åœ¨è¿™ä¸ªé˜¶æ®µé‡å¤åšçš„è¡Œä¸º
 --  print('Attacking!')
 end
 
---[[ ·µ»Ø½×¶ÎµÄ]]
+--[[ è¿”å›é˜¶æ®µçš„]]
 function SimpleAI:ReturningThink()
-  --¼ì²éUIµ¥Î»Ê±ºòÒÑ¾­»Øµ½ÁË³öÉíµã
+  --æ£€æŸ¥UIå•ä½æ—¶å€™å·²ç»å›åˆ°äº†å‡ºèº«ç‚¹
   if ( self.spawnPos - self.unit:GetAbsOrigin() ):Length() < 50 then
     self.unit:MoveToPosition( self.spawnPos )
-    --Ìø×ªµ½´ı»ú×´Ì¬
-    self.state = AI_STATE_IDLE
+    --è·³è½¬åˆ°å¾…æœºçŠ¶æ€
+    self.state = AI_STATE_AGGRESSIVE
     return true
+  else
+    self.unit:MoveToPosition( self.spawnPos )
   end
+  
 end

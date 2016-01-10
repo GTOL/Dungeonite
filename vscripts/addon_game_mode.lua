@@ -47,9 +47,6 @@ end
 function CAddonTemplateGameMode:OnPlayerSpawn(keys)
 	--获取英雄
 	local entity = EntIndexToHScript(keys.entindex)
-	print(entity:IsPlayer())
-	print(entity:IsHero())
-	print(entity:IsIllusion())
 	if entity.GetPlayerID and entity:IsHero() and not entity:IsIllusion() then
 		--获取英雄天赋技能
 		local ability = entity:GetAbilityByIndex(0)
