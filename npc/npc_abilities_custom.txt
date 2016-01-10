@@ -2091,10 +2091,8 @@
 	"centaur_lash"
 	{
 		"BaseClass"                             "ability_datadriven"
-		"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"MaxLevel"   							 "1"
-		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityTextureName"    				"ogre_magi_bloodlust"
 		
 		"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
@@ -2139,12 +2137,12 @@
 			"ApplyModifier"
 			{
 				"ModifierName"		"modifier_anger"
-				"Target"			"TARGET"
+				"Target"			"CASTER"
 			}
 			
 			"Damage"
 			{
-				"Target"	"TARGET"
+				"Target"	"CASTER"
 				"Damage"	"%damage"
 				"Type"		"DAMAGE_TYPE_MAGICAL"
 			}
@@ -2155,7 +2153,7 @@
 			"modifier_anger"
 			{
 				"IsBuff"	"1"
-				"Duration"	"15"
+				"Duration"	"10"
 				
 				"EffectName"	"particles\units\heroes\hero_ogre_magi\ogre_magi_bloodlust_buff.vpcf"
 				"EffectAttachType"	"follow_origin"

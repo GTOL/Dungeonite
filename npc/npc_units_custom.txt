@@ -496,6 +496,16 @@
 		//---------------------------------------------------
 		"Creature"
 		{	
+		
+			"DefaultState"		"Invade"
+			
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"					"centaur_lash"
+				}
+			}
 		}
 	}
 	
@@ -1027,6 +1037,9 @@
 			
 			//AI
 			//--------------------------------------------------
+			
+			
+			
 			"OffensiveAbilities"
 			{
 				"Ability1"
