@@ -13,7 +13,7 @@
 	}
 	
 	"BaseClass"					"ability_datadriven"
-	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	"AbilityTextureName"		"slardar_amplify_damage"
 	"AbilityCastPoint"			"0.3"
 	"AbilityCooldown"			"60"
