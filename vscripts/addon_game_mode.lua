@@ -60,7 +60,6 @@ function ShuaGuai(Guai_name, Ent_name, num)
 		local Guai = CreateUnitByName(Guai_name, ShuaGuai_Entity:GetOrigin(),false,nil,nil,DOTA_TEAM_BADGUYS)
 		--Guai:SetMustReachEachGoalEntity(true)
 		--Guai:SetInitialGoalEntity(ShuaGuai_Entity)
-		SimpleAI:MakeInstance( Guai, { spawnPos = Guai:GetAbsOrigin(), aggroRange = 500, leashRange = 900 } )
 		Guai:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	end
 end

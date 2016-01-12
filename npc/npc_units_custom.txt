@@ -134,6 +134,10 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
+		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -175,9 +179,9 @@
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"1.3"
 		"AttackAnimationPoint"	"0.4"
-		"AttackRange"			"128"
+		"AttackRange"			"90"
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
 		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
 		
 		//Bound
@@ -207,6 +211,11 @@
 		"BountyXP"		"73"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
+		
+		//AI
+		//---------------------------------------------------
+		//"vscript"                   "scripts/vscripts/AI.lua"   // 这会在单位诞生后立即装载一个脚本文件
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------
@@ -275,6 +284,10 @@
 		"BountyXP"		"74"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
+		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------
@@ -345,6 +358,10 @@
 		"BountyXP"		"300"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
+		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------
@@ -424,6 +441,10 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
+		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -491,6 +512,10 @@
 		"BountyXP"		"301"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
+		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------
@@ -571,6 +596,10 @@
 		"BountyXP"		"416"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
+		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------
@@ -663,6 +692,10 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
+		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -730,6 +763,10 @@
 		"BountyXP"		"299"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
+		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------
@@ -806,6 +843,10 @@
 		"BountyXP"		"153"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
+		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------
@@ -908,6 +949,10 @@
 		"BountyXP"		"50"
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
+		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------
@@ -1018,6 +1063,10 @@
 		"BountyXP"		"3000"
 		"BountyGoldMin"	"500"
 		"BountyGoldMax"	"680"
+		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
 		
 		//Creature
 		//---------------------------------------------------

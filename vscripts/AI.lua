@@ -15,6 +15,11 @@ AI_STATE_RETURNING = 1--返回阶段
 SimpleAI = {}
 SimpleAI.__index = SimpleAI
 
+function Spawn( keys )
+	local unit = thisEntity
+	SimpleAI:MakeInstance( unit, { spawnPos = unit:GetAbsOrigin(), aggroRange = 500, leashRange = 900 } )
+end
+
 --[[通过一些参数和单位创建一个SimpleAI类的实例  ]]
 function SimpleAI:MakeInstance( unit, params )
   --构造一个实例  of the SimpleAI class

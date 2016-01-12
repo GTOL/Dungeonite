@@ -26,9 +26,9 @@
 	"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 	"AttackRate"			"1.5"
 	"AttackAnimationPoint"	"0.75"
-	"AttackRange"			"128"
+	"AttackRange"			"64"
 	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRONG"
 	"AttackAcquisitionRange"	"500"	//500范围内开始攻击
 	
 	//Bound
@@ -58,6 +58,10 @@
 	"BountyXP"		"50"
 	"BountyGoldMin"	"0"
 	"BountyGoldMax"	"0"
+	
+	//AI
+	//---------------------------------------------------
+	"UseNeutralCreepBehavior"	"1"
 	
 	//Creature
 	//---------------------------------------------------

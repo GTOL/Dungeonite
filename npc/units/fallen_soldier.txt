@@ -59,6 +59,10 @@
 		"BountyGoldMin"	"18"
 		"BountyGoldMax"	"23"
 		
+		//AI
+		//---------------------------------------------------
+		"UseNeutralCreepBehavior"	"1"
+		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
