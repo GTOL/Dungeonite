@@ -1496,6 +1496,9 @@
 		"AbilityManaCost"           "80 95 105 115"
 		"AbilityCooldown"           "8.0 8.0 8.0 8.0"
 		"AbilityDamage"             "50 100 150 200"
+		
+		"AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+		
 		"AbilitySpecial"
 		{
 			"01"
@@ -1707,7 +1710,7 @@
 		}
 		
 		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName"		"slardar_amplify_damage"
 		"AbilityCastPoint"			"0.3"
 		"AbilityCooldown"			"60"
@@ -2776,6 +2779,64 @@
 			}
 		}
 	}
+	
+	
+	"swamp_zombie_slow"
+	{
+		"precache"
+		{}
+		
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"        "undying_tombstone_zombie_deathstrike"
+		"SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"				"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                      "FIELD_INTEGER"
+				"slow"                          "-3"
+			}
+			"02"
+			{
+				"var_type"                      "FIELD_FLOAT"
+				"slow_duration"                 "6"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_swamp_zombie_slow_self"
+			{
+				"IsBuff"  "1"
+				"Passive"	"1"
+				"IsPurgable"	"0"
+				
+				"OnAttackLanded"
+				{
+					"ApplyModifier"
+					{
+						"Target"			"TARGET"
+						"ModifierName"	"modifier_swamp_zombie_slow"
+					}
+				}
+			}
+			
+			"modifier_swamp_zombie_slow"
+			{
+				"IsDebuff"			"1"
+				"IsPurgable"			"0"
+				"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration"				"%slow_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow"
+				}
+			}
+		}
+	}
+
 	//------------------------------------------------------OVER------------------------------------------------------
 	//----------------------------------------------------------------------------------------------------------------
 }

@@ -1,0 +1,55 @@
+"swamp_zombie_slow"
+{
+	"precache"
+	{}
+	
+	"BaseClass"				"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"        "----"
+    "SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_YES"
+	"MaxLevel"				"1"
+    
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"                      "FIELD_INTEGER"
+            "slow"                          "-3"
+        }
+        "02"
+        {
+            "var_type"                      "FIELD_FLOAT"
+            "slow_duration"                 "6"
+        }
+    }
+    "Modifiers"
+    {
+        "modifier_swamp_zombie_slow_self"
+        {
+            "IsBuff"  "1"
+			"Passive"	"1"
+			"IsPurgable"	"0"
+			
+			"OnAttackLanded"
+			{
+				"ApplyModifier"
+				{
+					"Target"			"TARGET"
+					"ModifierName"	"modifier_swamp_zombie_slow"
+				}
+			}
+		}
+		
+		"modifier_swamp_zombie_slow"
+		{
+			"IsDebuff"			"1"
+			"IsPurgable"			"0"
+			"Attributes"			"MODIFIER_ATTRIBUTE_MULTIPLE"
+			"Duration"				"%slow_duration"
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow"
+            }
+        }
+    }
+}

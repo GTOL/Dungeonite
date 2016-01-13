@@ -1295,6 +1295,103 @@
 		"VisionDaytimeRange"        "0"        // 白天视野
 		"VisionNighttimeRange"      "0"        // 夜间视野
 	}
+
+
+	"npc_swamp_zombie"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Level"                     	"1"
+		"Model"                     	"models/heroes/undying/undying_minion_torso.vmdl"
+		"ModelScale"            		"0.8"
+		"HasInventory"              	"0"
+		"ConsideredHero"            	"0"                 // 作为英雄，提供英雄风格的生命值条。"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO" 的数据驱动标记
+		
+		//Sound
+		//---------------------------------------------------
+		// 声音 SoundSet 加上正确的 GameSoundsFile 可以提供攻击和脚步声等音效
+		// SoundSet 字符串是每个英雄声音的第一部分，可以在Dota2声音编辑器中查找到
+		// IdleSoundLoop 将会在单位产生后持续被播放，某些英雄并没有定义这个循环声音，但是如果你在这里增加一个不可循环声音，则可以作为诞生音效使用
+		//"SoundSet"                  "Hero_DragonKnight"
+		//"GameSoundsFile"            "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+		//"IdleSoundLoop"             "Hero_DragonKnight.Tutorial_Intro"
+
+
+		//Ability
+		//----------------------------------------------------------------
+		"AbilityLayout"             "4"          // 技能槽数量，最低4个，最高为6个，单位可以同时拥有最多16个技能
+		"Ability1"                  "swamp_zombie_slow"          // 技能 1.
+		"Ability2"                  ""          // 技能 2.
+		"Ability3"                  ""          // 技能 3.
+		"Ability4"                  ""          // 技能 4.
+
+
+		//Armor&Attack
+		//----------------------------------------------------------------
+		"ArmorPhysical"             "0"         // 基础护甲
+		"MagicalResistance"         "0"         // 基础魔抗
+		"AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"  
+		"AttackDamageMin"           "8"                       // 最小伤害
+		"AttackDamageMax"           "12"                       // 最大伤害
+		"AttackRate"                "1.6"                       // 攻击间隔
+		"AttackAnimationPoint"      "0.4"                      // 攻击前摇
+		"AttackAcquisitionRange"    "800"                       // 警戒范围
+		"AttackRange"					"40"
+		//"ProjectileSpeed"           "900"                       // 投射速率
+		"AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical" //
+		"CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_HERO"     
+		"CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_SOFT"     
+
+
+		//Bound
+		//----------------------------------------------------------------
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"  
+		"RingRadius"                "50"                    // 选择圈半径
+		"HealthBarOffset"           "-1"                    // 血条高度，缺省值为 "-1"，意味着使用默认的模型高度
+
+		//Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"   // 移动类型
+																//DOTA_UNIT_CAP_MOVE_NONE       不能移动
+																//DOTA_UNIT_CAP_MOVE_GROUND     地面
+																//DOTA_UNIT_CAP_MOVE_FLY        飞行
+		"MovementSpeed"             "400"                       // 移动速度
+		"MovementTurnRate"          "0.3"                       // 转身速度
+		"HasAggressiveStance"       "0"                         // 单位会在接近敌人时切换空闲/跑步的移动动画，比如亚巴顿的模型
+
+
+		//Status
+		//----------------------------------------------------------------
+		"StatusHealth"              "210"       // 基础生命值
+		"StatusHealthRegen"         "0"         // 生命恢复速度，负值无效
+		"StatusMana"                "0"         // 基础魔法值，设置为0会导致没有魔法条
+		"StatusManaRegen"           "0"         // 魔法恢复速度，负值无效
+		"StatusStartingMana"        "-1"        // 单位诞生时的魔法值，-1意味着默认满魔法值
+
+
+		//Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"        "1800"          // 白天视野范围
+		"VisionNighttimeRange"      "1800"           // 夜晚视野范围
+	  
+
+		//bounty
+		//----------------------------------------------------------------
+		"BountyXP"                 "3"                     // 经验奖励
+		"BountyGoldMin"             "0"                     // 最小金钱奖励
+		"BountyGoldMax"             "0"                     // 最大金钱奖励
+
+		//AI
+		//----------------------------------------------------------------  
+		
+		
+		// Creature
+		//----------------------------------------------------------------
+		"Creature"                                              // 这段KV针对基础类npc_dota_creature
+		{
+		}
+	}
 	//--------------------------------------------OVER-------------------------------------------
 	//-------------------------------------------------------------------------------------------
 	

@@ -79,4 +79,5 @@ function ShuaGuaiKaiShi()
 	ShuaGuai("npc_miner", "mines_fallen_soldier", 6)
 	ShuaGuai("fallen_knight", "mines_fallen_knight", 1)
 	ShuaGuai("npc_fallen_soldier", "mines_fallen_knight", 4)
+	ShuaGuai("npc_swamp_zombie", "swamp_zombie", 4)
 end
