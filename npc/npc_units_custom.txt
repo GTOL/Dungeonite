@@ -73,6 +73,10 @@
 		"VisionNighttimeRange"		"1000"
 	}
 	
+	
+	//-----------------------------------------Jungle&Mine-----------------------------------
+	//---------------------------------------------------------------------------------------
+	
 	"fallen_soldier"
 	{
 		//General
@@ -134,10 +138,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -212,11 +213,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
-		//"vscript"                   "scripts/vscripts/AI.lua"   // 这会在单位诞生后立即装载一个脚本文件
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -285,10 +282,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -359,10 +353,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -441,10 +432,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -513,10 +501,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -597,10 +582,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -692,10 +674,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -764,10 +743,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -844,10 +820,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -950,10 +923,7 @@
 		"BountyGoldMin"	"0"
 		"BountyGoldMax"	"0"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -991,9 +961,343 @@
 			}
 		}
 	}
+	
+	
+	//-----------------------------------------Fungi-----------------------------------------
+	//---------------------------------------------------------------------------------------
+	
+	"npc_fungi_hunter"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"0"
+		"Level"				"6"
+		"Model"				"models\heroes\phantom_lancer\phantom_lancer.vmdl"
+		"ModelScale"		"0.7"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"fungi_strike"
+		"Ability2"			"fungi_risk_attack"
+		"Ability3"			""
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"15"
+		"AttackDamageMAx"		"25"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"1.5"
+		"AttackAnimationPoint"	"0.4"
+		"AttackRange"			"128"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAcquisitionRange"	"900"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"100"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.4"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"400"
+		"StatusHealthRegen"			"1"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"50"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		
+		
+		//lua ai
+		"vscripts"		"ai/foes/fungi_hunter.lua"
+		
+		"Creature"
+		{	
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "127" } 	//leg
+				"Wearable2" { "ItemDef" "128" }	//head
+				"Wearable3" { "ItemDef" "5797" }	//shoulder
+				"Wearable4" { "ItemDef" "132" }
+			}
+			
+			
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"					"fungi_strike"
+				}
+				
+			}
+		}
+	}
+	
+	"npc_fungi_baby"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"0"
+		"Level"				"6"
+		"Model"				"models\items\wards\esl_wardchest_toadstool\esl_wardchest_toadstool.vmdl"
+		"ModelScale"		"1"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"fungi_cry"
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"0"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"		"1"
+		"AttackDamageMAx"		"2"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"0.2"
+		"AttackAnimationPoint"	"0"
+		"AttackRange"			"900"
+		"ProjectileModel"		"particles/base_attacks/ranged_tower_good.vpcf"
+		"ProjectileSpeed"		"900"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAcquisitionRange"	"900"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"100"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"				"0"
+		"MovementTurnRate"			"0.4"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"40"
+		"StatusHealthRegen"			"1"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"50"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		
+		
+		"Creature"
+		{
+		}		
+	}
+	
+	"npc_fungi_wanderer"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"0"
+		"Level"				"6"
+		"Model"				"models\heroes\furion\furion.vmdl"
+		"ModelScale"		"1"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			""
+		"Ability2"			""
+		"Ability3"			""
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"2"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"		"10"
+		"AttackDamageMAx"		"20"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"1.5"
+		"AttackAnimationPoint"	"0.4"
+		"AttackRange"			"600"
+		"ProjectileModel"		"particles\units\heroes\hero_furion\furion_base_attack.vpcf"
+		"ProjectileSpeed"		"900"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAcquisitionRange"	"700"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"100"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"300"
+		"MovementTurnRate"			"0.4"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"200"
+		"StatusHealthRegen"			"1"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"50"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		
+		"UseNeutralCreepBehavior"	"1"
+		"Creature"
+		{	
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "29" } 	//leg
+				"Wearable2" { "ItemDef" "31" }	//head
+				"Wearable3" { "ItemDef" "5797" }	//shoulder
+				"Wearable4" { "ItemDef" "32" }
+				"Wearable5" { "ItemDef" "33" }
+			}
+		}
+	}
+	
+	//-------------------------------------------Unknown--------------------------------------------
+	//-------------------------------------------------------------------------------------------
+	"npc_swamp_zombie"
+	{
+		//General
+		//---------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Level"                     	"1"
+		"Model"                     	"models/heroes/undying/undying_minion_torso.vmdl"
+		"ModelScale"            		"0.8"
+		"HasInventory"              	"0"
+		"ConsideredHero"            	"0"                 // 作为英雄，提供英雄风格的生命值条。"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO" 的数据驱动标记
+		
+		//Sound
+		//---------------------------------------------------
+		// 声音 SoundSet 加上正确的 GameSoundsFile 可以提供攻击和脚步声等音效
+		// SoundSet 字符串是每个英雄声音的第一部分，可以在Dota2声音编辑器中查找到
+		// IdleSoundLoop 将会在单位产生后持续被播放，某些英雄并没有定义这个循环声音，但是如果你在这里增加一个不可循环声音，则可以作为诞生音效使用
+		//"SoundSet"                  "Hero_DragonKnight"
+		//"GameSoundsFile"            "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+		//"IdleSoundLoop"             "Hero_DragonKnight.Tutorial_Intro"
 
 
-	//-------------------------------------------OVER-------------------------------------------
+		//Ability
+		//----------------------------------------------------------------
+		"AbilityLayout"             "4"          // 技能槽数量，最低4个，最高为6个，单位可以同时拥有最多16个技能
+		"Ability1"                  "swamp_zombie_slow"          // 技能 1.
+		"Ability2"                  ""          // 技能 2.
+		"Ability3"                  ""          // 技能 3.
+		"Ability4"                  ""          // 技能 4.
+
+
+		//Armor&Attack
+		//----------------------------------------------------------------
+		"ArmorPhysical"             "0"         // 基础护甲
+		"MagicalResistance"         "0"         // 基础魔抗
+		"AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"  
+		"AttackDamageMin"           "8"                       // 最小伤害
+		"AttackDamageMax"           "12"                       // 最大伤害
+		"AttackRate"                "1.6"                       // 攻击间隔
+		"AttackAnimationPoint"      "0.4"                      // 攻击前摇
+		"AttackAcquisitionRange"    "800"                       // 警戒范围
+		"AttackRange"					"40"
+		//"ProjectileSpeed"           "900"                       // 投射速率
+		"AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical" //
+		"CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_HERO"     
+		"CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_SOFT"     
+
+
+		//Bound
+		//----------------------------------------------------------------
+		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"  
+		"RingRadius"                "50"                    // 选择圈半径
+		"HealthBarOffset"           "-1"                    // 血条高度，缺省值为 "-1"，意味着使用默认的模型高度
+
+		//Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"   // 移动类型
+																//DOTA_UNIT_CAP_MOVE_NONE       不能移动
+																//DOTA_UNIT_CAP_MOVE_GROUND     地面
+																//DOTA_UNIT_CAP_MOVE_FLY        飞行
+		"MovementSpeed"             "400"                       // 移动速度
+		"MovementTurnRate"          "0.3"                       // 转身速度
+		"HasAggressiveStance"       "0"                         // 单位会在接近敌人时切换空闲/跑步的移动动画，比如亚巴顿的模型
+
+
+		//Status
+		//----------------------------------------------------------------
+		"StatusHealth"              "210"       // 基础生命值
+		"StatusHealthRegen"         "0"         // 生命恢复速度，负值无效
+		"StatusMana"                "0"         // 基础魔法值，设置为0会导致没有魔法条
+		"StatusManaRegen"           "0"         // 魔法恢复速度，负值无效
+		"StatusStartingMana"        "-1"        // 单位诞生时的魔法值，-1意味着默认满魔法值
+
+
+		//Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"        "1800"          // 白天视野范围
+		"VisionNighttimeRange"      "1800"           // 夜晚视野范围
+	  
+
+		//bounty
+		//----------------------------------------------------------------
+		"BountyXP"                 "3"                     // 经验奖励
+		"BountyGoldMin"             "0"                     // 最小金钱奖励
+		"BountyGoldMax"             "0"                     // 最大金钱奖励
+
+		//AI
+		//----------------------------------------------------------------  
+		
+		
+		// Creature
+		//----------------------------------------------------------------
+		"Creature"                                              // 这段KV针对基础类npc_dota_creature
+		{
+		}
+	}
+	
+	//-------------------------------------------OVER--------------------------------------------
 	//-------------------------------------------------------------------------------------------
 	
 	
@@ -1064,10 +1368,7 @@
 		"BountyGoldMin"	"500"
 		"BountyGoldMax"	"680"
 		
-		//AI
-		//---------------------------------------------------
 		"UseNeutralCreepBehavior"	"1"
-		
 		//Creature
 		//---------------------------------------------------
 		"Creature"
@@ -1113,6 +1414,94 @@
 					"MinimumTargets"	"1"
 				}
 			}	
+		}
+	}
+	
+	
+	"npc_fungi_mother"
+	{
+		"BaseClass"			"npc_dota_creature"
+		"ConsideredHero"	"1"
+		"Level"				"15"
+		"Model"				"models\heroes\treant_protector\treant_protector.vmdl"
+		"ModelScale"		"1.5"
+		"HasInventory"		"0"
+		
+		//Ability
+		//---------------------------------------------------
+		"AbilityLayout"		"4"
+		"Ability1"			"fungi_spore"
+		"Ability2"			"fungi_absorb"
+		"Ability3"			"fungi_root"
+		"Ability4"			""
+		
+		//Armor&Attack
+		"ArmorPhysical"			"25"
+		"MagicalResistance"		"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"65"
+		"AttackDamageMAx"		"76"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRange"			"150"
+		"AttackRate"			"2.1"
+		"AttackAnimationPoint"	"0.6"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAcquisitionRange"	"500"	//500范围内开始攻击
+		
+		//Bound
+		//---------------------------------------------------
+		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
+		"RingRadius"			"50"
+		"HealthBarOffset"		"200"
+		
+		//Movement
+		//---------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"100"
+		"MovementTurnRate"			"0.2"
+		
+		//Status
+		//---------------------------------------------------
+		"StatusHealth"				"10000"
+		"StatusHealthRegen"			"10"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0"
+		
+		//Vision
+		//---------------------------------------------------
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"600"
+		
+		//bounty
+		//---------------------------------------------------
+		"BountyXP"		"50"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		
+		"UseNeutralCreepBehavior"	"1"
+		"Creature"
+		{	
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "7059" } 	//leg
+				"Wearable2" { "ItemDef" "7060" }	//head
+				"Wearable3" { "ItemDef" "7061" }	//shoulder
+				"Wearable4" { "ItemDef" "7062" }
+			}
+			
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"		"fungi_root"
+				}
+				
+				"Ability2"
+				{
+					"Name"		"fungi_spore"
+				}
+			}
 		}
 	}
 	
@@ -1294,103 +1683,6 @@
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"VisionDaytimeRange"        "0"        // 白天视野
 		"VisionNighttimeRange"      "0"        // 夜间视野
-	}
-
-
-	"npc_swamp_zombie"
-	{
-		//General
-		//---------------------------------------------------
-		"BaseClass"					"npc_dota_creature"
-		"Level"                     	"1"
-		"Model"                     	"models/heroes/undying/undying_minion_torso.vmdl"
-		"ModelScale"            		"0.8"
-		"HasInventory"              	"0"
-		"ConsideredHero"            	"0"                 // 作为英雄，提供英雄风格的生命值条。"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO" 的数据驱动标记
-		
-		//Sound
-		//---------------------------------------------------
-		// 声音 SoundSet 加上正确的 GameSoundsFile 可以提供攻击和脚步声等音效
-		// SoundSet 字符串是每个英雄声音的第一部分，可以在Dota2声音编辑器中查找到
-		// IdleSoundLoop 将会在单位产生后持续被播放，某些英雄并没有定义这个循环声音，但是如果你在这里增加一个不可循环声音，则可以作为诞生音效使用
-		//"SoundSet"                  "Hero_DragonKnight"
-		//"GameSoundsFile"            "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
-		//"IdleSoundLoop"             "Hero_DragonKnight.Tutorial_Intro"
-
-
-		//Ability
-		//----------------------------------------------------------------
-		"AbilityLayout"             "4"          // 技能槽数量，最低4个，最高为6个，单位可以同时拥有最多16个技能
-		"Ability1"                  "swamp_zombie_slow"          // 技能 1.
-		"Ability2"                  ""          // 技能 2.
-		"Ability3"                  ""          // 技能 3.
-		"Ability4"                  ""          // 技能 4.
-
-
-		//Armor&Attack
-		//----------------------------------------------------------------
-		"ArmorPhysical"             "0"         // 基础护甲
-		"MagicalResistance"         "0"         // 基础魔抗
-		"AttackCapabilities"        "DOTA_UNIT_CAP_MELEE_ATTACK"  
-		"AttackDamageMin"           "8"                       // 最小伤害
-		"AttackDamageMax"           "12"                       // 最大伤害
-		"AttackRate"                "1.6"                       // 攻击间隔
-		"AttackAnimationPoint"      "0.4"                      // 攻击前摇
-		"AttackAcquisitionRange"    "800"                       // 警戒范围
-		"AttackRange"					"40"
-		//"ProjectileSpeed"           "900"                       // 投射速率
-		"AttackDamageType"          "DAMAGE_TYPE_ArmorPhysical" //
-		"CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_HERO"     
-		"CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_SOFT"     
-
-
-		//Bound
-		//----------------------------------------------------------------
-		"BoundsHullName"            "DOTA_HULL_SIZE_SMALL"  
-		"RingRadius"                "50"                    // 选择圈半径
-		"HealthBarOffset"           "-1"                    // 血条高度，缺省值为 "-1"，意味着使用默认的模型高度
-
-		//Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"   // 移动类型
-																//DOTA_UNIT_CAP_MOVE_NONE       不能移动
-																//DOTA_UNIT_CAP_MOVE_GROUND     地面
-																//DOTA_UNIT_CAP_MOVE_FLY        飞行
-		"MovementSpeed"             "400"                       // 移动速度
-		"MovementTurnRate"          "0.3"                       // 转身速度
-		"HasAggressiveStance"       "0"                         // 单位会在接近敌人时切换空闲/跑步的移动动画，比如亚巴顿的模型
-
-
-		//Status
-		//----------------------------------------------------------------
-		"StatusHealth"              "210"       // 基础生命值
-		"StatusHealthRegen"         "0"         // 生命恢复速度，负值无效
-		"StatusMana"                "0"         // 基础魔法值，设置为0会导致没有魔法条
-		"StatusManaRegen"           "0"         // 魔法恢复速度，负值无效
-		"StatusStartingMana"        "-1"        // 单位诞生时的魔法值，-1意味着默认满魔法值
-
-
-		//Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"        "1800"          // 白天视野范围
-		"VisionNighttimeRange"      "1800"           // 夜晚视野范围
-	  
-
-		//bounty
-		//----------------------------------------------------------------
-		"BountyXP"                 "3"                     // 经验奖励
-		"BountyGoldMin"             "0"                     // 最小金钱奖励
-		"BountyGoldMax"             "0"                     // 最大金钱奖励
-
-		//AI
-		//----------------------------------------------------------------  
-		
-		
-		// Creature
-		//----------------------------------------------------------------
-		"Creature"                                              // 这段KV针对基础类npc_dota_creature
-		{
-		}
 	}
 	//--------------------------------------------OVER-------------------------------------------
 	//-------------------------------------------------------------------------------------------

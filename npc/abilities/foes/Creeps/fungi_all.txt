@@ -1,0 +1,370 @@
+"fungi_strike"
+{
+	"BaseClass"                             "ability_datadriven"
+	"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"MaxLevel"   							"1"
+	"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityTextureName"    				"slark_pounce"
+	
+	"AbilityCastRange"						"900"
+	"AbilityCastPoint"						"0"
+	"AbilityCooldown"						"90"
+	"AbilityManaCost"						"0"
+	
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+	}
+	
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+			"EffectName"	"Ability.Leap"
+			"Target"		"CASTER"
+		}
+		
+		"RunScript"
+		{
+			"ScriptFile"		"abilities/foes/fungi.lua"
+			"Function"			"Leap"
+		}
+		
+		"ApplyMotionController"
+		{
+			"Target"			"CASTER"
+			"ScriptFile"		"abilities/foes/fungi.lua"
+			"HorizontalControlFunction"		"LeapHorizontal"
+			"VerticalControlFunction"		"LeapVertical"
+		}
+	}
+}
+
+"fungi_risk_attack"
+{
+	"BaseClass"                             "ability_datadriven"
+	"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+	"MaxLevel"   							"1"
+	"AbilityUnitDamageType"					"DAMAGE_TYPE_MAGICAL"
+	"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityTextureName"    				"centaur_double_edge"
+	"AbilityCastRange"		"150"
+	"AbilityCastPoint"		"0.5"
+	"AbilityCastAnimation"	"ACT_DOTA_ATTACK"
+	"AbilityCooldown"		"25"
+	"AbilityManaCost"		"0"
+	
+	"precache"
+	{
+		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+	}
+	
+	"OnSpellStart"
+	{
+		"FireSound"
+		{
+			"EffectName"	"Hero_BountyHunter.Jinada"
+			"Target"		"CASTER"
+		}
+		
+		"RunScript"
+		{
+			"ScriptFile"		"abilities/foes/fungi.lua"
+			"Function"			"RiskAttack"
+		}
+	}
+}
+
+"fungi_cry"
+{
+	"BaseClass"                             "ability_datadriven"
+	"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"MaxLevel"   							"1"
+	"AbilityTextureName"    				"phantom_lancer_juxtapose"
+	"AbilityCastAnimation"					"ACT_DOTA_ATTACK"
+	"AbilityCooldown"						"25"
+	"AbilityManaCost"						"0"
+	
+	"precache"
+	{
+		"particle"			"particles\generic_gameplay\illusion_killed_old.vpcf"
+	}
+	
+	"Modifiers"
+	{
+		"modifier_fungi_cry_datadriven"
+		{
+			"Passive"		"1"
+			"IsPurgable"	"0"
+			"IsHidden"		"1"
+			
+			"OnDeath"
+			{
+				"CreateThinker"
+				{
+					"ModifierName"		"modifier_fungi_cry_summon"
+					"Target"			"CASTER"
+				}
+			}
+		}
+		
+		"modifier_fungi_cry_summon"
+		{
+			"OnCreated"
+			{
+				"DelayedAction"
+				{
+					"Delay"		"2"
+					"Action"
+					{
+						"RunScript"
+						{
+							"ScriptFile"		"abilities/foes/fungi.lua"
+							"Function"			"Summon"
+							"effect_name"		"particles\generic_gameplay\illusion_killed_old.vpcf"
+						}
+					}
+				}
+				
+			}
+		}
+	}
+}
+
+"fungi_spore"
+{
+	"BaseClass"                             "ability_datadriven"
+	"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"MaxLevel"   							"1"
+	"AbilityTextureName"    				"phantom_lancer_juxtapose"
+	"AbilityCastPoint"						"1"	
+	"AbilityCastAnimation"					"ACT_DOTA_CAST_ABILITY_5"
+	"AbilityCooldown"						"30"
+	"AbilityManaCost"						"0"
+	
+	"precache"
+	{
+		"particle"							"particles\econ\items\enchantress\enchantress_lodestar\ench_lodestar_death.vpcf"
+		"soundfile"							"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+	}
+	
+	"OnSpellStart"
+	{
+		"RunScript"
+		{
+			"ScriptFile"		"abilities/foes/fungi.lua"
+			"Function"			"SporeSummon"
+			"unit_name"			"npc_fungi_baby"
+			"effect_name_1"		"particles\econ\items\enchantress\enchantress_lodestar\ench_lodestar_death.vpcf"
+		}
+		
+		"FireSound"
+		{
+			"EffectName"		"Hero_Treant.Overgrowth.Cast"
+			"Target"			"CASTER"
+		}
+	}
+}
+
+"fungi_absorb"
+{
+	"BaseClass"                             "ability_datadriven"
+	"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"MaxLevel"   							"1"
+	"AbilityTextureName"    				"phantom_lancer_juxtapose"
+	
+	"precache"
+	{
+		"particle"							"particles\units\heroes\hero_necrolyte\necrolyte_base_attack.vpcf"
+		"particle"							"particles\units\heroes\hero_brewmaster\brewmaster_earth_death_impact_debris.vpcf"
+		"soundfile"							"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+	}
+	
+	"Modifiers"
+	{
+		"modifier_absorb"
+		{
+			"Passive"			"1"
+			"IsPurgable"		"0"
+			
+			"ThinkInterval"		"1.0"
+			
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"		"abilities/foes/fungi.lua"
+					"Function"			"Absorb"
+					"unit_name"			"npc_fungi_baby"
+					"effect_name_1"		"particles\units\heroes\hero_necrolyte\necrolyte_base_attack.vpcf"
+					"effect_name_2"		"particles\units\heroes\hero_brewmaster\brewmaster_earth_death_impact_debris.vpcf"
+					"sound_name"		"Hero_Necrolyte.Attack"
+				}
+			}
+		}
+	}
+}
+
+"fungi_root"
+{
+	"BaseClass"                             "ability_datadriven"
+	"AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"MaxLevel"   							"1"
+	"AbilityUnitDamageType"					"DAMAGE_TYPE_PURE"
+	"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"SpellImmunityType"						"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityTextureName"    				"centaur_double_edge"
+	
+	"AbilityCastRange"		"600"
+	"AbilityCastPoint"		"1"
+	"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+	
+	"AbilityCooldown"		"25"
+	"AbilityManaCost"		"0"
+	
+	
+	"precache"		
+	{
+		"particle"		"particles\units\heroes\hero_oracle\oracle_false_promise.vpcf"
+		
+		"particle"		"particles\units\heroes\hero_pugna\pugna_life_drain_beam_2d.vpcf"
+		
+		"particle"		"particles\econ\items\pugna\pugna_ward_ti5\pugna_ward_attack_light_ti_5.vpcf"
+	
+		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"		
+	}
+	
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"ModifierName"		"modifier_root"
+			"Target"			"CASTER"
+		}
+		
+		"ApplyModifier"
+		{
+			"ModifierName"		"modifier_root_target"
+			"Target"			"TARGET"
+		}
+		
+		"RunScript"
+		{
+			"ScriptFile"		"abilities/foes/fungi.lua"
+			"Function"			"SetTarget"
+		}
+	}
+	
+	"Modifiers"
+	{
+		"modifier_root"
+		{
+			"Duration"	"5"
+			"OverrideAnimation" "ACT_DOTA_FLAIL"
+			"OnTakeDamage"
+			{
+				"RunScript"
+				{
+					"ScriptFile"		"abilities/foes/fungi.lua"
+					"Function"			"ShareDamage"
+					"DamageTaken"		"%attack_damage"
+					"target"			"TARGET"
+					"effect_name_1"		"particles\econ\items\pugna\pugna_ward_ti5\pugna_ward_attack_light_ti_5.vpcf"
+					"sound_name"		"Hero_Pugna.NetherWard.Attack"
+				}
+			}
+			
+			"States"
+			{
+				"MODIFIER_STATE_STUNNED" 	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+			
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"EffectName"		"particles\units\heroes\hero_oracle\oracle_false_promise.vpcf"
+					"EffectAttachType"	"follow_origin"
+					"Target"			"CASTER"
+				}
+				
+				"FireSound"
+				{
+					"EffectName"		"Hero_Treant.NaturesGuise.On"
+					"Target"			"TARGET"
+				}
+			}
+			
+			"OnDestroy"
+			{
+				"FireSound"
+				{
+					"EffectName"		"Hero_Treant.NaturesGuise.Off"
+					"Target"			"TARGET"
+				}
+			}
+		}
+		
+		"modifier_root_target"
+		{
+			"Duration"	"5"
+			
+			"OverrideAnimation" "ACT_DOTA_FLAIL"
+			
+			"States"
+			{
+				"MODIFIER_STATE_STUNNED" 	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+			
+			"OnCreated"
+			{
+				"AttachEffect"
+				{
+					"EffectName"		"particles\units\heroes\hero_oracle\oracle_false_promise.vpcf"
+					"EffectAttachType"	"follow_origin"
+					"Target"			"TARGET"
+				}
+				
+				"AttachEffect"
+				{
+					"EffectName"		"particles\units\heroes\hero_pugna\pugna_life_drain_beam_2d.vpcf"
+					"EffectAttachType"	"start_at_customorigin"
+					"Target"			"CASTER"
+					"ControlPointEntities"
+					{
+						"CASTER"		"attach_hitloc"
+						"TARGET"		"attach_hitloc"
+					}
+				}
+			}
+			
+			"ThinkInterval"		"1"
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"		"abilities/foes/fungi.lua"
+					"Function"			"DamageLink"
+				}
+			}
+			
+			"OnDestroy"
+			{
+				"RunScript"
+				{
+					"ScriptFile"		"abilities/foes/fungi.lua"
+					"Function"			"DestroyEffect"
+					"effect_name"		"particles\units\heroes\hero_pugna\pugna_life_drain_beam_2d.vpcf"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,231 @@
+"npc_fungi_hunter"
+{
+	"BaseClass"			"npc_dota_creature"
+	"ConsideredHero"	"0"
+	"Level"				"6"
+	"Model"				"models\heroes\phantom_lancer\phantom_lancer.vmdl"
+	"ModelScale"		"0.7"
+	"HasInventory"		"0"
+	
+	//Ability
+	//---------------------------------------------------
+	"AbilityLayout"		"4"
+	"Ability1"			"fungi_strike"
+	"Ability2"			"fungi_risk_attack"
+	"Ability3"			""
+	"Ability4"			""
+	
+	//Armor&Attack
+	"ArmorPhysical"			"0"
+	"MagicalResistance"		"0"
+	"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+	"AttackDamageMin"		"15"
+	"AttackDamageMAx"		"25"
+	"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+	"AttackRate"			"1.5"
+	"AttackAnimationPoint"	"0.4"
+	"AttackRange"			"128"
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"AttackAcquisitionRange"	"900"	//500范围内开始攻击
+	
+	//Bound
+	//---------------------------------------------------
+	"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+	"RingRadius"			"50"
+	"HealthBarOffset"		"100"
+	
+	//Movement
+	//---------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"300"
+	"MovementTurnRate"			"0.4"
+	
+	//Status
+	//---------------------------------------------------
+	"StatusHealth"				"400"
+	"StatusHealthRegen"			"1"
+	"StatusMana"				"0"
+	"StatusManaRegen"			"0"
+	
+	//Vision
+	//---------------------------------------------------
+	"VisionDaytimeRange"		"1000"
+	"VisionNighttimeRange"		"600"
+	
+	//bounty
+	//---------------------------------------------------
+	"BountyXP"		"50"
+	"BountyGoldMin"	"0"
+	"BountyGoldMax"	"0"
+	
+	
+	//lua ai
+	"vscripts"		"ai/foes/fungi_hunter.lua"
+	
+	"Creature"
+	{	
+		"AttachWearables"
+		{
+			"Wearable1" { "ItemDef" "127" } 	//leg
+			"Wearable2" { "ItemDef" "128" }	//head
+			"Wearable3" { "ItemDef" "5797" }	//shoulder
+			"Wearable4" { "ItemDef" "132" }
+		}
+		
+		
+		"OffensiveAbilities"
+		{
+			"Ability1"
+			{
+				"Name"					"fungi_strike"
+			}
+			
+		}
+	}
+}
+
+"npc_fungi_baby"
+{
+	"BaseClass"			"npc_dota_creature"
+	"ConsideredHero"	"0"
+	"Level"				"6"
+	"Model"				"models\items\wards\esl_wardchest_toadstool\esl_wardchest_toadstool.vmdl"
+	"ModelScale"		"1"
+	"HasInventory"		"0"
+	
+	//Ability
+	//---------------------------------------------------
+	"AbilityLayout"		"4"
+	"Ability1"			"fungi_cry"
+	"Ability2"			""
+	"Ability3"			""
+	"Ability4"			""
+	
+	//Armor&Attack
+	"ArmorPhysical"			"0"
+	"MagicalResistance"		"0"
+	"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+	"AttackDamageMin"		"1"
+	"AttackDamageMAx"		"2"
+	"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+	"AttackRate"			"0.2"
+	"AttackAnimationPoint"	"0"
+	"AttackRange"			"900"
+	"ProjectileModel"		"particles/base_attacks/ranged_tower_good.vpcf"
+	"ProjectileSpeed"		"900"
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"AttackAcquisitionRange"	"900"	//500范围内开始攻击
+	
+	//Bound
+	//---------------------------------------------------
+	"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+	"RingRadius"			"50"
+	"HealthBarOffset"		"100"
+	
+	//Movement
+	//---------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+	"MovementSpeed"				"0"
+	"MovementTurnRate"			"0.4"
+	
+	//Status
+	//---------------------------------------------------
+	"StatusHealth"				"40"
+	"StatusHealthRegen"			"1"
+	"StatusMana"				"0"
+	"StatusManaRegen"			"0"
+	
+	//Vision
+	//---------------------------------------------------
+	"VisionDaytimeRange"		"1000"
+	"VisionNighttimeRange"		"600"
+	
+	//bounty
+	//---------------------------------------------------
+	"BountyXP"		"50"
+	"BountyGoldMin"	"0"
+	"BountyGoldMax"	"0"
+	
+	
+	"Creature"
+	{
+	}		
+}
+
+"npc_fungi_wanderer"
+{
+	"BaseClass"			"npc_dota_creature"
+	"ConsideredHero"	"0"
+	"Level"				"6"
+	"Model"				"models\heroes\furion\furion.vmdl"
+	"ModelScale"		"1"
+	"HasInventory"		"0"
+	
+	//Ability
+	//---------------------------------------------------
+	"AbilityLayout"		"4"
+	"Ability1"			""
+	"Ability2"			""
+	"Ability3"			""
+	"Ability4"			""
+	
+	//Armor&Attack
+	"ArmorPhysical"			"2"
+	"MagicalResistance"		"0"
+	"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+	"AttackDamageMin"		"10"
+	"AttackDamageMAx"		"20"
+	"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+	"AttackRate"			"1.5"
+	"AttackAnimationPoint"	"0.4"
+	"AttackRange"			"600"
+	"ProjectileModel"		"particles\units\heroes\hero_furion\furion_base_attack.vpcf"
+	"ProjectileSpeed"		"900"
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	"AttackAcquisitionRange"	"700"	//500范围内开始攻击
+	
+	//Bound
+	//---------------------------------------------------
+	"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+	"RingRadius"			"50"
+	"HealthBarOffset"		"100"
+	
+	//Movement
+	//---------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	"MovementSpeed"				"300"
+	"MovementTurnRate"			"0.4"
+	
+	//Status
+	//---------------------------------------------------
+	"StatusHealth"				"200"
+	"StatusHealthRegen"			"1"
+	"StatusMana"				"0"
+	"StatusManaRegen"			"0"
+	
+	//Vision
+	//---------------------------------------------------
+	"VisionDaytimeRange"		"1000"
+	"VisionNighttimeRange"		"600"
+	
+	//bounty
+	//---------------------------------------------------
+	"BountyXP"		"50"
+	"BountyGoldMin"	"0"
+	"BountyGoldMax"	"0"
+	
+	"Creature"
+	{	
+		"AttachWearables"
+		{
+			"Wearable1" { "ItemDef" "29" } 	//leg
+			"Wearable2" { "ItemDef" "31" }	//head
+			"Wearable3" { "ItemDef" "5797" }	//shoulder
+			"Wearable4" { "ItemDef" "32" }
+			"Wearable5" { "ItemDef" "33" }
+		}
+	}
+}
