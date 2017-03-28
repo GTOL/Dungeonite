@@ -20,6 +20,11 @@ end
 function Activate()
 	GameRules.AddonTemplate = CAddonTemplateGameMode()
 	GameRules.AddonTemplate:InitGameMode()
+	GameRules:SetGoldPerTick(0)
+	GameRules:SetUseUniversalShopMode(true)
+	GameRules:SetSameHeroSelectionEnabled(true)
+	GameRules:SetFirstBloodActive(false)
+	-- 好像队伍设置不在这里改
 end
 
 function CAddonTemplateGameMode:InitGameMode()
@@ -79,5 +84,5 @@ function ShuaGuaiKaiShi()
 	ShuaGuai("npc_miner", "mines_fallen_soldier", 6)
 	ShuaGuai("fallen_knight", "mines_fallen_knight", 1)
 	ShuaGuai("npc_fallen_soldier", "mines_fallen_knight", 4)
-	ShuaGuai("npc_swamp_zombie", "swamp_zombie", 4)
+-- 	ShuaGuai("npc_swamp_zombie", "swamp_zombie", 4)
 end
