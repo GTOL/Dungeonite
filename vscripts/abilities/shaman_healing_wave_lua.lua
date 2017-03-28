@@ -54,9 +54,11 @@ function shaman_healing_wave:OnSpellStart()
 					end
 				end
 			end
+			
 			if(not nTarget) then
 				return;
 			end
+
 			nTargetFX = ParticleManager:CreateParticle( "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf", PATTACH_ABSORIGIN_FOLLOW, hTarget )
 			ParticleManager:SetParticleControlEnt( nTargetFX, 1, nTarget, PATTACH_ABSORIGIN_FOLLOW, nil, hCaster:GetOrigin(), false )
 			ParticleManager:ReleaseParticleIndex( nTargetFX )
