@@ -1,4 +1,4 @@
-"druid_heal"
+"druid_jianren"
 {
 	"BaseClass"					"ability_datadriven"
 	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"

@@ -1,0 +1,44 @@
+"druid_cover"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityTextureName"		""
+	"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCooldown"			"15"
+	"AbilityManaCost"			"100"
+	"AbilityCastRange"			"600"
+	"AbilityCastPoint"			"1"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"block"			"5 8 12 17"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"Target"			"TARGET"
+			"ModifierName"		"modifier_focus_enemy"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_druid_healing"
+		{
+			"IsBuff"			"1"
+			"Duration"			"4"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK"	"%block"
+				"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"35"
+			}
+		}
+	}
+}
