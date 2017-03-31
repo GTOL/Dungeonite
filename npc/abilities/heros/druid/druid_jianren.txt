@@ -1,0 +1,35 @@
+"druid_heal"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"		""
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"armor"			"3 5 7 10"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"regene"			"1 2 3 5"
+		}
+		
+	}
+
+
+	"Modifiers"
+	{
+		"modifier_druid_healing"
+		{
+			"IsBuff"			"1"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor"
+				"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%regene"
+			}
+		}
+	}
+}
