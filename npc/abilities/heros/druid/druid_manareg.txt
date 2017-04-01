@@ -1,0 +1,29 @@
+"druid_jianren"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"		""
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"regene"			"2 4 7 10"
+		}
+		
+	}
+
+
+	"Modifiers"
+	{
+		"modifier_druid_healing"
+		{
+			"IsBuff"			"1"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"%regene"
+			}
+		}
+	}
+}
