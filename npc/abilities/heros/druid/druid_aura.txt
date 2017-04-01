@@ -1,0 +1,51 @@
+ "druid_aura"
+ {
+  "BaseClass" "ability_datadriven"
+  "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+  "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+  "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+  "AbilityTextureName" ""
+  "MaxLevel" "4"
+ 
+  "AbilityCastPoint"    "0.0"
+  "AbilityCastRange"    "500"
+  "AbilityCooldown"    "0"
+  "AbilityManaCost"    "0"
+ 
+  "AbilitySpecial"
+  {
+   "01"
+   {
+    "var_type" "FIELD_INTEGER"
+    "Range" "500"
+   }
+   "01"
+   {
+    "var_type" "FIELD_INTEGER"
+    "Modi" "10 20 30 40"
+   }
+  }
+ 
+  "Modifiers"
+  {
+   "druid_aura_Modifier"
+   {
+    "Passive" "1"
+    "IsHidden" "1"
+    "Aura" "druid_aurad"
+    "Aura_Radius" "%Range"
+    "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "Aura_Types" "DOTA_UNIT_TARGET_HERO"
+   }
+ 
+   "druid_aurad"
+   {
+    "IsBuff" "1"
+    "IsPurgable" "0"
+    "Properties"
+    {
+     "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%Modi"
+    }
+   }
+  }
+ }
