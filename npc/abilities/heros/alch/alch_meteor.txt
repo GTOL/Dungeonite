@@ -1,0 +1,71 @@
+"alch_meteor"
+{
+	"BaseClass"			"ability_datadriven"
+	"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+	"AbilityTextureName"		""
+	"AbilityCastPoint"		"0.3"
+	"AbilityCastRange"		"500"
+	"AbilityManaCost"		"400 600 800"
+	"AbilityCooldown"		"30"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"radius"		"300"
+		}
+		"02"
+		{
+			"var_type"		"FIELD_INTEGER"
+			"damage"		"600 1000 1400"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"CreateThinker"
+		{
+			"ModifierName"	"al_meteor_thinker"
+			"Target"		"TARGET"
+		}
+	}
+
+	"Modifiers"
+	{
+		"al_meteor_thinker"
+		{
+			"Aura"			"create_meteor_dmg"
+			"Aura_Raduis"	"%radius"
+			"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+			"Aura_Type"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+			"Duration"		"0.3"
+			"Oncreated"
+			{
+				"AttachEffect"
+				{
+					"EffectName"	""
+					"EffectAttachType"	"follow_origin"
+					"Target"		"TARGET"
+				}
+			}
+		}
+		"create_meteor_dmg"
+		{
+			"IsDebuff"	"1"
+			"IsPurgale"	"0"
+			"EffectName"	""
+			"ThinkInterval"	"0.2"
+			"OnIntervalThink"
+			{
+				"Damage"
+				{
+					"Type"		"DAMAGE_TYPE_PHYSICAL"
+					"Damage"	"damage"
+					"Target"	"TARGET"
+				}
+			}
+		}
+	}
+}
