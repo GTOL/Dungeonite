@@ -1,0 +1,27 @@
+"alch_magires"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"		""
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"magres"			"10 20 30 40"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_druid_healing"
+		{
+			"IsBuff"			"1"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"magres"
+			}
+		}
+	}
+}
