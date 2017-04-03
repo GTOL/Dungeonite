@@ -2794,7 +2794,7 @@
 		{					
 			"SpawnUnit"
 			{
-				"UnitName"		"fallen_soldier"
+				"UnitName"		"dung_npc_fallen_soldier"
 				"UnitCount"		"3"
 				"SpawnRadius"	"100"
 				"Target"		"CASTER"
