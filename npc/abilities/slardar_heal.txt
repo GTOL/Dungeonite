@@ -15,7 +15,7 @@
 	"BaseClass"					"ability_datadriven"
 	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 	"AbilityTextureName"		"slardar_amplify_damage"
-	"AbilityCastPoint"			"0.3"
+	"AbilityCastPoint"			"0.0"
 	"AbilityCooldown"			"60"
 	"AbilityManaCost"			"60"
 	"MaxLevel"					"1"
