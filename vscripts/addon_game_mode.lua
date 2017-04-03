@@ -39,10 +39,10 @@ Shua = 0
 function CAddonTemplateGameMode:OnThink()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 		--print( "Template addon script is running." )
-		if Shua == 0 then
-			Shua = 1
-			ShuaGuaiKaiShi()
-		end
+--		if Shua == 0 then
+--			Shua = 1
+--			ShuaGuaiKaiShi()
+--		end
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
 		return nil
 	end
@@ -69,6 +69,7 @@ function ShuaGuai(Guai_name, Ent_name, num)
 	end
 end
 
+--[[
 function ShuaGuaiKaiShi()
 	ShuaGuai("npc_bear", "jungle_bear", 1)
 	ShuaGuai("npc_treant", "jungle_treant", 4)
@@ -86,3 +87,4 @@ function ShuaGuaiKaiShi()
 	ShuaGuai("npc_fallen_soldier", "mines_fallen_knight", 4)
 -- 	ShuaGuai("npc_swamp_zombie", "swamp_zombie", 4)
 end
+]]
