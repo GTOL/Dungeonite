@@ -1,0 +1,46 @@
+"druid_ha2"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	"AbilityTextureName"		""
+	"AbilityCooldown"			"20"
+	"AbilityManaCost"			"80"
+	"AbilityCastPoint"			"0.3"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"amp"			"18 25 35 45"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"ApplyModifier"
+		{
+			"Target"
+			{
+				"Center"		"CASTER"
+				"Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Type"			"DOTA_UNIT_TARGET_ALL"
+				"Raduis"		"400"
+			}
+			"ModifierName"		"modifier_druid_ha1"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_druid_ha2"
+		{
+			"IsBuff"			"1"
+			"Duration"			"10"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%amp"
+			}
+		}
+	}
+}

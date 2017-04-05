@@ -25,6 +25,7 @@
 		"modifier_druid_healing"
 		{
 			"IsBuff"			"1"
+			"IsPurgable"			"0"
 			"Properties"
 			{
 				"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor"
