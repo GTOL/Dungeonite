@@ -1,0 +1,99 @@
+"druid_paw"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityTextureName"		""
+	"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCooldown"			"60"
+	"AbilityManaCost"			"100"
+	"AbilityCastRange"			"100"
+	"AbilityCastPoint"			"0.35"
+	"MaxLevel"					"3"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"dmg"			"150 250 400"
+		}
+		"02"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"bld"			"5 7 10"
+		}
+		"03"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"slw"			"5 7 10"
+		}
+		"04"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"slt"			"1.5 2.0 2.5"
+		}
+		"05"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"aslw"			"-30 -60 -90"
+		}
+	}
+
+	"OnSpellStart"
+	{
+		"Damage"
+		{
+			"Target"			"TARGET"
+			"Damage"			"%dmg"
+			"Type"				"DAMAGE_TYPE_PHYSICAL"
+		}
+		"ApplyModifier"
+		{
+			"Target"			"TARGET"
+			"ModifierName"		"modifier_druid_paw_blind"
+		}
+		"ApplyModifier"
+		{
+			"Target"			"TARGET"
+			"ModifierName"		"modifier_druid_paw_slow"
+		}
+		"ApplyModifier"
+		{
+			"Target"			"TARGET"
+			"ModifierName"		"modifier_druid_paw_silent"
+		}
+	}
+
+	"Modifiers"
+	{
+		"modifier_druid_paw_blind"
+		{
+			"IsDebuff"			"1"
+			"Duration"			"%bld"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"-20"
+			}
+		}
+		"modifier_druid_paw_slow"
+		{
+			"IsDebuff"			"1"
+			"Duration"			"%slw"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-20"
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%aslw"
+			}
+		}
+		"modifier_druid_paw_silent"
+		{
+			"IsDebuff"			"1"
+			"Duration"			"%slt"
+			"States"
+			{
+				"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"
+			}
+		}
+	}
+}
