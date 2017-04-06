@@ -1,0 +1,29 @@
+"druid_haste"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"		""
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_FLOAT"
+			"red"			"1 2.5 4"
+		}
+		
+	}
+
+	"Modifiers"
+	{
+		"modifier_druid_haste"
+		{
+			"IsBuff"			"1"
+			"IsPurgable"			"0"
+			"Properties"
+			{
+				"MODIFIER_PROPERTY_COOLDOWN_REDUCTION_CONSTANT"	"%red"
+			}
+		}
+	}
+}
