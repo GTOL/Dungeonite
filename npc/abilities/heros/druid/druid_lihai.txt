@@ -1,0 +1,25 @@
+"druid_lihai"
+{
+	"BaseClass"				"ability_lua"
+	"AbilityTextureName"	""
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	//"AbilityType"			"DOTA_ABILITY_TYPE_ULTIMATE"
+	"ScriptFile"			"druid_lihai_lua"
+	"AbilityCastPoint"		"0.1"
+	"AbilityCooldown"		"12 11 10 9"
+	"AbilityDuration"		"1.0 1.5 2.0 2.5"
+	"AbilityManaCost"		"50"
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"		"FIELD_FLOAT"
+			"duration"		"1.0 1.5 2.0 2.5"
+		}
+		"02"
+		{
+			"var_type"		"FIELD_FLOAT"
+			"multip"		"0.4 0.4 0.4 0.4"
+		}
+	}
+}
