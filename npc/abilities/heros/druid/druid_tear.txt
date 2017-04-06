@@ -1,0 +1,48 @@
+"druid_heal"
+{
+	"BaseClass"					"ability_datadriven"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ATTACK"
+	"AbilityTextureName"		""
+	"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityCooldown"			"13 11 9 7"
+	"AbilityManaCost"			"40"
+	"AbilityCastPoint"			"0.0"
+
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"			"FIELD_INTEGER"
+			"hpower"			"5 10 15 20"
+		}
+	}
+
+	"Modifiers"
+	{
+		"Passive"				"1"
+		"IsHidden"				"1"
+		"Orb"
+		{
+			"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
+			"ProjectileName"	""
+			"CastAttack"		"1"
+		}
+		"OnOrbFire"
+		{
+			"SpendMana"
+			{
+				"Mana"			"%AbilityManaCost"
+			}
+		}
+		"OnOrbImpact"
+		{
+			RunScript
+			{
+				"Target"		"TARGET"
+				"ScriptFile"	"abilities/hero/druid/druid_tear_lua.lua"
+				"Function"		"OnInpact"
+			}
+		}
+	}
+}
